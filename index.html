@@ -1,323 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>BatteryWheel</title>
-	<link rel="icon" href="images/favicon.ico">
-	<!-- Fonts -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-<style type="text/css">
-/*Common CSS*/
-*+html {
-  margin:0px;
-  padding:0px;
-}
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, header, footer, section, nav {
-  margin: 0;
-  padding: 0;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-weight:bold;
-  margin:0px;
-  padding:0px;
-}
-img {
-  border:0px;
-  outline:none;
-  max-width: 100%;
-}
-p {
-  margin:0px;
-  text-align: left;
-}
-ul li, ol li {
-  margin:0px;
-  padding:0px;
-  list-style:none;
-}
-/*main css*/
-body{
-	padding: 0;
-	margin: 0;
-	max-width: 100%;
-	overflow-x: hidden;
-	font-family: 'Montserrat', sans-serif;
-}
-.body-container {
-	max-width: 720px;
-	margin: 0 auto;
-}
-.ocards {
-	padding: 30px;
-}
-.heading-desc{
-	padding-bottom: 20px;
-}
-.heading-desc h2 {
-	font-size: 30px;
-	padding-bottom: 8px;
-}
-.ocard-desc h3 {
-	margin: 0 0 10px;
-	color: #000;
-}
-.heading-desc p{}
-.card-blocks{}
-.card-blocks li {
-	list-style: none;
-	margin-bottom: 30px;
-	padding: 20px;
-	background-color: #f9f9f9;
-	border: 1px solid #ccc;
-	transition: 0.3s;
-	display: flex;
-	justify-content: space-between;
-}
-.card-blocks li:hover {
-	border: 1px solid #0f5090;
-	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-}
-.card-blocks li > div {
-	padding: 10px;
-}
-.ocard-img{
-	width: 14%;
-}
-.ocard-action{
-	width: 22%;
-}
-.ocard-img img {
-	max-width: 100px;
-	width: 100%;
-}
-.ocard-desc {
-	width: 50%;
-	justify-content: center;
-	display: flex;
-	flex-direction: column;
-}
-.ocard-desc p.ocard-company{
-	margin: 0 0 10px;
-	color: #000;
-}
-.ocard-desc p.offer-condition{}
-.ocard-action {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-}
-.ocard-action a {
-	text-decoration: none;
-	font-size: 16px;
-	font-weight: 700;
-	text-transform: capitalize;
-	padding: 10px 15px;
-	background-color: #0f5090;
-	color: #fff;
-	transition: 0.3s;
-	border: 1px solid transparent;
-}
-.ocard-action a.offer-claim:hover{
-	color: #0f5090;
-	background-color: white;
-	border: 1px solid #0f5090;
-}
-.ocard-action a.oreview-link {
-	background-color: transparent;
-	font-weight: 400;
-	border: 1px solid transparent;
-	text-decoration: underline;
-	color: #000;
-	padding: 5px 15px;
-}
-.ocard-action a.oreview-link:hover{
-	background-color: transparent;
-	color: #0f5090;
-}
-
-@media (max-width:767px){
-.card-blocks li {
-	flex-wrap: wrap;
-	padding: 15px;
-}
-.ocard-action {
-	width: 100%;
-	margin-top: 15px;
-}
-.ocards {
-	padding: 30px 15px;
-}
-.ocard-img {
-	width: 20%;
-}
-.card-blocks li > div {
-	padding: 5px;
-}
-.ocard-desc {
-	width: 73%;
-}
-.ocard-action a {
-	width: 100%;
-	padding: 10px 0;
-}
-.ocard-desc h3 {
-	font-size: 18px;
-}
-p, .ocard-action a {
-	font-size: 15px;
-}
-.heading-desc h2 {
-	font-size: 22px;
-}
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BatteryWheel - Smart Battery Tools & Calculators</title>
+  <meta name="description" content="BatteryWheel offers free online calculators for eBike, scooter, and small EV batteries. Estimate range, charging cost, life cycle, and more.">
+  <meta name="keywords" content="ebike battery calculator, charging cost calculator, battery range, battery life cycle, battery tools, scooter battery calculator">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-	<div class="body-container">
-		<div class="ocards">
-			<ul class="card-blocks">
-				<li>
-					<div class="ocard-img">
-						<img src="images/quickwin.png" alt="quickwin">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">QuickWin</p>
-						<h3>Bonus: 100% up to  €100</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="#!" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/22bet.png" alt="22bet">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">22bet</p>
-						<h3>Bonus: 100% Up To €122</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/greatwin.png" alt="22bet">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">Greatwin</p>
-						<h3>Bonus: 50% up to €500</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/ivybet.png" alt="22bet">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">Ivybet</p>
-						<h3>Bonus: 100% welcome package up to €150 in Free Bet Credits</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/bwin.png" alt="22bet">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">Bwin</p>
-						<h3>Bonus: Sign Up To Get Your €20 BackUp Bet</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/rhinobet.png" alt="rhinobet">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">RHINO</p>
-						<h3>Bonus: Bet €20 Get €20</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/betway.png" alt="betway">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">Betway</p>
-						<h3>Bonus: Bet €10 Get €30 in free bets</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/leovegas.png" alt="leovegas">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">LeoVegas</p>
-						<h3>Bonus: Welcome Offer of Up To €400</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/royalpanda.jpg" alt="royalpanda">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">Royal Panda</p>
-						<h3>Bonus: 100% Welcome Offer up to €1000</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-				<li>
-					<div class="ocard-img">
-						<img src="images/fezbet.png" alt="fezbet">
-					</div>
-					<div class="ocard-desc">
-						<p class="ocard-company">FEZbet</p>
-						<h3>Bonus: 100% up to €100</h3>
-					</div>
-					<div class="ocard-action">
-						<a href="" class="offer-claim">Claim Offer</a>
-						<a href="" class="oreview-link">Read Review</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo"><a href="index.html">BatteryWheel</a></h1>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#">Calculators</a></li>
+          <li><a href="#">Guides</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container main-content">
+    <!-- Left Content (Calculators) -->
+    <section class="content-area">
+      <h2>Battery Calculators</h2>
+
+      <article class="calculator-block">
+        <h3>🔋 eBike Range Calculator</h3>
+        <p>Estimate how far your eBike can go on a single charge.</p>
+        <!-- Placeholder for JS tool -->
+        <div class="tool-placeholder">[Calculator Coming Soon]</div>
+      </article>
+
+      <article class="calculator-block">
+        <h3>⚡ Charging Cost Calculator</h3>
+        <p>Find out how much it costs to charge your battery fully.</p>
+        <div class="tool-placeholder">[Calculator Coming Soon]</div>
+      </article>
+
+      <article class="calculator-block">
+        <h3>♻️ Battery Life Cycle Estimator</h3>
+        <p>Approximate your battery lifespan based on usage.</p>
+        <div class="tool-placeholder">[Calculator Coming Soon]</div>
+      </article>
+
+      <article class="calculator-block">
+        <h3>⏱️ Charging Time Calculator</h3>
+        <p>Calculate how long it takes to fully charge your battery.</p>
+        <div class="tool-placeholder">[Calculator Coming Soon]</div>
+      </article>
+
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Useful Battery Tips</h2>
+      <ul class="tips-list">
+        <li><a href="#">Top 3 ways to extend battery life</a></li>
+        <li><a href="#">How to store your battery safely</a></li>
+        <li><a href="#">Best charging practices for eBike batteries</a></li>
+        <li><a href="#">Signs your battery needs replacement</a></li>
+        <li><a href="#">Eco-friendly battery disposal methods</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Disclaimer</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
 
 </body>
 </html>
