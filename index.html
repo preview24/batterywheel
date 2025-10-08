@@ -17,7 +17,15 @@
       <nav class="main-nav">
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="#">Calculators</a></li>
+          <li class="dropdown-menu">
+            <a href="#">Calculators</a>
+            <ul>
+              <li><a href="#!">Range Calculator</a></li>
+              <li><a href="#!">Cost Calculator</a></li>
+              <li><a href="#!">Life Cycle Calculator</a></li>
+              <li><a href="#!">Charging Time Calculator</a></li>
+            </ul>
+          </li>
           <li><a href="#">Guides</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
@@ -32,30 +40,32 @@
     <section class="content-area">
       <h2>Battery Calculators</h2>
 
-      <article class="calculator-block">
-        <h3>🔋 eBike Range Calculator</h3>
-        <p>Estimate how far your eBike can go on a single charge.</p>
-        <!-- Placeholder for JS tool -->
-        <div class="tool-placeholder">[Calculator Coming Soon]</div>
-      </article>
+      <div class="calculator-area">
+        <article class="calculator-block">
+          <h3>🔋 eBike Range Calculator</h3>
+          <p>Estimate how far your eBike can go on a single charge.</p>
+          <!-- Placeholder for JS tool -->
+          <button class="tool-opener" data-modal="modal1">Calculate Range</button>
+        </article>
 
-      <article class="calculator-block">
-        <h3>⚡ Charging Cost Calculator</h3>
-        <p>Find out how much it costs to charge your battery fully.</p>
-        <div class="tool-placeholder">[Calculator Coming Soon]</div>
-      </article>
+        <article class="calculator-block">
+          <h3>⚡ Charging Cost Calculator</h3>
+          <p>Find out how much it costs to charge your battery fully.</p>
+          <button class="tool-opener" data-modal="modal2">Calculate Charging Cost</button>
+        </article>
 
-      <article class="calculator-block">
-        <h3>♻️ Battery Life Cycle Estimator</h3>
-        <p>Approximate your battery lifespan based on usage.</p>
-        <div class="tool-placeholder">[Calculator Coming Soon]</div>
-      </article>
+        <article class="calculator-block">
+          <h3>♻️ Battery Life Cycle Estimator</h3>
+          <p>Approximate your battery lifespan based on usage.</p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
 
-      <article class="calculator-block">
-        <h3>⏱️ Charging Time Calculator</h3>
-        <p>Calculate how long it takes to fully charge your battery.</p>
-        <div class="tool-placeholder">[Calculator Coming Soon]</div>
-      </article>
+        <article class="calculator-block">
+          <h3>⏱️ Charging Time Calculator</h3>
+          <p>Calculate how long it takes to fully charge your battery.</p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
+      </div>
 
     </section>
 
@@ -85,6 +95,168 @@
       </nav>
     </div>
   </footer>
+
+
+
+
+<!-- Modal 1 -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal1">&times;</span>
+    <div class="modal-body">
+      <!-- ROOT: scoped to this calculator -->
+      <div id="ebike-calculator" class="card">
+        <p class="lead">Enter your battery details and (optionally) motor power, rider weight, terrain and pedal-assist level. Voltage is used when battery is given in Ah.</p>
+
+        <div class="calculator-area">
+          <div class="half-block">
+            <label for="battery-capacity">Battery Capacity</label>
+            <input id="battery-capacity" type="number" step="any" placeholder="e.g. 14 (Ah) or 672 (Wh)" />
+            <div class="small muted">Value must be a positive number.</div>
+            <div class="error-message" id="error-battery"></div>
+
+            <div class="absu-unit">
+              <label for="battery-unit">Battery Unit</label>
+              <select id="battery-unit">
+                <option value="ah">Ah (Amp-hour)</option>
+                <option value="wh">Wh (Watt-hour)</option>
+              </select>
+              <div class="error-message" id="error-battery-unit"></div>
+            </div>
+          </div>
+
+          
+          <div class="half-block">
+            <div id="voltage-wrap">
+              <label for="voltage">Voltage (V)</label>
+              <input id="voltage" type="number" step="any" placeholder="48 (common) — required if you entered Ah" />
+              <div class="small muted">Used only when battery unit is Ah. If left empty a default of 48 V will be used.</div>
+              <div class="error-message" id="error-voltage"></div>
+            </div>
+          </div>
+
+          <div class="half-block2">
+            <label for="range-unit">Display Range</label>
+            <select id="range-unit">
+              <option value="km">Kilometers (km)</option>
+              <option value="mile">Miles</option>
+            </select>
+            <div class="error-message" id="error-range-unit"></div>
+          </div>
+
+          <!-- <hr class="full" style="border:none;margin:8px 0;padding:0;border-top:1px solid #f0f2f4" /> -->
+
+          <div class="half-block2">
+            <label for="motor-power">Motor Power (W) — optional</label>
+            <input id="motor-power" type="number" step="any" placeholder="e.g. 250" />
+            <div class="small muted">Typical motors: 250W (EU), 350W, 500W, 750W</div>
+            <div class="error-message" id="error-motor"></div>
+          </div>
+
+          <div class="half-block2">
+            <label for="rider-weight">Rider Weight (kg) — optional</label>
+            <input id="rider-weight" type="number" step="any" placeholder="e.g. 75" />
+            <div class="error-message" id="error-weight"></div>
+          </div>
+
+          <div class="half-block2">
+            <label for="terrain">Terrain — optional</label>
+            <select id="terrain">
+              <option value="">— not specified —</option>
+              <option value="flat">Flat</option>
+              <option value="rolling">Rolling / Mixed</option>
+              <option value="hilly">Hilly</option>
+              <option value="mountain">Mountainous</option>
+            </select>
+            <div class="error-message" id="error-terrain"></div>
+          </div>
+
+          <div class="half-block2">
+            <label for="pedal-assist">Pedal Assist — optional</label>
+            <select id="pedal-assist">
+              <option value="">— not specified —</option>
+              <option value="none">None (you pedal a lot)</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            <div class="error-message" id="error-pedal"></div>
+          </div>
+
+          <!-- <div class="half-block2">
+            <label for="notes">Notes / Average Speed (optional)</label>
+            <input id="notes" type="text" placeholder="Optional note or average speed like 20 km/h — used for your own reference" />
+            <div class="error-message" id="error-notes"></div>
+          </div> -->
+
+          <div class="actions half-block3">
+            <button id="calculate">Calculate Range</button>
+          </div>
+
+          <div class="actions half-block3">
+            <button id="reset" class="secondary">Reset</button>
+          </div>
+
+        </div>
+
+        <div id="result" hidden>
+          <div class="flex fade-left"><h2>Estimated Range:</h2>&nbsp;<div id="range-output" style="font-size:30px;font-weight:600;margin-left:8px"></div></div>
+          <div class="note fade-right" id="breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal 2 -->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal2">&times;</span>
+    <div class="modal-body">
+      <div class="evcalc1_calculator">
+        <h1>Ebike Charging Cost Calculator</h1>
+
+        <label for="evcalc1_battery">Battery Capacity:</label>
+        <div>
+            <input type="number" id="evcalc1_battery" placeholder="e.g. 0.48" step="0.01">
+            <select id="evcalc1_unit">
+                <option value="kWh">kWh</option>
+                <option value="Ah">Ah</option>
+            </select>
+        </div>
+        <div class="error-message" id="evcalc1_capacity_error">Please enter a valid battery capacity.</div>
+
+        <label for="evcalc1_cost">Electricity Cost (per kWh, in $):</label>
+        <input type="number" id="evcalc1_cost" placeholder="e.g. 0.12" step="0.01">
+        <div class="error-message" id="evcalc1_cost_error">Please enter a valid electricity cost.</div>
+
+        <label for="evcalc1_charge">Current Charge Level (%):</label>
+        <input type="range" id="evcalc1_charge" min="0" max="100" value="0">
+        <div class="range-labels">
+            <span>0%</span><span>100%</span>
+        </div>
+        <div id="evcalc1_display">0%</div>
+
+        <button class="calculate-button" id="evcalc1_btn">Calculate Cost</button>
+
+        <div class="result" id="evcalc1_result">Charging Cost: $0.00</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <script src="js/main.js"></script>
+
+
+
+
+
+
 
 </body>
 </html>
