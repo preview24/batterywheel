@@ -455,8 +455,9 @@ input, select{
     border: 1px dashed #e6e9ee;
     background: #fcfffb;
 }
-#result h2{
+#result h2, .main-result{
   font-size: 28px;
+  display: inline-block;
 }
 .muted {
     color: var(--muted);
@@ -475,6 +476,9 @@ input, select{
     font-size: 12px;
     color: #374151;
     margin-top: 8px;
+}
+.f12{
+  font-size: 12px;
 }
 pre {
     background: #fff;
@@ -540,11 +544,18 @@ pre {
   margin-bottom: 15px;
 }
 .half-block2{
+  position: relative;
   width: calc(25% - 10px);
   margin-bottom: 15px;
 }
 .half-block3{
+  position: relative;
   width: calc(37.5% - 10px);
+  margin-bottom: 15px;
+}
+.half-block4{
+  position: relative;
+  width: calc(33% - 10px);
   margin-bottom: 15px;
 }
 .absu-unit {
@@ -556,8 +567,14 @@ pre {
 .absu-unit select{
   width: 100%;
 }
-
-
+input[type="range"]{
+  width: 100%;
+}
+.current-charge-level{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
 
 
@@ -606,7 +623,7 @@ pre {
 [data-ani-delay="100"]{
     transition-delay: 100ms;
 }
-@keyframes fade-left{
+@keyframes fade-left {
   from {
     opacity: 0;
     transform: translateX(-50px);
@@ -617,8 +634,10 @@ pre {
   }
 }
 
-.fade-left{
-  animation: fade-left 0.3s ease-in 1;
+.fade-left {
+  opacity: 0; /* Initially hide the text */
+  visibility: hidden; /* Prevent interaction with hidden text */
+  animation: fade-left 0.2s ease-in forwards 1; /* 'forwards' ensures final state is kept */
 }
 @keyframes fade-right{
   from {
@@ -630,13 +649,31 @@ pre {
     transform: translateX(0);
   }
 }
-
 .fade-right{
-  animation: fade-right 0.3s ease-in 1;
+  animation: fade-right 0.5s ease-in 1;
+}
+.ad1{
+  animation-delay: 100ms;
+}
+.ad2{
+  animation-delay: 200ms;
+}
+.ad3{
+  animation-delay: 300ms;
+}
+.ad4{
+  animation-delay: 400ms;
+}
+.ad5{
+  animation-delay: 500ms;
+}
+.ad6{
+  animation-delay: 600ms;
 }
 
-
-
+.fade-left{
+  visibility: visible;
+}
 
 
 
