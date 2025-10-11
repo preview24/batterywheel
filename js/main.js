@@ -124,9 +124,9 @@
     resultWrap.hidden = false;
 
     const lines = [];
-    lines.push(`<strong>Battery:</strong> ${batteryWh.toLocaleString(undefined,{maximumFractionDigits:2})} Wh`);
-    lines.push(`<strong>Baseline consumption:</strong> ${baselineWhPerKm} Wh/km`);
-    lines.push(`<strong>Adjusted consumption:</strong> ${adjustedWhPerKm.toFixed(2)} Wh/km`);
+    lines.push(`<p class="f12 fade-left ad1"><strong>Battery:</strong> ${batteryWh.toLocaleString(undefined,{maximumFractionDigits:2})} Wh </p>`);
+    lines.push(`<p class="f12 fade-left ad2"><strong>Baseline consumption:</strong> ${baselineWhPerKm} Wh/km </p>`);
+    lines.push(`<p class="f12 fade-left ad3"><strong>Adjusted consumption:</strong> ${adjustedWhPerKm.toFixed(2)} Wh/km </p>`);
 
     const applied = [];
     if (multipliers.motor !== 1) applied.push(`Motor power ×${multipliers.motor.toFixed(2)}`);
@@ -135,10 +135,10 @@
     if (multipliers.pedal !== 1) applied.push(`Pedal assist ×${multipliers.pedal.toFixed(2)}`);
     if (applied.length) lines.push(`<strong>Applied factors:</strong> ${applied.join(' • ')}`);
 
-    lines.push(`<strong>Estimated range:</strong> ${displayRange}`);
-    lines.push(`<span class=small>Note: This is an estimate. Real-world range depends on riding style, wind, stops/starts, tire pressure and more.</span>`);
+    lines.push(`<p class="f12 fade-left ad4"><strong>Estimated range:</strong> ${displayRange} </p>`);
+    lines.push(`<p class="f12 fade-left ad5"><span class=small>Note: This is an estimate. Real-world range depends on riding style, wind, stops/starts, tire pressure and more.</span> </p>`);
 
-    breakdown.innerHTML = lines.join('<br>');
+    breakdown.innerHTML = lines.join('');
   }
 
   function resetForm() {
@@ -169,6 +169,8 @@
 
  // Charging Cost Calculator
 
+
+// Charging Cost Calculator (with decimal-safe input + reset + formatted result)
 (function() {
     const id = "evcalc1_";
 
@@ -179,12 +181,14 @@
     const display = document.getElementById(id + "display");
     const capacityError = document.getElementById(id + "capacity_error");
     const costError = document.getElementById(id + "cost_error");
-    const result = document.getElementById(id + "result");
+    const resultWrap = document.getElementById(id + "result");
+    const resultOutput = document.getElementById(id + "result_output");
     const button = document.getElementById(id + "btn");
+    const resetBtn = document.getElementById(id + "reset");
 
     // --- Make inputs text (so leading "." works reliably) and hint numeric keyboard on mobiles
     [batteryInput, costInput].forEach(inp => {
-        try { inp.type = "text"; } catch (e) { /* ignore if not allowed */ }
+        try { inp.type = "text"; } catch (e) {}
         inp.setAttribute("inputmode", "decimal");
         inp.setAttribute("autocapitalize", "off");
         inp.setAttribute("autocomplete", "off");
@@ -192,33 +196,22 @@
 
     // Sanitizer that allows only: digits, one dot (.), and an optional leading + or -
     function sanitizeNumberLikeString(fullStr) {
-        // Remove any character that's not digit, dot, + or -
         let s = fullStr.replace(/[^0-9.+-]/g, '');
-
-        // Keep only first '.' (remove additional dots)
         const firstDot = s.indexOf('.');
         if (firstDot !== -1) {
             s = s.slice(0, firstDot + 1) + s.slice(firstDot + 1).replace(/\./g, '');
         }
-
-        // Keep only one leading sign (+ or -) if present at start. Remove other signs.
         let sign = '';
-        if (s[0] === '+' || s[0] === '-') {
-            sign = s[0];
-        }
-        // remove any other sign characters elsewhere
+        if (s[0] === '+' || s[0] === '-') sign = s[0];
         s = (sign ? sign : '') + s.slice(sign ? 1 : 0).replace(/[+-]/g, '');
-
         return s;
     }
 
-    // Input handler that preserves caret position
+    // Input handler (preserves caret)
     function numericInputHandler(e) {
         const el = e.target;
         const oldVal = el.value;
         const selStart = el.selectionStart || oldVal.length;
-
-        // Sanitize full string and the prefix up to selection to compute new caret
         const newFull = sanitizeNumberLikeString(oldVal);
         const prefix = oldVal.slice(0, selStart);
         const newPrefix = sanitizeNumberLikeString(prefix);
@@ -226,21 +219,14 @@
 
         if (newFull !== oldVal) {
             el.value = newFull;
-            // set caret (safe-guard if input not focused)
-            try { el.setSelectionRange(newCaret, newCaret); } catch (err) { }
+            try { el.setSelectionRange(newCaret, newCaret); } catch (err) {}
         }
     }
 
-    // Attach handlers
     [batteryInput, costInput].forEach(inp => {
         inp.addEventListener('input', numericInputHandler);
-        // sanitize on paste as well (paste triggers input too, but this ensures it)
-        inp.addEventListener('paste', (ev) => {
-            // small timeout so the pasted content is available
-            setTimeout(() => numericInputHandler({ target: inp }), 0);
-        });
-        // Enter to calculate
-        inp.addEventListener('keydown', (ev) => {
+        inp.addEventListener('paste', ev => setTimeout(() => numericInputHandler({ target: inp }), 0));
+        inp.addEventListener('keydown', ev => {
             if (ev.key === 'Enter') {
                 ev.preventDefault();
                 button.click();
@@ -253,19 +239,21 @@
         display.textContent = chargeSlider.value + "%";
     });
 
-    // Calculate button click
+    function clearErrors() {
+        capacityError.style.display = "none";
+        costError.style.display = "none";
+    }
+
+    // --- Calculate ---
     button.addEventListener("click", () => {
+        clearErrors();
+
         const batteryRaw = batteryInput.value.trim();
         const costRaw = costInput.value.trim();
-
-        // Parse with parseFloat (leading '.' works)
         const battery = parseFloat(batteryRaw);
         const cost = parseFloat(costRaw);
         const unit = unitSelect.value;
         const charge = parseInt(chargeSlider.value, 10);
-
-        capacityError.style.display = "none";
-        costError.style.display = "none";
 
         if (isNaN(battery) || battery <= 0) {
             capacityError.style.display = "block";
@@ -276,7 +264,6 @@
             return;
         }
 
-        // Convert Ah to kWh if necessary
         let batteryKWh = battery;
         if (unit === "Ah") {
             const voltage = 36; // Standard ebike voltage
@@ -287,9 +274,30 @@
         const requiredCharge = batteryKWh * (100 - charge) / 100;
         const totalCost = requiredCharge * cost;
 
-        result.textContent = `Charging Cost: $${totalCost.toFixed(2)}`;
+        const breakdown = [];
+        breakdown.push(`<h2 class="fade-left main-result">Total Charging Cost: &nbsp;  $${totalCost.toFixed(2)} </h2>`);
+        breakdown.push(`<p class="f12 fade-left ad1"><strong>Battery:</strong> ${batteryKWh.toFixed(2)} kWh </p>`);
+        breakdown.push(`<p class="f12 fade-left ad2"><strong>Current Charge:</strong> ${charge}% </p>`);
+        breakdown.push(`<p class="f12 fade-left ad3"><strong>Energy Needed:</strong> ${requiredCharge.toFixed(2)} kWh </p>`);
+        breakdown.push(`<p class="f12 fade-left ad4"><strong>Cost per kWh:</strong> $${cost.toFixed(2)} </p>`);
+
+        resultOutput.innerHTML = breakdown.join('');
+        resultWrap.hidden = false;
+    });
+
+    // --- Reset ---
+    resetBtn.addEventListener("click", () => {
+        batteryInput.value = "";
+        costInput.value = "";
+        unitSelect.value = "Ah";
+        chargeSlider.value = 0;
+        display.textContent = "0%";
+        clearErrors();
+        resultWrap.hidden = true;
     });
 })();
+
+
 
 
 
