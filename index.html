@@ -201,7 +201,7 @@
 
         <div id="result" hidden>
           <div class="flex fade-left"><h2>Estimated Range:</h2>&nbsp;<div id="range-output" style="font-size:30px;font-weight:600;margin-left:8px"></div></div>
-          <div class="note fade-right" id="breakdown"></div>
+          <div class="note" id="breakdown"></div>
         </div>
       </div>
 
@@ -215,34 +215,49 @@
   <div class="modal-content">
     <span class="close-btn" data-modal="modal2">&times;</span>
     <div class="modal-body">
-      <div class="evcalc1_calculator">
-        <h1>Ebike Charging Cost Calculator</h1>
 
-        <label for="evcalc1_battery">Battery Capacity:</label>
-        <div>
-            <input type="number" id="evcalc1_battery" placeholder="e.g. 0.48" step="0.01">
-            <select id="evcalc1_unit">
-                <option value="kWh">kWh</option>
-                <option value="Ah">Ah</option>
-            </select>
+      <div id="evcalc1_">
+
+        <div class="calculator-area">
+          <div class="half-block4">
+            <label>Battery Capacity: <input id="evcalc1_battery" placeholder="e.g. 0.48"></label>
+            <div id="evcalc1_capacity_error" class="error-message" style="display:none;color:red;">Enter valid battery capacity.</div>
+
+            <div class="absu-unit">
+              <label>Unit:
+                <select id="evcalc1_unit">
+                  <option value="Ah">Ah</option>
+                  <option value="kWh">kWh</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="half-block4">
+            <label>Electricity Cost (per kWh, in $):<input id="evcalc1_cost" placeholder="e.g. 0.12"></label>
+            <div id="evcalc1_cost_error" class="error-message" style="display:none;color:red;">Enter valid cost.</div>
+          </div>
+
+          <div class="half-block4">
+            <label>Current Charge Level: <span id="evcalc1_display">0%</span></label>
+            <input type="range" id="evcalc1_charge" min="0" max="99" value="0">
+            <div class="current-charge-level">
+              <label><span id="evcalc1_display2">0%</span></label>
+              <div>100%</div>
+            </div>
+          </div>
+          <div class="actions half-block">
+            <button id="evcalc1_btn">Calculate</button>
+          </div>
+          <div class="actions half-block">
+            <button id="evcalc1_reset" class="secondary" type="button">Reset</button>
+          </div>
+
+          <div id="evcalc1_result" hidden>
+            <div id="evcalc1_result_output" class="f12"></div>
+          </div>
         </div>
-        <div class="error-message" id="evcalc1_capacity_error">Please enter a valid battery capacity.</div>
-
-        <label for="evcalc1_cost">Electricity Cost (per kWh, in $):</label>
-        <input type="number" id="evcalc1_cost" placeholder="e.g. 0.12" step="0.01">
-        <div class="error-message" id="evcalc1_cost_error">Please enter a valid electricity cost.</div>
-
-        <label for="evcalc1_charge">Current Charge Level (%):</label>
-        <input type="range" id="evcalc1_charge" min="0" max="100" value="0">
-        <div class="range-labels">
-            <span>0%</span><span>100%</span>
-        </div>
-        <div id="evcalc1_display">0%</div>
-
-        <button class="calculate-button" id="evcalc1_btn">Calculate Cost</button>
-
-        <div class="result" id="evcalc1_result">Charging Cost: $0.00</div>
       </div>
+
     </div>
   </div>
 </div>
