@@ -4,8 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BatteryWheel - Smart Battery Tools & Calculators</title>
+  <link rel="icon" href="images/favicon.png" type="image/png" sizes="50x50">
   <meta name="description" content="BatteryWheel offers free online calculators for eBike, scooter, and small EV batteries. Estimate range, charging cost, life cycle, and more.">
   <meta name="keywords" content="ebike battery calculator, charging cost calculator, battery range, battery life cycle, battery tools, scooter battery calculator">
+  <meta property="og:title" content="BatteryWheel - Smart Battery Tools & Calculators">
+  <meta property="og:description" content="Free battery range and cost calculators for eBike, scooter, and EV batteries.">
+  <meta property="og:url" content="https://batterywheel.com">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://batterywheel.com/img/preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "BatteryWheel",
+    "url": "https://batterywheel.com",
+    "description": "Battery calculators for eBike and EV batteries — range, cost, life, and charge time estimators."
+  }
+  </script>
+
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -38,6 +56,16 @@
   <main class="container main-content">
     <!-- Left Content (Calculators) -->
     <section class="content-area">
+      <div class="intro-text">
+        <p>
+          Welcome to <strong>BatteryWheel</strong> — your free collection of online
+          <strong>battery calculators</strong> for eBikes, scooters, and small EVs.
+          Estimate <strong>range</strong>, <strong>charging time</strong>, <strong>cost</strong>,
+          and <strong>battery lifespan</strong> instantly. All tools are simple,
+          accurate, and completely free.
+        </p>
+      </div>
+
       <h2>Battery Calculators</h2>
 
       <div class="calculator-area">
@@ -134,7 +162,11 @@
         <li><a href="#">Eco-friendly battery disposal methods</a></li>
       </ul>
     </aside>
+
+
   </main>
+
+  <p class="text-center"><a href="sitemap.html">View All Tools</a></p>
 
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
@@ -149,6 +181,13 @@
       </nav>
     </div>
   </footer>
+
+
+
+
+
+
+
 
 
 
@@ -481,9 +520,9 @@
         <h1>Motor Power & Speed Calculator</h1>
         <p class="lead">Estimate your eBike's top speed from motor power, total weight, wheel size and riding posture (uses a physics-based model).</p>
 
-        <div class="grid">
+        <div class="calculator-area">
           <!-- Motor Power -->
-          <div>
+          <div class="half-block4">
             <label for="mp_motor-power">Motor Power (W)</label>
             <input id="mp_motor-power" type="number" step="any" placeholder="e.g. 500" />
             <div class="small muted">Enter the motor rated power in watts (continuous rating gives best estimate).</div>
@@ -491,7 +530,7 @@
           </div>
 
           <!-- Wheel Diameter -->
-          <div>
+          <div class="half-block4">
             <label for="mp_wheel-size">Wheel Diameter (inch)</label>
             <input id="mp_wheel-size" type="number" step="any" placeholder="e.g. 26" />
             <div class="small muted">Typical eBikes use 20"–29" wheels. Used for display and rolling notes.</div>
@@ -499,7 +538,7 @@
           </div>
 
           <!-- Total Weight -->
-          <div>
+          <div class="half-block4">
             <label for="mp_total-weight">Total Weight (Rider + Bike) (kg)</label>
             <input id="mp_total-weight" type="number" step="any" placeholder="e.g. 100" />
             <div class="small muted">Enter combined weight in kilograms (bike + rider + cargo).</div>
@@ -507,7 +546,7 @@
           </div>
 
           <!-- Efficiency -->
-          <div>
+          <div class="half-block4">
             <label for="mp_efficiency">System Efficiency (%)</label>
             <input id="mp_efficiency" type="number" step="any" placeholder="e.g. 85" />
             <div class="small muted">Drivetrain + motor efficiency. Default: 85% (80–90%).</div>
@@ -515,7 +554,7 @@
           </div>
 
           <!-- Riding Position (affects CdA) -->
-          <div>
+          <div class="half-block4">
             <label for="mp_position">Riding Position (aerodynamics)</label>
             <select id="mp_position">
               <option value="upright">Upright (typical) — CdA ≈ 0.60</option>
@@ -527,7 +566,7 @@
           </div>
 
           <!-- Terrain grade -->
-          <div>
+          <div class="half-block4">
             <label for="mp_grade">Road Grade</label>
             <select id="mp_grade">
               <option value="0">Flat (0%)</option>
