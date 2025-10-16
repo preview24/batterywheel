@@ -56,13 +56,67 @@
 
         <article class="calculator-block">
           <h3>♻️ Battery Life Cycle Estimator</h3>
-          <p>Approximate your battery lifespan based on usage.</p>
-          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+          <p>Approximate your battery lifespan and total range based on usage </p>
+          <button class="tool-opener" data-modal="modal3">Calculate Life Cycle</button>
         </article>
 
         <article class="calculator-block">
           <h3>⏱️ Charging Time Calculator</h3>
           <p>Calculate how long it takes to fully charge your battery.</p>
+          <button class="tool-opener" data-modal="modal4">Calculate Charging Time</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>⚙️ Motor Power & Speed Calculator</h3>
+          <p>Estimate your eBike's top speed based on motor wattage, wheel size, and total weight.</p>
+          <button class="tool-opener" data-modal="modal5">Calculate Speed</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>⚡ Electricity Cost per 100 km Calculator</h3>
+          <p></p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 Battery Replacement Cost Estimator</h3>
+          <p></p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 Weight-to-Performance Calculator</h3>
+          <p></p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 CO₂ Savings Calculator</h3>
+          <p></p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 Battery Degradation Simulator</h3>
+          <p></p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 Battery Degradation Simulator</h3>
+          <p></p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 Battery Degradation Simulator</h3>
+          <p></p>
+          <div class="tool-placeholder">[Calculator Coming Soon]</div>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 Few More Calculator</h3>
+          <p></p>
           <div class="tool-placeholder">[Calculator Coming Soon]</div>
         </article>
       </div>
@@ -255,6 +309,244 @@
           <div id="evcalc1_result" hidden>
             <div id="evcalc1_result_output" class="f12"></div>
           </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div id="modal3" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal3">&times;</span>
+    <div class="modal-body">
+
+      <div id="battery-life-calculator" class="card">
+        <p class="lead">Estimate how far your battery can last over its full lifetime based on capacity, voltage, daily usage, and charge cycles.</p>
+        <div class="calculator-area">
+          <!-- Battery Capacity -->
+          <div class="half-block">
+            <label for="bl_battery-capacity">Battery Capacity</label>
+            <input id="bl_battery-capacity" type="number" step="any" placeholder="e.g. 14 (Ah) or 672 (Wh)" />
+            <div class="small muted">Enter your battery capacity (positive number).</div>
+            <div class="error-message" id="bl_error-battery"></div>
+
+            <!-- Battery Unit -->
+            <div class="absu-unit">
+              <label for="bl_battery-unit">Battery Unit</label>
+              <select id="bl_battery-unit">
+                <option value="ah">Ah (Amp-hour)</option>
+                <option value="wh">Wh (Watt-hour)</option>
+              </select>
+              <div class="error-message" id="bl_error-unit"></div>
+            </div>
+          </div>
+
+
+          <!-- Average Daily Usage -->
+          <div class="half-block">
+            <label for="bl_daily-usage">Average Daily Usage</label>
+            <input id="bl_daily-usage" type="number" step="any" placeholder="e.g. 25 (km or miles)" />
+            <div class="small muted">Typical riders use between 20–40 km daily.</div>
+            <div class="error-message" id="bl_error-usage"></div>
+
+            <!-- Usage Unit -->
+            <div class="absu-unit">
+              <label for="bl_usage-unit">Usage Unit</label>
+              <select id="bl_usage-unit">
+                <option value="km">Kilometers (km)</option>
+                <option value="mile">Miles</option>
+              </select>
+              <div class="error-message" id="bl_error-usageunit"></div>
+            </div>
+          </div>
+
+
+          <div class="half-block">
+            <!-- Voltage -->
+            <div id="bl_voltage-wrap">
+              <label for="bl_voltage">Voltage (V)</label>
+              <input id="bl_voltage" type="number" step="any" placeholder="48 (default)" />
+              <div class="small muted">Used only when unit is Ah. Default is 48 V if empty.</div>
+              <div class="error-message" id="bl_error-voltage"></div>
+            </div>
+          </div>
+
+          <!-- Battery Full Charge Cycles -->
+          <div class="half-block">
+            <label for="bl_charge-cycles">Battery Full Charge Cycles</label>
+            <input id="bl_charge-cycles" type="number" step="any" placeholder="e.g. 800" />
+            <div class="small muted">Typical lithium batteries last 500–1000 cycles.</div>
+            <div class="error-message" id="bl_error-cycles"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="bl_calculate">Estimate Lifetime</button>
+          <button id="bl_reset" class="secondary">Reset</button>
+        </div>
+
+        <div id="bl_result" hidden>
+          <div class="note" id="bl_breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal 4 -->
+<div id="modal4" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal4">&times;</span>
+    <div class="modal-body">
+
+      <!-- ==================================
+     🔌 CHARGING TIME CALCULATOR
+     ================================== -->
+      <div id="charging-time-calculator" class="card" style="margin-top:30px;">
+        <h2>Charging Time Calculator</h2>
+        <p class="lead">Estimate how long it takes to fully charge your eBike battery based on capacity, voltage, and charger specifications.</p>
+
+        <div class="calculator-area">
+          <!-- Battery Capacity -->
+          <div class="half-block4">
+            <label for="ct_battery-capacity">Battery Capacity</label>
+            <input id="ct_battery-capacity" type="number" step="any" placeholder="e.g. 14 (Ah) or 672 (Wh)" />
+            <div class="small muted">Enter your battery capacity (Ah or Wh).</div>
+            <div class="error-message" id="ct_error-capacity"></div>
+
+            <!-- Capacity Unit -->
+            <div class="absu-unit">
+              <label for="ct_capacity-unit">Capacity Unit</label>
+              <select id="ct_capacity-unit">
+                <option value="ah">Ah (Amp-hour)</option>
+                <option value="wh">Wh (Watt-hour)</option>
+              </select>
+              <div class="error-message" id="ct_error-unit"></div>
+            </div>
+
+          </div>
+
+          <!-- Voltage -->
+          <div id="ct_voltage-wrap" class="half-block5">
+            <label for="ct_voltage">Battery Voltage (V)</label>
+            <input id="ct_voltage" type="number" step="any" placeholder="48 (default)" />
+            <div class="small muted">Used only if unit is Ah. Default is 48 V if empty.</div>
+            <div class="error-message" id="ct_error-voltage"></div>
+          </div>
+
+          <!-- Charger Output Current -->
+          <div class="half-block5">
+            <label for="ct_charger-current">Charger Output Current (A)</label>
+            <input id="ct_charger-current" type="number" step="any" placeholder="e.g. 2" />
+            <div class="small muted">Common chargers: 2A–5A.</div>
+            <div class="error-message" id="ct_error-current"></div>
+          </div>
+
+          <!-- Charger Efficiency -->
+          <div class="half-block5">
+            <label for="ct_efficiency">Charger Efficiency (%)</label>
+            <input id="ct_efficiency" type="number" step="any" placeholder="e.g. 90" />
+            <div class="small muted">Optional — default is 90 % if left empty.</div>
+            <div class="error-message" id="ct_error-efficiency"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="ct_calculate">Estimate Charging Time</button>
+          <button id="ct_reset" class="secondary">Reset</button>
+        </div>
+
+        <div id="ct_result" hidden>
+          <div id="ct_breakdown" class="note"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal 5 -->
+<div id="modal5" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal5">&times;</span>
+    <div class="modal-body">
+
+      <!-- =======================================
+     ⚙️ MOTOR POWER & SPEED CALCULATOR (REALISTIC)
+     ======================================= -->
+      <div id="motor-power-calculator" class="card" style="margin-top:30px;">
+        <h1>Motor Power & Speed Calculator</h1>
+        <p class="lead">Estimate your eBike's top speed from motor power, total weight, wheel size and riding posture (uses a physics-based model).</p>
+
+        <div class="grid">
+          <!-- Motor Power -->
+          <div>
+            <label for="mp_motor-power">Motor Power (W)</label>
+            <input id="mp_motor-power" type="number" step="any" placeholder="e.g. 500" />
+            <div class="small muted">Enter the motor rated power in watts (continuous rating gives best estimate).</div>
+            <div class="error-message" id="mp_error-power"></div>
+          </div>
+
+          <!-- Wheel Diameter -->
+          <div>
+            <label for="mp_wheel-size">Wheel Diameter (inch)</label>
+            <input id="mp_wheel-size" type="number" step="any" placeholder="e.g. 26" />
+            <div class="small muted">Typical eBikes use 20"–29" wheels. Used for display and rolling notes.</div>
+            <div class="error-message" id="mp_error-wheel"></div>
+          </div>
+
+          <!-- Total Weight -->
+          <div>
+            <label for="mp_total-weight">Total Weight (Rider + Bike) (kg)</label>
+            <input id="mp_total-weight" type="number" step="any" placeholder="e.g. 100" />
+            <div class="small muted">Enter combined weight in kilograms (bike + rider + cargo).</div>
+            <div class="error-message" id="mp_error-weight"></div>
+          </div>
+
+          <!-- Efficiency -->
+          <div>
+            <label for="mp_efficiency">System Efficiency (%)</label>
+            <input id="mp_efficiency" type="number" step="any" placeholder="e.g. 85" />
+            <div class="small muted">Drivetrain + motor efficiency. Default: 85% (80–90%).</div>
+            <div class="error-message" id="mp_error-efficiency"></div>
+          </div>
+
+          <!-- Riding Position (affects CdA) -->
+          <div>
+            <label for="mp_position">Riding Position (aerodynamics)</label>
+            <select id="mp_position">
+              <option value="upright">Upright (typical) — CdA ≈ 0.60</option>
+              <option value="tucked">Tucked (sport) — CdA ≈ 0.40</option>
+              <option value="relaxed">Relaxed (commuter) — CdA ≈ 0.70</option>
+            </select>
+            <div class="small muted">Choose a riding posture — affects aerodynamic drag.</div>
+            <div class="error-message" id="mp_error-position"></div>
+          </div>
+
+          <!-- Terrain grade -->
+          <div>
+            <label for="mp_grade">Road Grade</label>
+            <select id="mp_grade">
+              <option value="0">Flat (0%)</option>
+              <option value="0.02">Light (2%)</option>
+              <option value="0.05">Moderate (5%)</option>
+              <option value="0.08">Steep (8%)</option>
+            </select>
+            <div class="small muted">Select approximate slope — positive values slow top speed.</div>
+            <div class="error-message" id="mp_error-grade"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="mp_calculate">Estimate Speed</button>
+          <button id="mp_reset" class="secondary">Reset</button>
+        </div>
+
+        <div id="mp_result" hidden>
+          <div id="mp_breakdown" class="note"></div>
         </div>
       </div>
 
