@@ -305,6 +305,385 @@
 
 
 
+// BATTERY LIFE CYCLE ESTIMATOR
+
+
+(function() {
+  const root = document.getElementById('battery-life-calculator');
+  if (!root) return;
+
+  const $ = id => root.querySelector('#' + id);
+  const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+
+  // Elements
+  const capacityEl = $('bl_battery-capacity');
+  const unitEl = $('bl_battery-unit');
+  const voltageEl = $('bl_voltage');
+  const voltageWrap = $('bl_voltage-wrap');
+  const usageEl = $('bl_daily-usage');
+  const usageUnitEl = $('bl_usage-unit');
+  const cyclesEl = $('bl_charge-cycles');
+  const resultWrap = $('bl_result');
+  const breakdown = $('bl_breakdown');
+  const calcBtn = $('bl_calculate');
+  const resetBtn = $('bl_reset');
+
+  // Restrict numbers
+  function restrictNumberInput(el) {
+    el.addEventListener('input', () => {
+      let val = el.value.replace(/[^0-9.]/g, '');
+      const parts = val.split('.');
+      if (parts.length > 2) val = parts[0] + '.' + parts.slice(1).join('');
+      el.value = val;
+    });
+  }
+  root.querySelectorAll('input[type=number]').forEach(el => restrictNumberInput(el));
+
+  // Errors
+  function showError(el, msg) {
+    const err = el.parentElement.querySelector('.error-message');
+    if (err) { err.textContent = msg; err.style.display = msg ? 'block' : 'none'; }
+  }
+  function clearErrors() {
+    root.querySelectorAll('.error-message').forEach(e => { e.textContent=''; e.style.display='none'; });
+  }
+
+  // Toggle voltage
+  function toggleVoltage() {
+    voltageWrap.style.display = (unitEl.value === 'ah') ? 'block' : 'none';
+  }
+  unitEl.addEventListener('change', toggleVoltage);
+  toggleVoltage();
+
+  // Main calculation
+  function calculate() {
+    clearErrors();
+
+    const capacity = parseFloat(capacityEl.value);
+    if (!capacity || capacity <= 0) {
+      showError(capacityEl, 'Enter valid positive battery capacity.');
+      capacityEl.focus();
+      return;
+    }
+
+    let voltage = 48;
+    if (unitEl.value === 'ah') {
+      const vRaw = voltageEl.value.trim();
+      if (vRaw !== '') voltage = parseFloat(vRaw);
+      if (!voltage || voltage <= 0) {
+        showError(voltageEl, 'Please enter a valid voltage.');
+        voltageEl.focus();
+        return;
+      }
+    }
+
+    const usage = parseFloat(usageEl.value);
+    if (!usage || usage <= 0) {
+      showError(usageEl, 'Enter valid daily usage.');
+      usageEl.focus();
+      return;
+    }
+
+    const cycles = parseFloat(cyclesEl.value);
+    if (!cycles || cycles <= 0) {
+      showError(cyclesEl, 'Enter valid full charge cycles.');
+      cyclesEl.focus();
+      return;
+    }
+
+    // Convert to Wh
+    const batteryWh = (unitEl.value === 'ah') ? capacity * voltage : capacity;
+    const whPerKm = 15;
+    const totalWh = batteryWh * cycles;
+    const lifetimeKm = totalWh / whPerKm;
+    const lifetimeMiles = lifetimeKm / 1.609344;
+    const chosenUnit = usageUnitEl.value;
+    const displayRange = (chosenUnit === 'km')
+      ? `${lifetimeKm.toFixed(2)} km`
+      : `${lifetimeMiles.toFixed(2)} miles`;
+
+    // Battery life estimation (in years/months)
+    const years = cycles / 365;
+    const months = cycles / 30;
+    const displayLife = `${years.toFixed(2)} years (${months.toFixed(1)} months)`;
+
+    // Output only inside breakdown
+    resultWrap.hidden = false;
+    const lines = [];
+    lines.push(`<h2 class="fade-left main-result ad1"><strong>Estimated Battery Life:</strong> ${displayLife}</h2>`);
+    lines.push(`<h3 class="fade-left main-result ad2"><strong>Estimated Total Range:</strong> ${displayRange}</h3>`);
+    lines.push(`<p class="f12 fade-left ad3"><strong>Battery Energy:</strong> ${batteryWh.toLocaleString(undefined,{maximumFractionDigits:2})} Wh</p>`);
+    lines.push(`<p class="f12 fade-left ad4"><strong>Charge Cycles:</strong> ${cycles}</p>`);
+    lines.push(`<p class="f12 fade-left ad5"><strong>Total Lifetime Energy:</strong> ${totalWh.toLocaleString(undefined,{maximumFractionDigits:0})} Wh</p>`);
+    lines.push(`<p class="f12 fade-left ad6"><span class='small'>Assuming one full charge per day and average consumption of ${whPerKm} Wh/km.</span></p>`);
+    breakdown.innerHTML = lines.join('');
+  }
+
+  // Reset
+  function resetForm() {
+    capacityEl.value = '';
+    unitEl.value = 'ah';
+    voltageEl.value = '';
+    usageEl.value = '';
+    usageUnitEl.value = 'km';
+    cyclesEl.value = '';
+    resultWrap.hidden = true;
+    clearErrors();
+    toggleVoltage();
+  }
+
+  calcBtn.addEventListener('click', calculate);
+  resetBtn.addEventListener('click', resetForm);
+})();
+
+
+
+
+
+
+
+
+
+// CHARGING TIME CALCULATOR
+
+
+(function(){
+  const root = document.getElementById('charging-time-calculator');
+  if (!root) return;
+  const $ = id => root.querySelector('#'+id);
+
+  // Elements
+  const capacityEl = $('ct_battery-capacity');
+  const unitEl = $('ct_capacity-unit');
+  const voltageEl = $('ct_voltage');
+  const voltageWrap = $('ct_voltage-wrap');
+  const currentEl = $('ct_charger-current');
+  const efficiencyEl = $('ct_efficiency');
+  const resultWrap = $('ct_result');
+  const breakdown = $('ct_breakdown');
+  const calcBtn = $('ct_calculate');
+  const resetBtn = $('ct_reset');
+
+  // Restrict to numbers + one dot
+  root.querySelectorAll('input[type=number]').forEach(el=>{
+    el.addEventListener('input',()=>{
+      let val = el.value.replace(/[^0-9.]/g,'');
+      const parts = val.split('.');
+      if(parts.length>2) val = parts[0]+'.'+parts.slice(1).join('');
+      el.value = val;
+    });
+  });
+
+  // Show/hide voltage field
+  function toggleVoltage(){
+    voltageWrap.style.display = (unitEl.value==='ah')?'block':'none';
+  }
+  unitEl.addEventListener('change',toggleVoltage);
+  toggleVoltage();
+
+  // Error handling
+  function showError(el,msg){
+    const err = el.parentElement.querySelector('.error-message');
+    if(err){ err.textContent = msg; err.style.display = msg ? 'block':'none'; }
+  }
+  function clearErrors(){
+    root.querySelectorAll('.error-message').forEach(e=>{ e.textContent=''; e.style.display='none'; });
+  }
+
+  // Main Calculation
+  function calculate(){
+    clearErrors();
+
+    const capacity = parseFloat(capacityEl.value);
+    if(!capacity || capacity<=0){ showError(capacityEl,'Enter valid positive capacity.'); return; }
+
+    let voltage = 48;
+    if(unitEl.value==='ah'){
+      const vRaw = voltageEl.value.trim();
+      if(vRaw!=='') voltage = parseFloat(vRaw);
+      if(!voltage || voltage<=0){ showError(voltageEl,'Enter valid voltage.'); return; }
+    }
+
+    const chargerCurrent = parseFloat(currentEl.value);
+    if(!chargerCurrent || chargerCurrent<=0){ showError(currentEl,'Enter valid charger output current.'); return; }
+
+    let efficiency = parseFloat(efficiencyEl.value);
+    if(!efficiency || efficiency<=0 || efficiency>100) efficiency = 90;
+
+    // Convert capacity to Wh
+    const batteryWh = (unitEl.value==='ah') ? capacity * voltage : capacity;
+
+    // Charger power in W (with efficiency)
+    const chargerPower = voltage * chargerCurrent * (efficiency / 100);
+
+    // Charging time (hours)
+    const chargingTimeHrs = batteryWh / chargerPower;
+
+    const hours = Math.floor(chargingTimeHrs);
+    const minutes = Math.round((chargingTimeHrs - hours) * 60);
+
+    resultWrap.hidden = false;
+    const lines = [];
+    lines.push(`<h2 class="fade-left main-result ad1"><strong>Estimated Charging Time:</strong> ${hours} h ${minutes} min</h2>`);
+    lines.push(`<p class="f12 fade-left ad2"><strong>Battery Energy:</strong> ${batteryWh.toLocaleString(undefined,{maximumFractionDigits:1})} Wh</p>`);
+    lines.push(`<p class="f12 fade-left ad3"><strong>Charger Power:</strong> ${chargerPower.toLocaleString(undefined,{maximumFractionDigits:1})} W (at ${efficiency}% efficiency)</p>`);
+    lines.push(`<p class="f12 fade-left ad4"><span class="small">Actual time may vary due to charger tapering and BMS protection.</span></p>`);
+    breakdown.innerHTML = lines.join('');
+  }
+
+  // Reset
+  function resetForm(){
+    capacityEl.value='';
+    unitEl.value='ah';
+    voltageEl.value='';
+    currentEl.value='';
+    efficiencyEl.value='';
+    resultWrap.hidden=true;
+    clearErrors();
+    toggleVoltage();
+  }
+
+  calcBtn.addEventListener('click',calculate);
+  resetBtn.addEventListener('click',resetForm);
+})();
+
+
+
+
+
+
+
+
+
+
+
+// MOTOR POWER & SPEED CALCULATOR
+(function(){
+  const root = document.getElementById('motor-power-calculator');
+  if(!root) return;
+  const $ = id => root.querySelector('#'+id);
+
+  // Elements
+  const powerEl = $('mp_motor-power');
+  const wheelEl = $('mp_wheel-size');
+  const weightEl = $('mp_total-weight');
+  const effEl = $('mp_efficiency');
+  const posEl = $('mp_position');
+  const gradeEl = $('mp_grade');
+  const resultWrap = $('mp_result');
+  const breakdown = $('mp_breakdown');
+  const calcBtn = $('mp_calculate');
+  const resetBtn = $('mp_reset');
+
+  // Input restriction: digits + single dot
+  root.querySelectorAll('input[type=number]').forEach(el=>{
+    el.addEventListener('input',()=>{
+      let val = el.value.replace(/[^0-9.]/g,'');
+      const parts = val.split('.');
+      if(parts.length>2) val = parts[0]+'.'+parts.slice(1).join('');
+      el.value = val;
+    });
+  });
+
+  // Error handling
+  function showError(el,msg){
+    const err = el.parentElement.querySelector('.error-message');
+    if(err){ err.textContent = msg; err.style.display = msg ? 'block':'none'; }
+  }
+  function clearErrors(){
+    root.querySelectorAll('.error-message').forEach(e=>{ e.textContent=''; e.style.display='none'; });
+  }
+
+  // Map position to CdA (m^2)
+  function positionCdA(pos) {
+    if(pos === 'tucked') return 0.40;
+    if(pos === 'relaxed') return 0.70;
+    return 0.60; // upright
+  }
+
+  // Numeric solver: find v (m/s) satisfying power_available = F_total(v) * v
+  function solveSpeedForPower(powerW, massKg, grade, Crr, CdA, rho, eff) {
+    const powerAvailable = powerW * eff;
+    if (powerAvailable <= 0) return 0;
+
+    let lo = 0.1;
+    let hi = 60; // m/s upper bound
+    for(let i=0;i<80;i++){
+      const mid = (lo + hi)/2;
+      const rollingAndGrade = (Crr * massKg * 9.81) + (massKg * 9.81 * grade);
+      const demand = rollingAndGrade * mid + 0.5 * rho * CdA * Math.pow(mid,3);
+      if (demand > powerAvailable) hi = mid;
+      else lo = mid;
+    }
+    return (lo+hi)/2;
+  }
+
+  function calculate(){
+    clearErrors();
+
+    const power = parseFloat(powerEl.value);
+    if(!power || power <= 0) { showError(powerEl, 'Enter valid motor power (W).'); powerEl.focus(); return; }
+
+    const wheel = parseFloat(wheelEl.value);
+    if(!wheel || wheel <= 0) { showError(wheelEl, 'Enter valid wheel diameter (inch).'); wheelEl.focus(); return; }
+
+    const mass = parseFloat(weightEl.value);
+    if(!mass || mass <= 0) { showError(weightEl, 'Enter valid total weight (kg).'); weightEl.focus(); return; }
+
+    let efficiency = parseFloat(effEl.value);
+    if(!efficiency || efficiency <= 0 || efficiency > 100) efficiency = 85;
+    const eff = efficiency / 100;
+
+    const pos = posEl.value;
+    const CdA = positionCdA(pos);
+
+    const grade = parseFloat(gradeEl.value) || 0;
+
+    // Environmental / constants
+    const rho = 1.225; // air density kg/m3
+    const Crr = 0.008; // rolling resistance
+
+    // Solve speed (m/s) then convert to km/h
+    const v_m_s = solveSpeedForPower(power, mass, grade, Crr, CdA, rho, eff);
+    const v_kmh = v_m_s * 3.6;
+
+    // Output formatting
+    resultWrap.hidden = false;
+    const lines = [];
+    lines.push(`<h2 class="fade-left main-result ad1"><strong>Estimated Top Speed:</strong> ${v_kmh.toFixed(1)} km/h</h2>`);
+    lines.push(`<p class="f12 fade-left ad2"><strong>Motor Power:</strong> ${power} W (at ${efficiency}% system efficiency)</p>`);
+    lines.push(`<p class="f12 fade-left ad3"><strong>Total Weight:</strong> ${mass.toFixed(0)} kg</p>`);
+    lines.push(`<p class="f12 fade-left ad4"><strong>Riding Position (CdA):</strong> ${pos.charAt(0).toUpperCase()+pos.slice(1)} — ${CdA.toFixed(2)} m²</p>`);
+    lines.push(`<p class="f12 fade-left ad5"><strong>Wheel Size:</strong> ${wheel.toFixed(1)}" — ${(wheel*25.4).toFixed(0)} mm</p>`);
+    lines.push(`<p class="f12 fade-left ad6"><strong>Road Grade:</strong> ${(grade*100).toFixed(1)} %</p>`);
+    lines.push(`<p class="f12 fade-left ad7"><span class="small">Model uses rolling resistance + grade + aerodynamic drag. Real-world top speed also depends on gearing, controller limits, battery voltage under load, and wind.</span></p>`);
+
+    breakdown.innerHTML = lines.join('');
+  }
+
+  function resetForm(){
+    powerEl.value='';
+    wheelEl.value='';
+    weightEl.value='';
+    effEl.value='';
+    posEl.value='upright';
+    gradeEl.value='0';
+    resultWrap.hidden=true;
+    clearErrors();
+  }
+
+  calcBtn.addEventListener('click', calculate);
+  resetBtn.addEventListener('click', resetForm);
+})();
+
+
+
+
+
+
+
+
+
 
 
 
@@ -375,3 +754,9 @@ window.addEventListener('click', function(event) {
     }
   });
 });
+
+
+
+
+
+
