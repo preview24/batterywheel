@@ -459,6 +459,9 @@ input, select{
   font-size: 28px;
   display: inline-block;
 }
+h3.main-result{
+  font-size: 22px;
+}
 .muted {
     color: var(--muted);
     font-size: 13px;
@@ -558,6 +561,11 @@ pre {
   width: calc(33% - 10px);
   margin-bottom: 15px;
 }
+.half-block5{
+  position: relative;
+  width: calc(20% - 10px);
+  margin-bottom: 15px;
+}
 .absu-unit {
   position: absolute;
   top: 0;
@@ -650,7 +658,7 @@ input[type="range"]{
   }
 }
 .fade-right{
-  animation: fade-right 0.5s ease-in 1;
+  animation: fade-right 0.2s ease-in forwards 1;
 }
 .ad1{
   animation-delay: 100ms;
@@ -669,6 +677,18 @@ input[type="range"]{
 }
 .ad6{
   animation-delay: 600ms;
+}
+.ad7{
+  animation-delay: 700ms;
+}
+.ad8{
+  animation-delay: 800ms;
+}
+.ad9{
+  animation-delay: 900ms;
+}
+.ad10{
+  animation-delay: 1000ms;
 }
 
 .fade-left{
