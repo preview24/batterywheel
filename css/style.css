@@ -250,6 +250,9 @@ body {
 .content-area {
   flex: 3;
 }
+.intro-text{
+  margin-bottom: 20px;
+}
 .calculator-area {
   display: flex;
   flex-wrap: wrap;
@@ -482,6 +485,14 @@ h3.main-result{
 }
 .f12{
   font-size: 12px;
+}
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text-center{
+  text-align: center;
 }
 pre {
     background: #fff;
