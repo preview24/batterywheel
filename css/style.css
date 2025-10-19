@@ -193,7 +193,9 @@ body {
   font-size: 1.8rem;
   font-weight: bold;
 }
-
+.logo {
+  margin-bottom: 10px;
+}
 .main-nav ul {
   list-style: none;
   display: flex;
