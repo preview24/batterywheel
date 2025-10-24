@@ -685,6 +685,122 @@
 
 
 
+// ======================================================
+// ⚡ ELECTRICITY COST PER 100 KM CALCULATOR
+// ======================================================
+(function(){
+  const root = document.getElementById('ec100_calculator');
+  if(!root) return;
+  const $ = id => root.querySelector('#'+id);
+
+  const capEl = $('ec100_capacity'),
+        unitEl = $('ec100_unit'),
+        voltEl = $('ec100_voltage'),
+        rangeEl = $('ec100_range'),
+        costEl = $('ec100_cost'),
+        resultWrap = $('ec100_result'),
+        breakdown = $('ec100_breakdown'),
+        calcBtn = $('ec100_calculate'),
+        resetBtn = $('ec100_reset'),
+        voltWrap = $('ec100_voltage-wrap');
+
+  // restrict to numbers + one dot
+  root.querySelectorAll('input[type=number]').forEach(el=>{
+    el.addEventListener('input',()=>{
+      let val = el.value.replace(/[^0-9.]/g,'');
+      const parts = val.split('.');
+      if(parts.length>2) val = parts[0]+'.'+parts.slice(1).join('');
+      el.value = val;
+    });
+  });
+
+  function showError(el,msg){
+    const err = el.parentElement.querySelector('.error-message');
+    if(err){ err.textContent = msg; err.style.display = msg ? 'block':'none'; }
+  }
+  function clearErrors(){
+    root.querySelectorAll('.error-message').forEach(e=>{ e.textContent=''; e.style.display='none'; });
+  }
+
+  // toggle voltage field
+  function toggleVoltage(){ voltWrap.style.display = (unitEl.value==='ah') ? 'block' : 'none'; }
+  unitEl.addEventListener('change',toggleVoltage); toggleVoltage();
+
+  function calculate(){
+    clearErrors();
+
+    const cap = parseFloat(capEl.value);
+    if(!cap || cap<=0){ showError(capEl,'Enter valid battery capacity.'); return; }
+
+    let voltage = 48;
+    if(unitEl.value==='ah'){
+      const vRaw = voltEl.value.trim();
+      if(vRaw!=='') voltage=parseFloat(vRaw);
+      if(!voltage||voltage<=0){ showError(voltEl,'Enter valid voltage.'); return; }
+    }
+
+    const range = parseFloat(rangeEl.value);
+    if(!range||range<=0){ showError(rangeEl,'Enter valid range per full charge.'); return; }
+
+    const cost = parseFloat(costEl.value);
+    if(!cost||cost<=0){ showError(costEl,'Enter valid electricity cost.'); return; }
+
+    // convert to kWh
+    const batteryWh = (unitEl.value==='ah') ? cap*voltage : cap;
+    const batteryKWh = batteryWh / 1000;
+
+    // cost per full charge
+    const fullChargeCost = batteryKWh * cost;
+
+    // energy per km (kWh/km)
+    const kWhPerKm = batteryKWh / range;
+
+    // cost per 100 km
+    const costPer100 = kWhPerKm * 100 * cost;
+
+    resultWrap.hidden=false;
+    const lines=[];
+    lines.push(`<h2 class="fade-left main-result ad1"><strong>Electricity Cost per 100 km:</strong> ${costPer100.toFixed(2)} ${getCurrencySymbol(cost)} </h2>`);
+    lines.push(`<p class="f12 fade-left ad2"><strong>Cost per Full Charge:</strong> ${fullChargeCost.toFixed(2)} ${getCurrencySymbol(cost)}</p>`);
+    lines.push(`<p class="f12 fade-left ad3"><strong>Battery Energy:</strong> ${batteryKWh.toFixed(2)} kWh</p>`);
+    lines.push(`<p class="f12 fade-left ad4"><strong>Range per Charge:</strong> ${range.toFixed(1)} km</p>`);
+    lines.push(`<p class="f12 fade-left ad5"><span class="small">Assuming full discharge and recharge each cycle. Actual cost may vary due to charger efficiency and terrain.</span></p>`);
+    breakdown.innerHTML=lines.join('');
+  }
+
+  function getCurrencySymbol(cost){
+    // naive auto symbol — optional, you can remove if not desired
+    if(cost>50) return '৳'; // likely Bangladeshi Taka
+    return '$';
+  }
+
+  function resetForm(){
+    capEl.value='';
+    unitEl.value='ah';
+    voltEl.value='';
+    rangeEl.value='';
+    costEl.value='';
+    resultWrap.hidden=true;
+    clearErrors();
+    toggleVoltage();
+  }
+
+  calcBtn.addEventListener('click',calculate);
+  resetBtn.addEventListener('click',resetForm);
+})();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -754,6 +870,33 @@ window.addEventListener('click', function(event) {
     }
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+// Responsive Menu CSS
+document.querySelector('.navbar-toggler').addEventListener('click', function() {
+  const nav = document.querySelector('.main-nav');
+  nav.classList.toggle('active');
+});
+document.querySelectorAll('.dropdown-menu > a').forEach(function(dropdown) {
+  dropdown.addEventListener('click', function(e) {
+    const submenu = dropdown.nextElementSibling;
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+  });
+});
+
+
+
+
 
 
 
