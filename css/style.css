@@ -196,6 +196,9 @@ body {
 .logo {
   margin-bottom: 10px;
 }
+.main-nav {
+  position: relative;
+}
 .main-nav ul {
   list-style: none;
   display: flex;
@@ -240,6 +243,25 @@ body {
 }
 .dropdown-menu ul li{}
 .dropdown-menu ul li a{}
+.main-nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+
+
+/* Mobile Menu Button */
+.navbar-toggler {
+  display: none;
+  background-color: #333;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+
+
+
 
 /* ===== MAIN CONTENT ===== */
 .main-content {
@@ -791,8 +813,57 @@ input[type="range"]{
 
 
 /*Responsive CSS*/
-@media (max-width: 767px){
-  .main-content {
+
+@media (max-width: 992px){
+.main-content {
+  gap: 20px;
+  margin: 20px auto;
+  flex-direction: column;
+}
+
+}
+@media (max-width: 768px){
+.main-nav ul {
+  display: none;
+  flex-direction: column;
+  width: 50%;
+  background-color: #1a1a1a;
+  position: absolute;
+  top: 50px;
+  left: 0;
+}
+
+.main-nav ul li {
+  margin: 0;
+  width: 100%;
+}
+
+.main-nav ul li a {
+  text-align: center;
+  padding: 12px;
+  width: 100%;
+}
+
+.navbar-toggler {
+  width: 40px;
+  height: 40px;
+  display: block;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23f60' d='M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.site-header {
+  padding: 10px 0;
+}
+
+.main-nav.active ul {
+  display: flex;
+}
+
+.dropdown-menu ul {
+  position: relative;
+}
+.main-content {
   gap: 15px;
   margin: 15px auto;
   flex-direction: column;
@@ -800,9 +871,16 @@ input[type="range"]{
 .container {
   width: calc(100% - 30px);
 }
-
-
-
+.calculator-area {
+  flex-direction: column;
+}
+.calculator-block {
+  width: 100%;
+}
+.tool-opener {
+  padding: 10px 10px;
+  font-size: 18px;
+}
 
 
 
@@ -811,3 +889,12 @@ input[type="range"]{
 
 
 }
+
+
+@media (max-width: 550px){
+
+   .main-nav ul{
+    width: 100%;
+   }
+}
+
