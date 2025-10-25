@@ -881,7 +881,9 @@ input[type="range"]{
   padding: 10px 10px;
   font-size: 18px;
 }
-
+.half-block, .half-block2, .half-block3, .half-block4, .half-block5 {
+  width: 100%;
+}
 
 
 
@@ -897,4 +899,5 @@ input[type="range"]{
     width: 100%;
    }
 }
+
 
