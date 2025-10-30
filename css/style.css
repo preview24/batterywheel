@@ -19,6 +19,7 @@ img {
   border:0px;
   outline:none;
   max-width: 100%;
+  height: auto;
 }
 p {
   margin:0px;
@@ -268,6 +269,7 @@ body {
   display: flex;
   gap: 2rem;
   margin: 2rem auto;
+  position: relative;
 }
 
 /* Left Section */
@@ -340,7 +342,13 @@ body {
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
+@media(min-width: 991px){
+.sidebar {
+  position: sticky;
+  top: 20px;
+  height: calc(100vh - 40px);
+}
+}
 .sidebar h2 {
   margin-bottom: 1rem;
   color: #222;
@@ -899,5 +907,4 @@ input[type="range"]{
     width: 100%;
    }
 }
-
 
