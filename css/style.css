@@ -206,7 +206,7 @@ body {
   gap: 20px;
 }
 
-.main-nav a {
+.main-nav a, .all-calculators a {
   font-size: 16px;
   color: #fff;
   display: block;
@@ -215,7 +215,16 @@ body {
   border-radius: 4px;
   transition: background 0.3s;
 }
-
+.all-calculators a {
+  background-color: #ff6600;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px 20px;
+  border: 1px solid #ff6600;
+}
+.all-calculators a:hover{
+  background-color: transparent;
+}
 .main-nav a:hover,
 .main-nav .active {
   background: #ff6600;
@@ -259,6 +268,9 @@ body {
   cursor: pointer;
   padding: 10px;
 }
+
+
+
 
 
 
@@ -400,7 +412,12 @@ body {
 .footer-nav a:hover {
   color: #fff;
 }
-
+article h5 {
+  font-size: 20px;
+}
+article h6 {
+  font-size: 18px;
+}
 
 
 
@@ -509,6 +526,11 @@ h3.main-result{
     display: flex;
     gap: 10px;
     align-items: center;
+}
+.flex-between-center{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .note {
     font-size: 12px;
