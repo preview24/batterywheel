@@ -1,9 +1,5 @@
 (function ($) {
     "use strict";
-
-    
-
-    
     // Back to top button
     $(document).ready(function() {
       // show/hide the button on scroll
