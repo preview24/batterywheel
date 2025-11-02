@@ -268,6 +268,61 @@ $(function() {
 
 
 
+(function () {
+  var $preloader = document.getElementById('pagePreloader');
+  var body = document.body;
+  var TIMEOUT = 8000; // maximum wait ms before forcing show (adjust if you like)
+
+  // Utility: returns a Promise that resolves when window.load fires
+  function whenWindowLoaded() {
+    return new Promise(function (resolve) {
+      if (document.readyState === 'complete') {
+        resolve();
+      } else {
+        window.addEventListener('load', function onLoad() {
+          window.removeEventListener('load', onLoad);
+          resolve();
+        });
+      }
+    });
+  }
+
+  // Utility: returns Promise for fonts ready (if supported)
+  function whenFontsReady() {
+    if (document.fonts && typeof document.fonts.ready === 'object') {
+      return document.fonts.ready;
+    }
+    // fallback resolve immediately if not supported
+    return Promise.resolve();
+  }
+
+  // combine checks: wait for window load + fonts ready
+  Promise.race([
+    Promise.all([ whenWindowLoaded(), whenFontsReady() ]),
+    // fallback to force show after TIMEOUT if something hangs
+    new Promise(function (resolve) { setTimeout(resolve, TIMEOUT); })
+  ]).then(function () {
+    // small delay to let paint settle (optional)
+    setTimeout(function () {
+      // hide preloader visually with transition
+      if ($preloader) {
+        $preloader.classList.add('hidden');
+        // keep the node for a beat then remove it from DOM to free memory
+        setTimeout(function () {
+          if ($preloader && $preloader.parentNode) {
+            $preloader.parentNode.removeChild($preloader);
+          }
+        }, 400);
+      }
+
+      // remove preloading class and add page-ready to start in-page animations
+      body.classList.remove('preloading');
+      body.classList.add('page-ready');
+    }, 80);
+  });
+})();
+
+
 
 
 
