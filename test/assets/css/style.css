@@ -410,6 +410,34 @@ header {
   left: 0;
   background-color: rgba(0, 0, 0, 0.09);
   border-radius: 20px;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(50px) scale(1.02);
+  animation: fadeInUpBg 1s cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+.banner-area-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url(../images/banner.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateY(50px) scale(1.02);
+  animation: fadeInUpBg 1s cubic-bezier(.2,.9,.2,1) forwards;
+}
+@keyframes fadeInUpBg {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 @media(min-width: 1620px){
 .banner-area-bg, .tepees-area-bg{
