@@ -17,7 +17,13 @@
     <link href="assets/css/style.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="preloading">
+    <!-- Preloader overlay -->
+    <div id="pagePreloader" class="preloader" aria-hidden="false" role="status" aria-label="Loading">
+      <div class="preloader-inner">
+        <img src="assets/images/pr.png" alt="Loading" class="preloader-rotor">
+      </div>
+    </div>
 
     <header>
       <div class="container">
@@ -83,8 +89,8 @@
             <img src="assets/images/birds.png" alt="Parkside Resort Birds" width="287" height="126">
           </div>
         </div>
-        <div class="d-flex flex-column justify-content-center align-items-center"  data-ani="fade-down">
-          <form class="position-relative z-2 booking-form">
+        <div class="position-relative z-3 d-flex flex-column justify-content-center align-items-center"  data-ani="fade-down">
+          <form class="booking-form">
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
               <div class="text-center form-group right-border">
                 <input type="text" name="check-in" class=" date" placeholder="Check In" required>
