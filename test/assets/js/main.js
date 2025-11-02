@@ -3,16 +3,6 @@
 
     
 
-    // Sticky Navbar
-    // $(window).scroll(function () {
-    //     if ($(this).scrollTop() > 40) {
-    //         $('.main-menu').addClass('sticky-top');
-    //     } else {
-    //         $('.main-menu').removeClass('sticky-top');
-    //     }
-    // });
-    
-
     
     // Back to top button
     $(document).ready(function() {
