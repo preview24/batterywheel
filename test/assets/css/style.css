@@ -229,7 +229,7 @@ section{
   margin: 0 auto;
 }
 footer, section{
-  max-width: 1920px;
+  /*max-width: 1920px;*/
   margin-left: auto;
   margin-right: auto;
 }
@@ -547,12 +547,13 @@ body.page-ready .banner-area-bg::after, body.page-ready .banner-area-bg::before{
 }
 .villa-blocks{}
 .villa-blocks li {
-  width: 27%;
+  width: calc(33.33% - 20px);
   background-color: white;
-  margin: 0 40px;
+  margin: 0 25px;
   border-radius: 12px;
   overflow: hidden;
   color: #003d67;
+  max-width: 440px;
 }
 .villa-blocks-desc1 h3{
   color: #003d67;
@@ -955,53 +956,6 @@ footer{
 
 
 
-
-/* Modal nav buttons (lightweight simple style) */
-.gallery-nav-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(0,0,0,0.45);
-  color: #fff;
-  font-size: 28px;
-  line-height: 1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index: 1056;
-  cursor: pointer;
-}
-.gallery-nav-btn:hover { background: rgba(0,0,0,0.6); }
-
-/* Make caption area stick to bottom of modal content */
-.gallery-caption {
-  position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: #fff;
-}
-#lightGalleryModal .modal-content {
-  background: rgba(0, 0, 0, 0.11);
-}
-#lightGalleryModal .btn-close {
-  width: 50px;
-  height: 50px;
-  opacity: 1;
-  background-size: 46px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23fff' d='M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z'/%3E%3C/svg%3E");
-}
-/* make modal dialog use full width on very small screens while remaining centered */
-@media (max-width: 576px) {
-  .modal-dialog { max-width: 100%; margin: 0 12px; }
-  #lightGalleryImage { max-width: calc(100vw - 48px); }
-}
-
-/* optional: reduce nav buttons touch area on small screens */
-@media (max-width: 576px) {
-  .gallery-nav-btn { width: 40px; height: 40px; font-size: 24px; }
-}
 
 
 
