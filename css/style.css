@@ -377,12 +377,15 @@ body {
 .tips-list a {
   text-decoration: none;
   color: #0073e6;
+  display: block;
 }
 
 .tips-list a:hover {
   text-decoration: underline;
 }
-
+.tips-list a.active{
+  color: #ff6600;
+}
 /* ===== FOOTER ===== */
 .site-footer {
   background: #1a1a1a;
