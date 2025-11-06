@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery Life Cycle Estimator</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.result {
+    margin-top: 20px;
+    display: none;
+}
+
+.result h3 {
+    font-size: 20px;
+}
+
+.result p {
+    font-size: 14px;
+}
+
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <h1>Battery Life Cycle Estimator</h1>
+    <form id="battery-form">
+        
+        <!-- Battery Capacity (Ah or Wh) -->
+        <div class="input-group">
+            <label for="batteryCapacity">Battery Capacity:</label>
+            <input type="number" id="batteryCapacity" placeholder="Enter battery capacity" required>
+            <select id="capacityUnit">
+                <option value="Ah">Ah</option>
+                <option value="Wh">Wh</option>
+            </select>
+        </div>
+
+        <!-- Battery Voltage (Optional) -->
+        <div class="input-group">
+            <label for="batteryVoltage">Battery Voltage (V, Optional):</label>
+            <input type="number" id="batteryVoltage" placeholder="Enter battery voltage">
+        </div>
+
+        <!-- Daily Usage (km or miles) -->
+        <div class="input-group">
+            <label for="dailyUsage">Average Daily Usage:</label>
+            <input type="number" id="dailyUsage" placeholder="Enter daily usage" required>
+            <select id="usageUnit">
+                <option value="km">km</option>
+                <option value="miles">miles</option>
+            </select>
+        </div>
+
+        <!-- Full Charge Cycles -->
+        <div class="input-group">
+            <label for="chargeCycles">Battery Full Charge Cycles (e.g., 500):</label>
+            <input type="number" id="chargeCycles" placeholder="Enter full charge cycles" required>
+        </div>
+
+        <!-- Ambient Temperature (Optional) -->
+        <div class="input-group">
+            <label for="ambientTemperature">Ambient Temperature (°C or °F - Optional):</label>
+            <input type="number" id="ambientTemperature" placeholder="Enter temperature value">
+            <select id="tempUnit">
+                <option value="C">°C</option>
+                <option value="F">°F</option>
+            </select>
+        </div>
+
+        <button type="submit">Calculate Battery Life</button>
+    </form>
+
+    <div id="result" class="result">
+        <h3>Estimated Battery Life: <span id="batteryLife"></span></h3>
+        <p>Your battery will last approximately <span id="lifetime"></span> months before reaching the end of its useful life.</p>
+    </div>
+</div>
+
+
+
+
+<script>
+
+
+
+
+document.getElementById('battery-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get values from input fields
+    const batteryCapacity = parseFloat(document.getElementById('batteryCapacity').value);
+    const batteryVoltage = parseFloat(document.getElementById('batteryVoltage').value) || 48; // Default to 48V if empty
+    const dailyUsage = parseFloat(document.getElementById('dailyUsage').value);
+    const chargeCycles = parseInt(document.getElementById('chargeCycles').value);
+    const ambientTemperature = parseFloat(document.getElementById('ambientTemperature').value);
+
+    // Get selected units
+    const capacityUnit = document.getElementById('capacityUnit').value;
+    const usageUnit = document.getElementById('usageUnit').value;
+    const tempUnit = document.getElementById('tempUnit').value;
+
+    // Convert Battery Capacity (Ah/Wh) to Wh if needed
+    let batteryEnergyWh;
+    if (capacityUnit === "Ah") {
+        // Convert Ah to Wh using the formula: Wh = Ah * V
+        batteryEnergyWh = batteryVoltage * batteryCapacity;
+    } else {
+        // User has inputted Wh directly
+        batteryEnergyWh = batteryCapacity;
+    }
+
+    // Estimate daily energy consumption (Wh) based on km or miles
+    let dailyConsumptionWh;
+    if (usageUnit === "km") {
+        dailyConsumptionWh = dailyUsage * 0.5; // Assume 0.5 Wh/km for simplicity
+    } else {
+        dailyConsumptionWh = dailyUsage * 0.8; // Assume 0.8 Wh/mile for simplicity
+    }
+
+    // Calculate the number of days the battery will last before depletion
+    const batteryLifeInDays = batteryEnergyWh / dailyConsumptionWh;
+
+    // Calculate the lifetime in years based on the cycles (full charge and discharge cycles)
+    const lifetimeInYears = (chargeCycles / 365);  // Number of years based on cycles
+
+    // Temperature impact: If temperature is provided in °F, convert to °C
+    let adjustedTemperature = ambientTemperature;
+    if (ambientTemperature && tempUnit === "F") {
+        adjustedTemperature = (ambientTemperature - 32) * (5 / 9); // Convert °F to °C
+    }
+
+    // Temperature effect on battery life: Reduce by 5% if temperature > 30°C
+    let temperatureAdjustmentFactor = 1;
+    if (adjustedTemperature > 30) {
+        temperatureAdjustmentFactor = 0.95; // Reduce battery life by 5% if > 30°C
+    }
+
+    // Adjust lifetime for temperature
+    const adjustedLifetimeInYears = lifetimeInYears * temperatureAdjustmentFactor;
+
+    // Display the results
+    const adjustedLifetimeInYearsFinal = adjustedLifetimeInYears < batteryLifeInDays / 365 ? adjustedLifetimeInYears : batteryLifeInDays / 365;
+    document.getElementById('batteryLife').textContent = adjustedLifetimeInYearsFinal.toFixed(1) + " years";
+    document.getElementById('result').style.display = 'block';
+});
+
+
+
+
+</script>
+</body>
+</html>
