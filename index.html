@@ -97,9 +97,93 @@
         </article>
 
         <article class="calculator-block">
-          <h3>⚡ Electricity Cost per 100 km Calculator</h3>
+          <h3>💷 Electricity Cost per 100 km Calculator</h3>
           <p></p>
           <button class="tool-opener" data-modal="modal6">Calculate Cost per 100km</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>💰 CO₂ Savings Calculator</h3>
+          <p>Calculate how much CO₂ you can save daily, monthly and yearly</p>
+          <button class="tool-opener" data-modal="modal7">Calculate CO₂ Saving</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>💵 Battery Replacement Cost</h3>
+          <p>Calculate Cost per km</p>
+          <button class="tool-opener" data-modal="modal8">Calculate Replacement Cost</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>τ eBike Torque Calculator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal9">Calculate Torque</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>💪 Max Load & Carrying Capacity</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal10">Calculate Load & Carrying</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>⛰️ eBike Hill Climb Calculator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal11">Calculate Hill Climb</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>💔 Efficiency Loss Calculator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal12">Calculate Efficiency Loss</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔌 Depth-of-Discharge (DoD) Impact Calculator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal13">Calculate DoD</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔥 Temperature Impact Calculator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal14">Calculate Temperature</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>💴 Battery Charging Cost per Month Calculator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal15">Calculate Charging Cost</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>💥 Battery Self-Discharge Calculator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal16">Calculate Self-Discharge</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 Battery Aging & Calendar Life Estimator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal17">Calculate Aging</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🔋 Solar Charging Power Calculator</h3>
+          <p>Charging eBike with solar power</p>
+          <button class="tool-opener" data-modal="modal18">Calculate Solar Charging</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>🏠 eBike Insurance Cost Estimator</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal19">Calculate Insurance Cost</button>
+        </article>
+
+        <article class="calculator-block">
+          <h3>⬆️ Battery Upgrade Checker</h3>
+          <p></p>
+          <button class="tool-opener" data-modal="modal20">Calculate Upgrade Compatibility</button>
         </article>
       </div>
 
@@ -760,6 +844,1073 @@
 
 
 
+<!-- Modal 7 -->
+<div id="modal7" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal7">&times;</span>
+    <div class="modal-body">
+
+      <!-- CO₂ SAVINGS CALCULATOR -->
+      <div class="card" id="co2_calculator">
+        <h2>CO₂ Savings Calculator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block4">
+            <!-- Daily Distance -->
+            <label for="co2_distance">Daily Travel Distance</label>
+            <input type="number" id="co2_distance" placeholder="Enter distance">
+            <div class="small muted">Distance you ride daily.</div>
+            <div class="error-message"></div>
+
+            <div class="absu-unit">
+              <!-- Unit -->
+              <label for="co2_unit">Unit</label>
+              <select id="co2_unit">
+                <option value="km">Kilometers</option>
+                <option value="mile">Miles</option>
+              </select>
+              <div class="small muted">Distance unit.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Vehicle Type -->
+            <label for="co2_vehicle">Replace Vehicle Type</label>
+            <select id="co2_vehicle">
+              <option value="motorcycle">Petrol Motorcycle (70–150 cc)</option>
+              <option value="car">Petrol Car</option>
+            </select>
+            <div class="small muted">Which vehicle your eBike replaces?</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Energy Consumption -->
+            <label for="co2_whkm">eBike Energy Consumption (Wh per km)</label>
+            <input type="number" id="co2_whkm" placeholder="Typical: 15">
+            <div class="small muted">Default is 15 Wh/km for most eBikes.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="co2_calculate">Calculate</button>
+          <button id="co2_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Result -->
+        <div id="co2_result" hidden>
+          <div id="co2_breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal 8 -->
+<div id="modal8" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal8">&times;</span>
+    <div class="modal-body">
+
+      <!-- BATTERY REPLACEMENT COST ESTIMATOR -->
+      <div class="card" id="battery_replacement_calculator">
+        <h2>Battery Replacement Cost Estimator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block4">
+            <!-- Battery Capacity -->
+            <label for="br_capacity">Battery Capacity</label>
+            <input type="number" id="br_capacity" placeholder="Value only">
+            <div class="small muted">Enter your battery capacity.</div>
+            <div class="error-message"></div>
+
+            <div class="absu-unit">
+              <!-- Battery Unit -->
+              <label for="br_unit">Unit</label>
+              <select id="br_unit">
+                <option value="ah">Ah</option>
+                <option value="wh">Wh</option>
+              </select>
+              <div class="small muted">Capacity Ah or Wh.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Voltage (only for Ah) -->
+            <div id="br_voltage_wrap">
+              <label for="br_voltage">Voltage (Default 48V)</label>
+              <input type="number" id="br_voltage" placeholder="48">
+              <div class="small muted">Required only if capacity is in Ah.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Battery Life Cycles -->
+            <label for="br_cycles">Expected Full Charge Cycles</label>
+            <input type="number" id="br_cycles" placeholder="Example: 800">
+            <div class="small muted">Most lithium batteries last 600–1200 cycles.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Battery Price -->
+            <label for="br_price">Replacement Battery Price</label>
+            <input type="number" id="br_price" placeholder="Enter cost in your currency">
+            <div class="small muted">Enter the price of buying a new battery pack.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Energy Consumption -->
+            <label for="br_whkm">eBike Consumption (Wh per km)</label>
+            <input type="number" id="br_whkm" placeholder="Typical 15 Wh/km">
+            <div class="small muted">Most eBikes consume 12–20 Wh/km.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="br_calculate">Calculate</button>
+          <button id="br_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Result -->
+        <div id="br_result" hidden>
+          <div id="br_breakdown"></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal 9 -->
+<div id="modal9" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal9">&times;</span>
+    <div class="modal-body">
+
+      <!-- eBIKE TORQUE CALCULATOR -->
+      <div class="card" id="torque_calculator">
+        <h2>eBike Torque Calculator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block4">
+            <!-- Motor Power -->
+            <label for="tc_power">Motor Power (W)</label>
+            <input type="number" id="tc_power" placeholder="Example: 1000">
+            <div class="small muted">Continuous motor power in watts.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Battery Voltage -->
+            <label for="tc_voltage">Battery Voltage (V)</label>
+            <input type="number" id="tc_voltage" placeholder="Example: 48">
+            <div class="small muted">Motor running voltage.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Motor KV -->
+            <label for="tc_kv">Motor KV (RPM per Volt)</label>
+            <input type="number" id="tc_kv" placeholder="Example: 8–12 for hub motors">
+            <div class="small muted">Motor RPM per volt. Hub motors: 8–12 Kv. Mid-drives: 50–80 Kv.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Gear Ratio -->
+            <label for="tc_gear">Gear Reduction Ratio</label>
+            <input type="number" id="tc_gear" placeholder="Hub = 1, Mid-drive = 3–40">
+            <div class="small muted">Hub motor = 1. Mid-drive motors = 3–40 depending on chainring & cassette.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Wheel Diameter -->
+            <label for="tc_wheel">Wheel Diameter (inches)</label>
+            <input type="number" id="tc_wheel" placeholder="Example: 26">
+            <div class="small muted">Common sizes: 14, 20, 26, 27.5, 29.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Total Load -->
+            <label for="tc_load">Total Weight (kg)</label>
+            <input type="number" id="tc_load" placeholder="Rider + bike weight">
+            <div class="small muted">Rider + bike weight combined.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="tc_calculate">Calculate</button>
+          <button id="tc_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Result -->
+        <div id="tc_result" hidden>
+          <div id="tc_breakdown"></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal 10 -->
+<div id="modal10" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal10">&times;</span>
+    <div class="modal-body">
+
+      <!-- MAX LOAD & CARRYING CAPACITY ESTIMATOR -->
+      <div class="card" id="load_calculator">
+        <h2>Max Load & Carrying Capacity Estimator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block">
+            <!-- Motor Power -->
+            <label for="lc_power">Motor Power (W)</label>
+            <input type="number" id="lc_power" placeholder="Example: 1000">
+            <div class="small muted">Continuous motor wattage. Example: 350W, 500W, 750W, 1000W, 1500W.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Battery Voltage -->
+            <label for="lc_voltage">Battery Voltage (V)</label>
+            <input type="number" id="lc_voltage" placeholder="48">
+            <div class="small muted">Common voltages: 36V, 48V, 52V.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Wheel Diameter -->
+            <label for="lc_wheel">Wheel Diameter (inches)</label>
+            <input type="number" id="lc_wheel" placeholder="Example: 26">
+            <div class="small muted">Typical: 10, 12, 14, 20, 26, 27.5, 29.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Rider Weight -->
+            <label for="lc_rider">Rider Weight (kg)</label>
+            <input type="number" id="lc_rider" placeholder="Example: 80">
+            <div class="small muted">Your own weight.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Bike Weight -->
+            <label for="lc_bike">Bike Weight (kg)</label>
+            <input type="number" id="lc_bike" placeholder="Example: 25">
+            <div class="small muted">Your eBike's weight.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="lc_calculate">Calculate</button>
+          <button id="lc_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Output -->
+        <div id="lc_result" hidden>
+          <div id="lc_breakdown"></div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 11 -->
+<div id="modal11" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal11">&times;</span>
+    <div class="modal-body">
+
+
+      <!-- eBIKE HILL CLIMB CALCULATOR -->
+      <div class="card" id="hill_calculator">
+        <h2>eBike Hill Climb Calculator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block4">
+            <!-- Motor Power -->
+            <label for="hc_power">Motor Power (W)</label>
+            <input type="number" id="hc_power" placeholder="Example: 750">
+            <div class="small muted">Continuous motor power. 250W–1500W.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Total Weight -->
+            <label for="hc_weight">Total Weight (kg)</label>
+            <input type="number" id="hc_weight" placeholder="Rider + bike + cargo">
+            <div class="small muted">Your weight + bike weight + any load.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Wheel Diameter -->
+            <label for="hc_wheel">Wheel Diameter (inches)</label>
+            <input type="number" id="hc_wheel" placeholder="Example: 26">
+            <div class="small muted">Typical: 14, 20, 26, 27.5, 29.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Drivetrain Efficiency -->
+            <label for="hc_efficiency">Drivetrain Efficiency (%)</label>
+            <input type="number" id="hc_efficiency" placeholder="85">
+            <div class="small muted">Hub motors = 85%. Mid-drives = 88–92%.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Target Hill Gradient -->
+            <label for="hc_slope">Hill Gradient (%) (Optional)</label>
+            <input type="number" id="hc_slope" placeholder="Example: 12">
+            <div class="small muted">Leave blank to see your maximum climbable slope.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="hc_calculate">Calculate</button>
+          <button id="hc_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Output -->
+        <div id="hc_result" hidden>
+          <div id="hc_breakdown"></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 12 -->
+<div id="modal12" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal12">&times;</span>
+    <div class="modal-body">
+
+
+      <!-- EBIKE EFFICIENCY LOSS CALCULATOR -->
+      <div class="card" id="efficiency_calculator">
+        <h2>Efficiency Loss Calculator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block">
+            <!-- Ideal Wh/km -->
+            <label for="ec_ideal">Ideal Consumption (Wh per km)</label>
+            <input type="number" id="ec_ideal" placeholder="Example: 15">
+            <div class="small muted">Factory-rated or expected consumption. Typical: 12–18 Wh/km.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Actual Wh/km -->
+            <label for="ec_actual">Actual Measured Consumption (Wh per km)</label>
+            <input type="number" id="ec_actual" placeholder="Example: 22">
+            <div class="small muted">Your real usage based on distance and battery used.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Battery Capacity -->
+            <label for="ec_capacity">Battery Capacity</label>
+            <input type="number" id="ec_capacity" placeholder="Value only">
+            <div class="small muted">Battery in Ah or Wh.</div>
+            <div class="error-message"></div>
+
+            <div class="absu-unit">
+              <!-- Unit -->
+              <label for="ec_unit">Unit</label>
+              <select id="ec_unit">
+                <option value="ah">Ah</option>
+                <option value="wh">Wh</option>
+              </select>
+              <div class="small muted">Select battery unit.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+          <div class="half-block">
+            <!-- Voltage -->
+            <div id="ec_voltage_wrap">
+              <label for="ec_voltage">Voltage (Default 48V)</label>
+              <input type="number" id="ec_voltage" placeholder="48">
+              <div class="small muted">Needed only if capacity is in Ah.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="actions full">
+          <button id="ec_calculate">Calculate</button>
+          <button id="ec_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Output -->
+        <div id="ec_result" hidden>
+          <div id="ec_breakdown"></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 13 -->
+<div id="modal13" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal13">&times;</span>
+    <div class="modal-body">
+
+
+      <!-- BATTERY DEPTH OF DISCHARGE (DoD) IMPACT CALCULATOR -->
+      <div class="card" id="dod_calculator">
+        <h2>Depth-of-Discharge (DoD) Impact Calculator</h2>
+        <div class="calculator-area">
+          <div class="half-block">
+            <!-- Battery Cycles -->
+            <label for="dod_cycles">Rated Full Charge Cycles (Manufacturer)</label>
+            <input type="number" id="dod_cycles" placeholder="Example: 800">
+            <div class="small muted">Typical lithium cells: 600–1200 full cycles.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Battery Capacity -->
+            <label for="dod_capacity">Battery Capacity</label>
+            <input type="number" id="dod_capacity" placeholder="Value only">
+            <div class="small muted">Enter capacity in Ah or Wh.</div>
+            <div class="error-message"></div>
+
+            <div class="absu-unit">
+              <!-- Unit -->
+              <label for="dod_unit">Unit</label>
+              <select id="dod_unit">
+                <option value="ah">Ah</option>
+                <option value="wh">Wh</option>
+              </select>
+              <div class="small muted">Select battery capacity unit.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Voltage -->
+            <div id="dod_voltage_wrap">
+              <label for="dod_voltage">Voltage (Default 48V)</label>
+              <input type="number" id="dod_voltage" placeholder="48">
+              <div class="small muted">Required if capacity is in Ah.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Desired DoD -->
+            <label for="dod_percent">Average Depth of Discharge (%)</label>
+            <input type="number" id="dod_percent" placeholder="Example: 80">
+            <div class="small muted">Lower DoD = longer battery lifespan.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="dod_calculate">Calculate</button>
+          <button id="dod_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Result -->
+        <div id="dod_result" hidden>
+          <div id="dod_breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 14 -->
+<div id="modal14" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal14">&times;</span>
+    <div class="modal-body">
+
+      <!-- BATTERY TEMPERATURE IMPACT CALCULATOR -->
+      <div class="card" id="temp_calculator">
+        <h2>Temperature Impact Calculator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block">
+          <!-- Rated Cycles -->
+          <label for="temp_cycles">Rated Full Charge Cycles (Manufacturer)</label>
+          <input type="number" id="temp_cycles" placeholder="Example: 800">
+          <div class="small muted">Typical Li-ion: 600–1200 cycles at 25°C.</div>
+          <div class="error-message"></div>
+        </div>
+
+        <div class="half-block">
+          <!-- Battery Capacity -->
+          <label for="temp_capacity">Battery Capacity</label>
+          <input type="number" id="temp_capacity" placeholder="Value only">
+          <div class="small muted">Enter capacity in Ah or Wh.</div>
+          <div class="error-message"></div>
+
+          <div class="absu-unit">
+            <!-- Unit -->
+            <label for="temp_unit">Unit</label>
+            <select id="temp_unit">
+              <option value="ah">Ah</option>
+              <option value="wh">Wh</option>
+            </select>
+            <div class="small muted">Select capacity unit.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="half-block">
+          <!-- Voltage -->
+          <div id="temp_voltage_wrap">
+            <label for="temp_voltage">Voltage (Default 48V)</label>
+            <input type="number" id="temp_voltage" placeholder="48">
+            <div class="small muted">Required if capacity is in Ah.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="half-block">
+          <!-- Temperature -->
+          <label for="temp_celsius">Average Battery Temperature (°C)</label>
+          <input type="number" id="temp_celsius" placeholder="Example: 35">
+          <div class="small muted">Higher temps increase degradation speed.</div>
+          <div class="error-message"></div>
+        </div>
+      </div>
+        <div class="actions full">
+          <button id="temp_calculate">Calculate</button>
+          <button id="temp_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Result -->
+        <div id="temp_result" hidden>
+          <div id="temp_breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 15 -->
+<div id="modal15" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal15">&times;</span>
+    <div class="modal-body">
+
+      <!-- BATTERY CHARGING COST PER MONTH CALCULATOR -->
+      <div class="card" id="monthly_cost_calculator">
+        <h2>Battery Charging Cost per Month Calculator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block">
+            <!-- Battery Capacity -->
+            <label for="mcc_capacity">Battery Capacity</label>
+            <input type="number" id="mcc_capacity" placeholder="Value only">
+            <div class="small muted">Enter in Ah or Wh.</div>
+            <div class="error-message"></div>
+
+            <div class="absu-unit">
+              <!-- Unit -->
+              <label for="mcc_unit">Unit</label>
+              <select id="mcc_unit">
+                <option value="ah">Ah</option>
+                <option value="wh">Wh</option>
+              </select>
+              <div class="small muted">Choose unit of battery capacity.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Voltage -->
+            <div id="mcc_voltage_wrap">
+              <label for="mcc_voltage">Voltage (Default 48V)</label>
+              <input type="number" id="mcc_voltage" placeholder="48">
+              <div class="small muted">Only needed if capacity is in Ah.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Electricity Price -->
+            <label for="mcc_price">Electricity Cost per kWh</label>
+            <input type="number" id="mcc_price" placeholder="Example: 8 (your own currency)">
+            <div class="small muted">Enter your electricity unit price.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Daily Usage -->
+            <label for="mcc_daily_usage">Daily Energy Consumption (Wh)</label>
+            <input type="number" id="mcc_daily_usage" placeholder="Example: 500">
+            <div class="small muted">Approx energy used per day (optional).</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="mcc_calculate">Calculate</button>
+          <button id="mcc_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Results -->
+        <div id="mcc_result" hidden>
+          <div id="mcc_breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 16 -->
+<div id="modal16" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal16">&times;</span>
+    <div class="modal-body">
+
+      <!-- BATTERY SELF-DISCHARGE CALCULATOR -->
+      <div class="card" id="self_discharge_calculator">
+        <h2>Battery Self-Discharge Calculator</h2>
+
+        <div class="calculator-area">
+
+          <div class="half-block">
+            <!-- Battery Capacity -->
+            <label for="sd_capacity">Battery Capacity</label>
+            <input type="number" id="sd_capacity" placeholder="Value only">
+            <div class="small muted">Enter battery capacity in Ah or Wh.</div>
+            <div class="error-message"></div>
+
+            <div class="absu-unit">
+              <!-- Unit -->
+              <label for="sd_unit">Unit</label>
+              <select id="sd_unit">
+                <option value="ah">Ah</option>
+                <option value="wh">Wh</option>
+              </select>
+              <div class="small muted">Choose capacity unit.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Voltage -->
+            <div id="sd_voltage_wrap">
+              <label for="sd_voltage">Voltage (Default 48V)</label>
+              <input type="number" id="sd_voltage" placeholder="48">
+              <div class="small muted">Required if capacity is in Ah.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Self Discharge Rate -->
+            <label for="sd_rate">Self-Discharge Rate per Month (%)</label>
+            <input type="number" id="sd_rate" placeholder="Example: 3">
+            <div class="small muted">Li-ion typically 2%–4% per month.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Storage Duration -->
+            <label for="sd_days">Storage Duration (Days)</label>
+            <input type="number" id="sd_days" placeholder="Example: 30">
+            <div class="small muted">Enter how many days the battery remains unused.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="sd_calculate">Calculate</button>
+          <button id="sd_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Results -->
+        <div id="sd_result" hidden>
+          <div id="sd_breakdown"></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 17 -->
+<div id="modal17" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal17">&times;</span>
+    <div class="modal-body">
+
+      <!-- BATTERY CALENDAR AGING & LIFE ESTIMATOR -->
+      <div class="card" id="calendar_aging_calculator">
+        <h2>Battery Aging & Calendar Life Estimator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block">
+            <!-- Battery Capacity -->
+            <label for="ca_capacity">Battery Capacity</label>
+            <input type="number" id="ca_capacity" placeholder="Example: 48">
+            <div class="small muted">Enter battery capacity in Ah or Wh.</div>
+            <div class="error-message"></div>
+
+            <div class="absu-unit">
+              <!-- Unit -->
+              <label for="ca_unit">Unit</label>
+              <select id="ca_unit">
+                <option value="ah">Ah</option>
+                <option value="wh">Wh</option>
+              </select>
+              <div class="small muted">Choose Ah or Wh.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Voltage -->
+            <div id="ca_voltage_wrap">
+              <label for="ca_voltage">Voltage (Default 48V)</label>
+              <input type="number" id="ca_voltage" placeholder="48">
+              <div class="small muted">Required only if capacity is in Ah.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Years Stored -->
+            <label for="ca_years">Storage Duration (Years)</label>
+            <input type="number" id="ca_years" placeholder="Example: 1.5">
+            <div class="small muted">Enter number of years battery stays unused.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Temperature -->
+            <label for="ca_temp">Average Storage Temperature (°C)</label>
+            <input type="number" id="ca_temp" placeholder="Example: 30">
+            <div class="small muted">Higher temp = faster aging. Ideal: 15–25°C.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Storage SOC -->
+            <label for="ca_soc">Storage Charge Level (%)</label>
+            <input type="number" id="ca_soc" placeholder="Example: 60">
+            <div class="small muted">Best long-term storage: 40–60%.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="ca_calculate">Calculate</button>
+          <button id="ca_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Results -->
+        <div id="ca_result" hidden>
+          <div id="ca_breakdown"></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 18 -->
+<div id="modal18" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal18">&times;</span>
+    <div class="modal-body">
+
+      <!-- SOLAR CHARGING POWER CALCULATOR -->
+      <div class="card" id="solar_charging_calculator">
+        <h2>Solar Charging Power Calculator</h2>
+
+        <div class="calculator-area">
+          <div class="half-block">
+            <!-- Battery Capacity -->
+            <label for="sc_capacity">Battery Capacity</label>
+            <input type="number" id="sc_capacity" placeholder="Example: 50">
+            <div class="small muted">Enter battery capacity in Ah or Wh.</div>
+            <div class="error-message"></div>
+
+            <div class="absu-unit">
+              <!-- Unit -->
+              <label for="sc_unit">Unit</label>
+              <select id="sc_unit">
+                <option value="ah">Ah</option>
+                <option value="wh">Wh</option>
+              </select>
+              <div class="small muted">Capacity unit.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block">
+            <!-- Voltage -->
+            <div id="sc_voltage_wrap">
+              <label for="sc_voltage">Voltage (Default 48V)</label>
+              <input type="number" id="sc_voltage" placeholder="48">
+              <div class="small muted">Required only when capacity is in Ah.</div>
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Solar Panel Power -->
+            <label for="sc_panel_power">Solar Panel Rating (W)</label>
+            <input type="number" id="sc_panel_power" placeholder="Example: 200">
+            <div class="small muted">Rated watt output at ideal sunlight.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Sunlight Hours -->
+            <label for="sc_sun_hours">Average Sunlight Hours per Day</label>
+            <input type="number" id="sc_sun_hours" placeholder="Example: 5">
+            <div class="small muted">Most locations receive 4–6 usable solar hours/day.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Efficiency -->
+            <label for="sc_efficiency">Charging Efficiency (%)</label>
+            <input type="number" id="sc_efficiency" placeholder="Example: 85">
+            <div class="small muted">Typical solar charge efficiency: 70%–90%.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="sc_calculate">Calculate</button>
+          <button id="sc_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Results -->
+        <div id="sc_result" hidden>
+          <div id="sc_breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 19 -->
+<div id="modal19" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal19">&times;</span>
+    <div class="modal-body">
+
+      <!-- EBIKE INSURANCE COST ESTIMATOR -->
+      <div class="card" id="insurance_cost_calculator">
+        <h2>eBike Insurance Cost Estimator</h2>
+        <div class="calculator-area">
+          <div class="half-block">
+            <!-- Bike Value -->
+            <label for="ic_bike_value">eBike Market Value</label>
+            <input type="number" id="ic_bike_value" placeholder="Example: 1200">
+            <div class="small muted">Enter your eBike’s current value (any currency).</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Theft Risk -->
+            <label for="ic_theft">Theft Risk Level (%)</label>
+            <input type="number" id="ic_theft" placeholder="Example: 20">
+            <div class="small muted">Typical ranges: 5–25% depending on area.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Accident Risk -->
+            <label for="ic_accident">Accident Risk Level (%)</label>
+            <input type="number" id="ic_accident" placeholder="Example: 10">
+            <div class="small muted">Typical ranges: 3–15% depending on riding style.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block">
+            <!-- Base Insurance Rate -->
+            <label for="ic_base_rate">Base Insurance Rate (%)</label>
+            <input type="number" id="ic_base_rate" placeholder="Example: 4">
+            <div class="small muted">Annual base rate: 2–6% of eBike value.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="ic_calculate">Calculate</button>
+          <button id="ic_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Results -->
+        <div id="ic_result" hidden>
+          <div id="ic_breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal 20 -->
+<div id="modal20" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" data-modal="modal20">&times;</span>
+    <div class="modal-body">
+
+      <!-- EBIKE BATTERY UPGRADE COMPATIBILITY CHECKER -->
+      <div class="card" id="battery_upgrade_checker">
+        <h2>eBike Battery Upgrade Compatibility Checker</h2>
+        <div class="calculator-area">
+          <div class="half-block4">
+            <!-- Current Battery Voltage -->
+            <label for="uc_old_voltage">Current Battery Voltage (V)</label>
+            <input type="number" id="uc_old_voltage" placeholder="Example: 48">
+            <div class="small muted">Your existing battery voltage.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- New Battery Voltage -->
+            <label for="uc_new_voltage">New Battery Voltage (V)</label>
+            <input type="number" id="uc_new_voltage" placeholder="Example: 52">
+            <div class="small muted">Voltage of the battery you want to upgrade to.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Controller Max Voltage Rating -->
+            <label for="uc_controller_voltage">Controller Max Voltage Rating (V)</label>
+            <input type="number" id="uc_controller_voltage" placeholder="Example: 60">
+            <div class="small muted">Controller upper voltage limit (important!).</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Motor Nominal Voltage -->
+            <label for="uc_motor_voltage">Motor Nominal Voltage (V)</label>
+            <input type="number" id="uc_motor_voltage" placeholder="Example: 48">
+            <div class="small muted">Motor recommended operating voltage.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- New Battery Max Discharge Current -->
+            <label for="uc_bms_current">New Battery Max Discharge (A)</label>
+            <input type="number" id="uc_bms_current" placeholder="Example: 30">
+            <div class="small muted">Battery BMS discharge rating.</div>
+            <div class="error-message"></div>
+          </div>
+
+          <div class="half-block4">
+            <!-- Controller Current Requirement -->
+            <label for="uc_controller_current">Controller Current Draw (A)</label>
+            <input type="number" id="uc_controller_current" placeholder="Example: 22">
+            <div class="small muted">Controller peak current requirement.</div>
+            <div class="error-message"></div>
+          </div>
+        </div>
+
+        <div class="actions full">
+          <button id="uc_check">Check Compatibility</button>
+          <button id="uc_reset" class="secondary">Reset</button>
+        </div>
+
+        <!-- Result -->
+        <div id="uc_result" hidden>
+          <div id="uc_breakdown"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
 
@@ -774,6 +1925,7 @@
 
 </body>
 </html>
+
 
 
 
