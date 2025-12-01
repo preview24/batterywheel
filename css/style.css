@@ -185,7 +185,7 @@ body {
 .site-header {
   background: #1a1a1a;
   color: #fff;
-  padding: 1rem 0;
+  padding: 8px 0;
 }
 
 .site-header .logo a {
@@ -195,7 +195,6 @@ body {
   font-weight: bold;
 }
 .logo {
-  margin-bottom: 10px;
 }
 .main-nav {
   position: relative;
@@ -213,7 +212,7 @@ body {
   text-decoration: none;
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 .all-calculators a {
   background-color: #ff6600;
@@ -225,9 +224,8 @@ body {
 .all-calculators a:hover{
   background-color: transparent;
 }
-.main-nav a:hover,
-.main-nav .active {
-  background: #ff6600;
+.main-nav a:hover, .main-nav .active {
+  color: #ff6600;
 }
 .dropdown-menu{
   position: relative;
@@ -256,7 +254,8 @@ body {
 .main-nav ul li a {
   color: white;
   text-decoration: none;
-  padding: 10px 15px;
+  padding: 2px 5px;
+  font-size: 14px;
 }
 
 
@@ -287,6 +286,7 @@ body {
 /* Left Section */
 .content-area {
   flex: 3;
+  position: relative;
 }
 .intro-text{
   margin-bottom: 20px;
@@ -308,11 +308,14 @@ body {
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   width: calc(50% - 15px);
+  transition: 0.3s;
 }
-
+.calculator-block:hover{
+  transform: scale(1.05);
+}
 .calculator-block h3 {
   margin-bottom: 0.5rem;
-  color: #ff6600;
+  color: #000;
 }
 .calculator-block p{
   font-size: 14px;
@@ -328,22 +331,23 @@ body {
 }
 .tool-opener {
   border-radius: 5px;
-  background: #f60;
-  padding: 15px;
+  background: #f1f1f1;
+  padding: 6px 10px;
   display: block;
   width: 100%;
   border: 1px solid #fff;
   text-align: center;
-  color: white;
-  font-size: 20px;
+  color: #333;
+  font-size: 16px;
   font-weight: 600;
   transition: 0.3s;
   cursor: pointer;
+  margin: auto;
 }
 .tool-opener:hover {
-  background: #f1f1f1;
+  background: #f60;
   border: 1px solid #f60;
-  color: #f60;
+  color: #fff;
 }
 
 /* Sidebar */
@@ -489,16 +493,18 @@ input, select{
     display: flex;
     gap: 10px;
     margin-top: 14px;
+    align-items: center;
 }
 .actions button {
     flex: 1;
     padding: 10px;
     border-radius: 5px;
     border: 0;
-    background: var(--accent);
+    background: #f60;
     color: white;
     font-weight: 600;
     cursor: pointer;
+    max-height: 45px;
 }
 .actions button.secondary {
     background: #efefef;
@@ -612,7 +618,7 @@ pre {
 .half-block{
   position: relative;
   width: calc(50% - 10px);
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 .half-block2{
   position: relative;
@@ -758,6 +764,21 @@ input[type="range"]{
 .ad10{
   animation-delay: 1000ms;
 }
+.ad11{
+  animation-delay: 1100ms;
+}
+.ad12{
+  animation-delay: 1200ms;
+}
+.ad13{
+  animation-delay: 1300ms;
+}
+.ad14{
+  animation-delay: 1400ms;
+}
+.ad15{
+  animation-delay: 1500ms;
+}
 
 .fade-left{
   visibility: visible;
@@ -831,10 +852,15 @@ input[type="range"]{
   font-size: 30px;
   cursor: pointer;
   color: #333;
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'%3E%3Cpath fill='%23000' d='M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z'/%3E%3C/svg%3E");
+  background-position: center;
+  background-size: contain;
 }
 /* Style for Modal Body */
 .modal-body {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   padding-bottom: 20px;
 }
 
@@ -859,11 +885,12 @@ input[type="range"]{
 .main-nav ul {
   display: none;
   flex-direction: column;
-  width: 50%;
+  width: 200px;
   background-color: #1a1a1a;
   position: absolute;
   top: 50px;
-  left: 0;
+  right: 0;
+  z-index: 99;
 }
 
 .main-nav ul li {
@@ -873,7 +900,7 @@ input[type="range"]{
 
 .main-nav ul li a {
   text-align: center;
-  padding: 12px;
+  padding: 10px;
   width: 100%;
 }
 
@@ -928,8 +955,5 @@ input[type="range"]{
 
 @media (max-width: 550px){
 
-   .main-nav ul{
-    width: 100%;
-   }
 }
 
