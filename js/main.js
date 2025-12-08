@@ -1,17 +1,18 @@
-document.addEventListener("DOMContentLoaded", function () {
-
-    // If the page has NO calculator elements, EXIT main.js completely
-    if (!document.querySelector("[id$='_calculator']") &&
-        !document.querySelector(".calculator-area") &&
-        !document.querySelector(".card")) {
-
-        return; // <-- Universal Fix: stops ALL calculator code on other pages
+// SAFETY WRAPPER — prevents calculators from breaking on missing HTML
+function safeRun(callback) {
+    try {
+        callback();
+    } catch (e) {
+        // console.log("Calculator skipped:", e);
     }
+}
+
+
 
 
 
 // Range Calculator
-(function () {
+safeRun(function () {
   const root = document.getElementById('ebike-calculator');
   if (!root) return;
 
@@ -170,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
   resetBtn.addEventListener('click', resetForm);
   batteryCapacityEl.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
 
-})();
+});
 
 
 
@@ -182,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // Charging Cost Calculator (with decimal-safe input + reset + formatted result)
-(function() {
+safeRun(function() {
     const id = "evcalc1_";
 
     const batteryInput = document.getElementById(id + "battery");
@@ -306,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clearErrors();
         resultWrap.hidden = true;
     });
-})();
+});
 
 
 
@@ -716,14 +717,7 @@ document.addEventListener("DOMContentLoaded", function () {
         voltWrap = $('ec100_voltage-wrap');
 
   // restrict to numbers + one dot
-  root.querySelectorAll('input[type=number]').forEach(el=>{
-    el.addEventListener('input',()=>{
-      let val = el.value.replace(/[^0-9.]/g,'');
-      const parts = val.split('.');
-      if(parts.length>2) val = parts[0]+'.'+parts.slice(1).join('');
-      el.value = val;
-    });
-  });
+
 
   function showError(el,msg){
     const err = el.parentElement.querySelector('.error-message');
@@ -6441,6 +6435,20 @@ document.querySelectorAll('.dropdown-menu > a').forEach(function(dropdown) {
 
 
 
+// Header Social Share Button 
+const pageURL = window.location.href;
+const pageTitle = document.title;
+const pageDescription = "Best place to buy batteries online!";
+const pageImage = "https://batterywheel.com/images/logo.jpg"; // Replace with your image URL for Pinterest
+
+document.querySelector('.social-icon.facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageURL}`;
+document.querySelector('.social-icon.twitter').href = `https://twitter.com/intent/tweet?url=${pageURL}&text=${pageTitle}`;
+document.querySelector('.social-icon.linkedin').href = `https://www.linkedin.com/shareArticle?mini=true&url=${pageURL}&title=${pageTitle}&summary=${pageDescription}`;
+document.querySelector('.social-icon.whatsapp').href = `https://wa.me/?text=${pageTitle} ${pageURL}`;
+document.querySelector('.social-icon.pinterest').href = `https://pinterest.com/pin/create/button/?url=${pageURL}&media=${pageImage}&description=${pageDescription}`;
+document.querySelector('.social-icon.reddit').href = `https://www.reddit.com/submit?url=${pageURL}&title=${pageTitle}`;
+document.querySelector('.social-icon.telegram').href = `https://t.me/share/url?url=${pageURL}&text=${pageDescription}`;
+document.querySelector('.social-icon.tumblr').href = `https://www.tumblr.com/share/link?url=${pageURL}&name=${pageTitle}&description=${pageDescription}`;
 
 
 
@@ -6450,11 +6458,6 @@ document.querySelectorAll('.dropdown-menu > a').forEach(function(dropdown) {
 
 
 
-
-
-
-
-}); // end DOMContentLoaded wrapper
 
 
 
