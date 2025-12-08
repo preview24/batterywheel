@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Voltage Sag Calculator — eBike Battery Voltage Drop Under Load</title>
+  <meta name="description" content="Check eBike voltage sag from internal resistance, load current and battery condition. Avoid cut-off, reduce heat stress and improve performance.">
+  <meta name="keywords" content="voltage sag calculator, voltage dip calculator, power quality analysis, voltage drop calculation, electrical fault analysis, AC sag calculator, voltage dip magnitude, remaining voltage, power system stability" />
+  <link rel="canonical" href="https://batterywheel.com/voltage-sag-calculator.html">
+
+  <meta property="og:title" content="Voltage Sag Calculator">
+  <meta property="og:description" content="Calculate eBike voltage drop under load and learn how internal resistance affects performance and cutoff.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://batterywheel.com/voltage-sag-calculator.html">
+  <meta property="og:image" content="https://batterywheel.com/images/voltage-sag-thumbnail.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Voltage Sag Calculator">
+  <meta name="twitter:description" content="Measure eBike voltage sag from internal resistance and load current.">
+
+  <script type="application/ld+json">
+  {
+   "@context":"https://schema.org",
+   "@type":"SoftwareApplication",
+   "name":"Voltage Sag Calculator",
+   "url":"https://batterywheel.com/voltage-sag-calculator.html",
+   "image":"https://batterywheel.com/images/voltage-sag-thumbnail.png",
+   "description":"Calculate eBike battery voltage sag based on current load and internal resistance.",
+   "applicationCategory":"Utilities",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+
+
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>eBike Voltage Sag Calculator</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA (UNCHANGED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- VOLTAGE SAG CALCULATOR -->
+            <div id="voltage_sag_calc">
+              <div class="calculator-area">
+                <div class="half-block4">
+                  <!-- Battery Voltage -->
+                  <label for="vs_voltage">Battery Voltage (V)</label>
+                  <input type="number" id="vs_voltage" placeholder="Example: 48">
+                  <div class="small muted">Nominal battery voltage (e.g., 36V, 48V, 52V).</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block4">
+                  <!-- Internal Resistance -->
+                  <label for="vs_ir">Battery Internal Resistance (mΩ)</label>
+                  <input type="number" id="vs_ir" placeholder="Example: 75">
+                  <div class="small muted">Typical IR: 40–120 mΩ depending on battery quality.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block4">
+                  <!-- Current Draw -->
+                  <label for="vs_current">Current Draw Under Load (A)</label>
+                  <input type="number" id="vs_current" placeholder="Example: 25">
+                  <div class="small muted">Peak or continuous current depending on load.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+              <div class="actions full">
+                <button id="vs_calc">Calculate</button>
+                <button id="vs_reset" class="secondary">Reset</button>
+              </div>
+
+              <!-- Results -->
+              <div id="vs_result" class="result" hidden>
+                <div id="vs_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          The Voltage Sag Calculator determines how much your eBike battery voltage drops when current flows under load. This voltage drop is caused by internal resistance inside the battery cells and wiring. If voltage sag becomes too high, the controller may trigger low-voltage cutoff, which suddenly turns the motor off even when you still have usable charge remaining.
+        </p>
+
+        <article aria-labelledby="why">
+          <h2 id="why">What is Voltage Sag?</h2>
+          <p>
+            Voltage sag happens when current passes through a battery with internal resistance, causing an internal voltage drop equal to I × R. The more current drawn, the more voltage drops. This effect becomes very noticeable during acceleration, hill climbing, heavy load, or when battery health is degrading.
+          </p>
+
+          <ul class="list">
+            <li>High current demand</li>
+            <li>Old or degraded cells</li>
+            <li>Low temperature operating conditions</li>
+            <li>Poor wiring and high-resistance connectors</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="ir">
+          <h2 id="ir">Why Internal Resistance Matters</h2>
+          <p>
+            As lithium-ion cells age, their internal resistance increases. Higher IR means more voltage sag under load, more heat, lower efficiency, and reduced overall power delivery from the battery. Measuring internal resistance is one of the best ways to estimate battery aging and performance loss.
+          </p>
+
+          <div class="note">
+            Even a small increase in internal resistance causes large voltage sag during heavy acceleration.
+          </div>
+        </article>
+
+        <article aria-labelledby="effects">
+          <h2 id="effects">How Voltage Sag Affects eBike Performance</h2>
+          <p>
+            When your battery voltage sags, the motor temporarily receives lower voltage, resulting in reduced power output, limited speed, and potential motor cut-offs. You may feel sudden loss of power especially on steep hills, at high throttle, or while carrying heavy loads.
+          </p>
+
+          <ul class="list">
+            <li>Reduced acceleration</li>
+            <li>Lower top speed</li>
+            <li>Sudden motor cut-off</li>
+            <li>Reduced range</li>
+          </ul>
+        </article>
+
+      <article aria-labelledby="faq">
+        <h2 id="faq">Frequently Asked Questions</h2>
+
+        <div class="faq-block">
+          <dt>Q: What causes voltage sag in an eBike?</dt>
+          <dd>A: Mainly internal resistance, heavy current load and battery aging.</dd>
+        </div>
+
+        <div class="faq-block">
+          <dt>Q: Does temperature affect voltage sag?</dt>
+          <dd>A: Yes, cold temperatures increase internal resistance temporarily.</dd>
+        </div>
+
+        <div class="faq-block">
+          <dt>Q: Can a higher quality battery reduce sag?</dt>
+          <dd>A: Yes, premium cells have lower internal resistance and sag less under load.</dd>
+        </div>
+
+        <div class="faq-block">
+          <dt>Q: Why does voltage drop more on hills?</dt>
+          <dd>A: Hill climbing requires much higher current, causing higher voltage drop.</dd>
+        </div>
+
+        <div class="faq-block">
+          <dt>Q: Can sag cause motor shutdown?</dt>
+          <dd>A: Yes, controllers may cut power if sag hits low-voltage cutoff.</dd>
+        </div>
+
+      </article>
+    </div>
+
+
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html" class="active">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+<!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What causes voltage sag in an eBike?",
+   "acceptedAnswer": { "@type": "Answer", "text": "Mainly internal resistance, heavy load and cell aging." }
+  },
+  {
+   "@type": "Question",
+   "name": "Does cold temperature increase voltage sag?",
+   "acceptedAnswer": { "@type": "Answer", "text": "Yes. Cold increases internal resistance and voltage drops more." }
+  },
+  {
+   "@type": "Question",
+   "name": "Do premium batteries sag less?",
+   "acceptedAnswer": { "@type": "Answer", "text": "High quality cells have lower internal resistance and maintain voltage better under load." }
+  },
+  {
+   "@type": "Question",
+   "name": "Why does voltage drop more on steep hills?",
+   "acceptedAnswer": { "@type": "Answer", "text": "Hill climbing demands high current, causing more voltage drop inside the battery." }
+  },
+  {
+   "@type": "Question",
+   "name": "Can voltage sag cause motor shutdown?",
+   "acceptedAnswer": { "@type": "Answer", "text": "Yes, sag can trigger low-voltage cutoff and shut the motor off temporarily." }
+  }
+ ]
+}
+</script>
+
+
+
+
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

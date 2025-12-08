@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Battery Life Cycle Estimator — Calculate Total Lifetime Usage</title>
+  <meta name="description" content="Free Battery Life Cycle Estimator — calculate total battery lifetime, usable energy, cycle count, daily range capacity, and when your eBike battery will need replacement. Supports Ah, Wh, km, miles, and voltage." />
+  <meta name="keywords" content="battery life cycle estimator, depth of discharge (DOD), cycle life calculator, lithium-ion cycle life, battery cycle count prediction, capacity degradation cycles, battery lifespan DOD, state of charge (SOC) impact, LFP cycle life" />
+  <link rel="canonical" href="https://batterywheel.com/battery-life-cycle-estimator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Battery Life Cycle Estimator — Calculate Total Lifetime Usage" />
+  <meta property="og:description" content="Estimate total eBike battery lifetime based on capacity, daily usage, cycle count and voltage. Free, accurate battery life cycle calculator." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/battery-life-cycle-estimator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/battery-life-cycle-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Battery Life Cycle Estimator — Calculate Total Lifetime Usage" />
+  <meta name="twitter:description" content="Estimate how long your battery will last over its full lifetime. Supports Ah/Wh/km/miles/voltage and cycle count." />
+
+  <!-- Robots -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD: Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Battery Life Cycle Estimator",
+    "url": "https://batterywheel.com/battery-life-cycle-estimator.html",
+    "image": "https://batterywheel.com/images/battery-life-cycle-thumbnail.png",
+    "description": "Estimate eBike battery lifetime, cycle life, total kilometers/miles obtainable, and when battery replacement will be needed.",
+    "applicationCategory": "Utilities",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <div>
+          <nav class="main-nav">
+            <button class="navbar-toggler" type="button"></button>
+            <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+              <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+              <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+              <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+              <li><a href="https://www.reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+              <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+              <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container main-content">
+    <section class="content-area">
+      <div class="flex-between-center">
+        <div><h1>Battery Life Cycle Estimator</h1></div>
+        <div><img src="../images/animated-bike.gif" style="position:absolute;top:-50px;right:0" alt="Battery wheel animation"></div>
+      </div>
+
+      <!-- Calculator Area -->
+      <div class="modalp1">
+        <div><div class="modal-body">
+
+          <div id="battery-life-calculator">
+            <p class="lead">Estimate how long your eBike battery will last during its lifetime based on capacity, voltage, cycles, and daily riding distance.</p>
+
+            <div class="calculator-area">
+
+              <!-- Battery Capacity -->
+              <div class="half-block">
+                <label for="bl_battery-capacity">Battery Capacity</label>
+                <input id="bl_battery-capacity" type="number" step="any" placeholder="e.g. 14 (Ah) or 672 (Wh)" />
+                <div class="small muted">Enter your battery capacity (Ah or Wh).</div>
+                <div class="error-message" id="bl_error-battery"></div>
+
+                <div class="absu-unit">
+                  <label for="bl_battery-unit">Battery Unit</label>
+                  <select id="bl_battery-unit">
+                    <option value="ah">Ah (Amp-hour)</option>
+                    <option value="wh">Wh (Watt-hour)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Daily Usage -->
+              <div class="half-block">
+                <label for="bl_daily-usage">Average Daily Usage</label>
+                <input id="bl_daily-usage" type="number" step="any" placeholder="e.g. 25 (km or mile)" />
+                <div class="small muted">Typical daily use is 20–40 km.</div>
+                <div class="error-message" id="bl_error-usage"></div>
+
+                <div class="absu-unit">
+                  <label for="bl_usage-unit">Usage Unit</label>
+                  <select id="bl_usage-unit">
+                    <option value="km">Kilometers (km)</option>
+                    <option value="mile">Miles</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Voltage -->
+              <div class="half-block">
+                <div id="bl_voltage-wrap">
+                  <label for="bl_voltage">Voltage (V)</label>
+                  <input id="bl_voltage" type="number" step="any" placeholder="48 (default)" />
+                  <div class="small muted">Used only when unit is Ah.</div>
+                  <div class="error-message" id="bl_error-voltage"></div>
+                </div>
+              </div>
+
+              <!-- Charge Cycles -->
+              <div class="half-block">
+                <label for="bl_charge-cycles">Battery Full Charge Cycles</label>
+                <input id="bl_charge-cycles" type="number" step="any" placeholder="e.g. 800" />
+                <div class="small muted">Typical lithium batteries last 500–1000 cycles.</div>
+                <div class="error-message" id="bl_error-cycles"></div>
+              </div>
+
+            </div>
+
+            <div class="actions full">
+              <button id="bl_calculate">Estimate Lifetime</button>
+              <button id="bl_reset" class="secondary">Reset</button>
+            </div>
+
+            <div id="bl_result" class="result" hidden>
+              <div id="bl_breakdown"></div>
+            </div>
+
+          </div>
+
+        </div></div>
+      </div>
+
+      <!-- Intro & SEO Text -->
+      <div class="intro-content">
+        <p>This tool helps you estimate the total lifetime of your eBike battery by calculating how much distance it can cover throughout all its charge cycles. It provides a realistic prediction of how long your battery will last and when you should expect to replace it.</p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How the Battery Life Cycle Estimator Works</h2>
+          <p>The calculator computes your total usable battery energy across its full cycle count and divides it by your daily usage rate. This gives you:</p>
+
+          <ul class="list">
+            <li>Total kilometers/miles your battery can deliver in its lifespan.</li>
+            <li>Total days, months, and years of usable life.</li>
+            <li>Estimated replacement time.</li>
+            <li>Lifetime value based on daily usage.</li>
+          </ul>
+
+          <h3>Typical Battery Cycle Ratings</h3>
+          <p>Most lithium-ion eBike batteries last:</p>
+          <ul class="list">
+            <li><strong>500 cycles</strong> for standard 18650/21700 lithium packs.</li>
+            <li><strong>800–1000 cycles</strong> for premium branded cells.</li>
+            <li><strong>2000–3500 cycles</strong> for LiFePO₄ packs.</li>
+          </ul>
+
+          <h3>Example Calculation</h3>
+          <p>If you ride 30 km per day and your bike battery lasts 800 cycles delivering 50 km per charge, your total lifetime is <strong>40,000 km of usage</strong>. That equals roughly 3.6 years of daily commuting.</p>
+
+          <h3>Factors Affecting Battery Lifetime</h3>
+          <ul class="list">
+            <li>Charging to 100% frequently accelerates wear.</li>
+            <li>Heat reduces cycle life significantly.</li>
+            <li>Storing batteries fully charged shortens lifespan.</li>
+            <li>Avoid deep discharges below 20% for maximum lifespan.</li>
+          </ul>
+
+          <div class="note">
+            <strong>Tip:</strong> Storing your battery at 40–60% charge and avoiding extreme heat can nearly double its lifetime.
+          </div>
+        </article>
+
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: What is a battery cycle?</dt>
+            <dd>A: One full charge from 0% to 100%, or multiple partial charges that add up to 100%.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How do I maximize battery lifetime?</dt>
+            <dd>A: Avoid heat, avoid charging to 100% daily, and avoid deep discharges below 20%.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does charging speed affect cycle life?</dt>
+            <dd>A: Yes — fast charging increases heat, reducing cycle count over the years.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: When should I replace my battery?</dt>
+            <dd>A: When your range has dropped to 60–70% of original, or when voltage sag becomes noticeable.</dd>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html" class="active">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a battery cycle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A full charge from 0% to 100%, or multiple partial charges that add up to one full cycle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I extend battery life?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Avoid heat, avoid deep discharges, and avoid daily charging to 100% for best results."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does fast charging reduce cycle life?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Fast charging generates heat which accelerates cell degradation."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

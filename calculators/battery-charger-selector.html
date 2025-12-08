@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Battery Charger Selector — Find the Right Charger for Any Battery</title>
+  <meta name="description" content="Universal battery charger selector. Enter voltage, capacity and recommended C-rate and automatically estimate charger current and recommended charger wattage." />
+  <meta name="keywords" content="battery charger selector, lithium battery charger size, recommended charger current, battery charging current calculator, ebike charger size, lifepo4 charger selection" />
+  <link rel="canonical" href="https://batterywheel.com/battery-charger-selector.html">
+
+  <meta property="og:title" content="Universal Battery Charger Selector" />
+  <meta property="og:description" content="Calculate recommended charger current using capacity and C-rate for safer charging." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/battery-charger-selector.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/battery-charger-selector-thumbnail.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Universal Battery Charger Selector" />
+  <meta name="twitter:description" content="Find the right charger current and watt rating for your battery system." />
+
+  <script type="application/ld+json">
+  {
+   "@context":"https://schema.org",
+   "@type":"SoftwareApplication",
+   "name":"Universal Battery Charger Selector",
+   "url":"https://batterywheel.com/battery-charger-selector.html",
+   "image":"https://batterywheel.com/images/battery-charger-selector-thumbnail.png",
+   "description":"Calculate properly sized charger current based on battery chemistry, C-rate and capacity.",
+   "applicationCategory":"Utilities",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>Universal Battery Charger Selector</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA (UNCHANGED) -->
+      <div class="modalP1">
+        <div>
+          <div class="modal-body">
+            <!-- UNIVERSAL BATTERY CHARGER SELECTOR -->
+            <div id="charger_selector_calc">
+              <div class="calculator-area">
+                <div class="half-block">
+                  <!-- Battery Voltage -->
+                  <label for="ucs_voltage">Battery Nominal Voltage (V)</label>
+                  <input type="number" id="ucs_voltage" placeholder="e.g. 48">
+                  <div class="small muted">Use nominal battery voltage (12V / 24V / 36V / 48V / 60V / 72V etc.).</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block">
+                  <!-- Battery Capacity -->
+                  <label for="ucs_capacity">Battery Capacity</label>
+                  <input type="number" id="ucs_capacity" placeholder="Enter value">
+                  <div class="small muted">Enter capacity.</div>
+                  <div class="error-message"></div>
+                  <div class="absu-unit">
+                    <!-- Ah / Wh toggle -->
+                    <label for="ucs_unit">Capacity Unit</label>
+                    <select id="ucs_unit">
+                      <option value="ah">Ah</option>
+                      <option value="wh">Wh</option>
+                    </select>
+                    <div class="small muted">Choose Ah or Wh.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+                <div class="half-block">
+                  <!-- C-rate -->
+                  <label for="ucs_c_rate">Recommended Charge C-Rate</label>
+                  <select id="ucs_c_rate">
+                    <option value="0.2">0.2C (Very Safe – Best for longevity)</option>
+                    <option value="0.3">0.3C (Safe – Common charger range)</option>
+                    <option value="0.5">0.5C (Medium – Fast charger)</option>
+                    <option value="1.0">1C (High – Only for high-quality cells)</option>
+                  </select>
+                  <div class="small muted">Most lithium batteries should be charged between 0.2C and 0.5C.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+
+              <div class="actions full">
+                <button id="ucs_calc">Select Charger</button>
+                <button id="ucs_reset" class="secondary">Reset</button>
+              </div>
+              <!-- Results -->
+              <div id="ucs_result" class="result" hidden>
+                <div id="ucs_breakdown"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          The Universal Battery Charger Selector calculates the recommended charger current based on battery capacity and selected C-rate.
+          This ensures safe charging, improved battery health and prevents overheating or overloading small batteries.
+        </p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How Charger Current Is Calculated</h2>
+          <p>
+            Charging current is based on battery capacity multiplied by the selected C-rate. Lower C-rates charge slower
+            but improve longevity, while high C-rates provide fast charging but generate more heat.
+          </p>
+          <p><strong>Formula:</strong></p>
+          <p><strong>Charge Current (A) = Capacity (Ah) × C-Rate</strong></p>
+        </article>
+
+        <article aria-labelledby="importance">
+          <h2 id="importance">Why Correct Charger Size Matters</h2>
+          <ul class="list">
+            <li>Avoids battery overheating</li>
+            <li>Improves cell longevity</li>
+            <li>Prevents BMS stress</li>
+            <li>Ensures safe and balanced charging</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="usage">
+          <h2 id="usage">Works With Many Battery Types</h2>
+          <ul class="list">
+            <li>LiFePO₄</li>
+            <li>Lithium-ion</li>
+            <li>NMC / NCA</li>
+            <li>Lead-acid (AGM / Gel)</li>
+            <li>Custom battery packs</li>
+          </ul>
+        </article>
+
+
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: What is a safe charging C-rate?</dt>
+            <dd>Most lithium batteries are safely charged between 0.2C and 0.5C depending on temperature and BMS limits.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Can I charge faster than 0.5C?</dt>
+            <dd>Only if your battery manufacturer specifies a fast charge C-rate and supports increased thermal monitoring.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does this work with LiFePO₄?</dt>
+            <dd>Yes, LiFePO₄ is commonly charged at 0.2C for long cell life and minimal heat.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: What if my charger current is higher than recommended?</dt>
+            <dd>Overcharging shortens battery life, increases heat and may cause BMS shutdown or reduced cycle count.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does higher voltage require a different charger?</dt>
+            <dd>Yes. Chargers must match battery voltage—never use a charger with a different voltage.</dd>
+          </div>
+
+        </article>
+
+      </div>
+
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html" class="active">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+<!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is a safe charging C-rate?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Most lithium batteries are safely charged between 0.2C and 0.5C depending on BMS temperature limits."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I charge faster than 0.5C?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Only if the manufacturer specifies a fast charge rating and proper temperature control."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does this work with LiFePO₄?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes. LiFePO₄ is commonly charged at 0.2C for long cell health and minimal heating."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What if my charger is too powerful?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "A higher charger current increases heat, reduces cycle life and may cause BMS shutdown."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do I need a charger with matching voltage?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes. Charger voltage must always match the battery voltage for proper charging."
+   }
+  }
+ ]
+}
+</script>
+
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

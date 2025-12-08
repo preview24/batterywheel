@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>eBike Insurance Cost Estimator — Annual Electric Bike Insurance Price Calculator</title>
+  <meta name="description" content="Calculate estimated annual eBike insurance cost based on bike value, theft level, accident risk, and insurance rate. Get an approximate yearly price for insuring your electric bike." />
+  <meta name="keywords" content="e-bike insurance cost, electric bike insurance quote, ebike premium calculator, electric bicycle insurance estimate, bicycle insurance price, e-bike theft coverage, ebike liability insurance, Insured Declared Value, IDV, two-wheeler insurance, ebike policy comparison, accidental damage cover, electric scooter insurance" />
+  <link rel="canonical" href="https://batterywheel.com/ebike-insurance-cost-estimator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="eBike Insurance Cost Estimator" />
+  <meta property="og:description" content="Estimate annual insurance cost for your eBike using theft risk, accident risk, and insurance rate." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/ebike-insurance-cost-estimator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/ebike-insurance-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="eBike Insurance Cost Calculator" />
+  <meta name="twitter:description" content="Estimate yearly eBike insurance expense depending on theft and accident risk." />
+
+  <meta name="robots" content="index,follow">
+
+  <!-- JSON-LD SOFTWARE -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "eBike Insurance Cost Estimator",
+    "url": "https://batterywheel.com/ebike-insurance-cost-estimator.html",
+    "image": "https://batterywheel.com/images/ebike-insurance-thumbnail.png",
+    "description": "Calculate estimated annual eBike insurance cost based on theft and accident risk level.",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>eBike Insurance Cost Estimator</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA (UNCHANGED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- EBIKE INSURANCE COST ESTIMATOR -->
+            <div id="insurance_cost_calculator">
+              <div class="calculator-area">
+                <div class="half-block">
+                  <!-- Bike Value -->
+                  <label for="ic_bike_value">eBike Market Value</label>
+                  <input type="number" id="ic_bike_value" placeholder="Example: 1200">
+                  <div class="small muted">Enter your eBike’s current value (any currency).</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <!-- Theft Risk -->
+                  <label for="ic_theft">Theft Risk Level (%)</label>
+                  <input type="number" id="ic_theft" placeholder="Example: 20">
+                  <div class="small muted">Typical ranges: 5–25% depending on area.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <!-- Accident Risk -->
+                  <label for="ic_accident">Accident Risk Level (%)</label>
+                  <input type="number" id="ic_accident" placeholder="Example: 10">
+                  <div class="small muted">Typical ranges: 3–15% depending on riding style.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <!-- Base Insurance Rate -->
+                  <label for="ic_base_rate">Base Insurance Rate (%)</label>
+                  <input type="number" id="ic_base_rate" placeholder="Example: 4">
+                  <div class="small muted">Annual base rate: 2–6% of eBike value.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+
+              <div class="actions full">
+                <button id="ic_calculate">Calculate</button>
+                <button id="ic_reset" class="secondary">Reset</button>
+              </div>
+
+              <!-- Results -->
+              <div id="ic_result" class="result" hidden>
+                <div id="ic_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          This eBike Insurance Cost Estimator helps you estimate how much you may need to pay annually to insure your electric bike. 
+          Insurance pricing depends heavily on theft risk, accident probability, the market value of the bike, and the base insurance rate offered by providers.
+        </p>
+
+        <article aria-labelledby="why">
+          <h2 id="why">Why eBike Insurance Matters</h2>
+
+          <p>
+            Modern electric bikes are significantly more expensive than regular bicycles and have become major targets for theft, especially in urban areas.
+            Insurance helps protect you from financial loss caused by:
+          </p>
+
+          <ul class="list">
+            <li>Theft and break-in damage</li>
+            <li>Battery theft</li>
+            <li>Accidental crashes</li>
+            <li>Vandalism</li>
+            <li>Component damage (motor, display, controller)</li>
+          </ul>
+
+          <p>
+            Most insurers offer coverage similar to motorcycles, including liability protection and personal accident coverage.
+          </p>
+        </article>
+
+        <article aria-labelledby="factors">
+          <h2 id="factors">What Affects eBike Insurance Pricing?</h2>
+
+          <p>
+            Insurance companies typically evaluate risk based on several factors including:
+          </p>
+
+          <ul class="list">
+            <li><strong>Bike market value:</strong> Higher value means higher premium</li>
+            <li><strong>Theft risk:</strong> Depends on location and security level</li>
+            <li><strong>Accident risk:</strong> Riding style, speed, and road type</li>
+            <li><strong>Base insurance rate:</strong> Charged as % of bike value</li>
+            <li><strong>Battery replacement cost:</strong> Lithium batteries are expensive</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="examples">
+          <h2 id="examples">Typical Annual eBike Insurance Examples</h2>
+
+          <ul class="list">
+            <li><strong>$1200 commuter bike:</strong> $40–$100 yearly</li>
+            <li><strong>$2000 mid-drive bike:</strong> $80–$150 yearly</li>
+            <li><strong>$4000 premium eMTB:</strong> $120–$250 yearly</li>
+          </ul>
+
+          <p>
+            High theft cities usually require a higher percentage rate due to increased claim rates.
+          </p>
+        </article>
+
+        <article aria-labelledby="tips">
+          <h2 id="tips">How to Reduce eBike Insurance Cost</h2>
+
+          <ul class="list">
+            <li>Park in monitored or indoor locations</li>
+            <li>Use high-grade locks with anti-cut protection</li>
+            <li>Install GPS tracking</li>
+            <li>Use alarm-enabled battery locks</li>
+            <li>Store batteries indoors</li>
+            <li>Install immobilizer or wheel lock</li>
+          </ul>
+
+          <p>
+            Reducing theft risk by even 10% can reduce insurance premium significantly.
+          </p>
+        </article>
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: Is eBike insurance mandatory?</dt>
+            <dd>
+              A: In most countries standard eBikes (pedal-assist, low top-speed) do not legally require insurance — but rules vary by jurisdiction.
+              High-power eBikes or throttle-only scooters may be regulated like motorcycles in some regions and then require registration and insurance.
+              Even when not mandatory, insurance is strongly recommended for mid- to high-value eBikes because replacement batteries and motors are expensive.
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How much does eBike insurance cost per year?</dt>
+            <dd>
+              A: Typical annual premiums range widely depending on value and risk:
+              <ul class="list">
+                <li>Low-value commuter eBikes: ≈ 20–60</li>
+                <li>Mid-range eBikes (mid-drive): ≈ 60–140</li>
+                <li>High-end eMTBs or cargo bikes: ≈ 120–300+</li>
+              </ul>
+              Exact cost depends on theft risk in your area, deductible, coverage limits, and any add-ons (battery cover, roadside assistance).
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: What does typical eBike insurance cover?</dt>
+            <dd>
+              A: Standard policies usually offer one or more of the following:
+              <ul class="list">
+                <li><strong>Theft cover:</strong> Reimbursement if the bike (or battery) is stolen while locked as per policy terms.</li>
+                <li><strong>Accidental damage:</strong> Repair or replacement after crashes or collisions.</li>
+                <li><strong>Vandalism:</strong> Damage caused deliberately by third parties.</li>
+                <li><strong>Third-party liability:</strong> Covers damage/injury you cause to others (sometimes optional).</li>
+                <li><strong>Battery cover:</strong> Some plans include or offer battery-specific cover (important because batteries are costly).</li>
+              </ul>
+              Always read the policy wording to see exact inclusions, limits and waiting periods.
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: What is usually excluded from eBike insurance?</dt>
+            <dd>
+              A: Common exclusions include:
+              <ul class="list">
+                <li>Claims arising while bike used for hire/rental unless specifically insured</li>
+                <li>Unattended theft where minimum locking/security rules were not followed</li>
+                <li>Wear & tear, mechanical faults, and manufacturing defects</li>
+                <li>Damage caused while participating in competitive events (races)</li>
+                <li>Pre-existing damage known before policy start</li>
+              </ul>
+              Check the fine print for exclusions and required minimum security (e.g., type of lock, where bike was parked).
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: What documents do I need to make a theft or damage claim?</dt>
+            <dd>
+              A: Typical documentation insurers ask for:
+              <ol class="list">
+                <li>Proof of purchase or current market valuation (invoice, receipt, photos)</li>
+                <li>Serial number / frame number</li>
+                <li>Police report for theft</li>
+                <li>Photos of damage (for accidental claims)</li>
+                <li>Proof of locks used (photo of bike locked, receipt for lock if requested)</li>
+              </ol>
+              Keep receipts and photos in a safe place — they speed up claims processing.
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: What is an excess (deductible) and how does it affect premiums?</dt>
+            <dd>
+              A: Excess (or deductible) is the amount you pay toward a claim. Choosing a higher excess usually reduces your premium, but you’ll pay more out-of-pocket when you claim.
+              Consider your likelihood of small claims — for frequent low-cost repairs it may be cheaper to choose a low-excess policy.
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does my battery and motor cost affect my insurance?</dt>
+            <dd>
+              A: Yes. Modern lithium batteries and mid-drive motors are expensive, so bikes with higher replacement costs attract higher premiums.
+              If your battery is an expensive, removable pack, check whether the policy covers off-bike battery theft or if it only covers installed batteries.
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How can I lower my eBike insurance premium?</dt>
+            <dd>
+              A: Practical ways to reduce premium:
+              <ul class="list">
+                <li>Use high-quality locks and meet insurer lock requirements.</li>
+                <li>Park in secure/covered parking or a garage where possible.</li>
+                <li>Install a GPS tracker — many insurers give discounts.</li>
+                <li>Choose higher excess if you can afford it in case of a claim.</li>
+                <li>Bundle with other insurances (home contents) — multi-policy discounts often apply.</li>
+              </ul>
+              Even simple steps like registering your bike and storing purchase receipts can help lower costs and speed up claims.
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Should I insure battery separately?</dt>
+            <dd>
+              A: If your battery is expensive and removable, consider explicit battery cover or an add-on. Some policies only cover the bike frame and attached components — batteries stolen separately (e.g., from a parked bike) may be excluded unless listed.
+              Compare insurer options: battery cover is often inexpensive relative to replacement cost.
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How do insurers estimate theft & accident risk?</dt>
+            <dd>
+              A: Insurers base risk on your postcode (crime statistics), typical parking habits, your claim history, bike model and value, and local theft rates. Urban areas with high theft rates and bikes left unattended on-street generally face higher premiums.
+            </dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: What to do immediately after a theft or crash?</dt>
+            <dd>
+              A: Quick steps that improve claim success:
+              <ol class="list">
+                <li>For theft — file a police report immediately and get a report number.</li>
+                <li>Take photos of the scene and any damage.</li>
+                <li>Contact your insurer within the policy timeframe (often 24–72 hours).</li>
+                <li>Gather receipts, serial numbers and any tracking data (GPS).</li>
+                <li>Keep communication records and references from the police or repair shops.</li>
+              </ol>
+            </dd>
+          </div>
+
+          <p>
+            <strong>Final note:</strong> Use the calculator to estimate an annual premium range, then contact at least two insurers for quotes. Policies and definitions vary — comparing coverage details (theft, battery, accidental damage, excess) is as important as comparing price.
+          </p>
+        </article>
+
+
+      </div>
+
+
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html" class="active">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is eBike insurance mandatory?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Insurance is not legally required for most eBikes, but highly recommended for higher-value models."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does eBike insurance cost per year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Annual insurance generally ranges from 40 to 200 depending on bike value and risk factors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does theft increase insurance cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Areas with higher theft risk and poor parking safety increase insurance rates significantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does eBike insurance cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most insurance covers theft, accidental damage, vandalism, and sometimes battery replacement costs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reduce insurance premium?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Using secure locks, GPS tracking, and storing the bike in protected areas can reduce your premium."
+      }
+    }
+  ]
+}
+</script>
+
+
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

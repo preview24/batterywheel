@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Battery Self-Discharge Calculator — eBike Battery Storage Loss Estimator</title>
+  <meta name="description" content="Calculate how much capacity your eBike battery loses during storage. Estimate self-discharge percentage, remaining energy, and long-term storage impact for lithium-ion batteries." />
+  <meta name="keywords" content="battery self discharge calculator, self discharge rate of batteries, battery self discharge, battery discharge rate calculator, self discharge effect on battery, battery self discharge estimation, battery self discharge formula, lithium battery self discharge, lead acid battery self discharge, battery efficiency self discharge, self discharge impact on battery life, battery self discharge rate calculator, battery idle discharge, battery performance self discharge">
+
+  <link rel="canonical" href="https://batterywheel.com/battery-self-discharge-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Battery Self-Discharge Calculator — Storage Capacity Loss Tool" />
+  <meta property="og:description" content="Find out how much energy your eBike battery loses while in storage. Calculate monthly self-discharge and remaining battery percentage." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/battery-self-discharge-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/battery-self-discharge-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="eBike Battery Self-Discharge Calculator" />
+  <meta name="twitter:description" content="Calculate storage loss, remaining Wh, and battery percentage after days or weeks of inactivity." />
+
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD SOFTWARE SCHEMA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Battery Self-Discharge Calculator",
+    "url": "https://batterywheel.com/battery-self-discharge-calculator.html",
+    "image": "https://batterywheel.com/images/battery-self-discharge-thumbnail.png",
+    "description": "Estimate self-discharge loss, remaining battery capacity, and storage impact for lithium-ion eBike batteries.",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>Battery Self-Discharge Calculator</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA (UNCHANGED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- BATTERY SELF-DISCHARGE CALCULATOR -->
+            <div id="self_discharge_calculator">
+
+              <div class="calculator-area">
+
+                <div class="half-block">
+                  <!-- Battery Capacity -->
+                  <label for="sd_capacity">Battery Capacity</label>
+                  <input type="number" id="sd_capacity" placeholder="Value only">
+                  <div class="small muted">Enter battery capacity in Ah or Wh.</div>
+                  <div class="error-message"></div>
+
+                  <div class="absu-unit">
+                    <!-- Unit -->
+                    <label for="sd_unit">Unit</label>
+                    <select id="sd_unit">
+                      <option value="ah">Ah</option>
+                      <option value="wh">Wh</option>
+                    </select>
+                    <div class="small muted">Choose capacity unit.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+
+                <div class="half-block">
+                  <!-- Voltage -->
+                  <div id="sd_voltage_wrap">
+                    <label for="sd_voltage">Voltage (Default 48V)</label>
+                    <input type="number" id="sd_voltage" placeholder="48">
+                    <div class="small muted">Required if capacity is in Ah.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+
+                <div class="half-block">
+                  <!-- Self Discharge Rate -->
+                  <label for="sd_rate">Self-Discharge Rate per Month (%)</label>
+                  <input type="number" id="sd_rate" placeholder="Example: 3">
+                  <div class="small muted">Li-ion typically 2%–4% per month.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <!-- Storage Duration -->
+                  <label for="sd_days">Storage Duration (Days)</label>
+                  <input type="number" id="sd_days" placeholder="Example: 30">
+                  <div class="small muted">Enter how many days the battery remains unused.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+
+              <div class="actions full">
+                <button id="sd_calculate">Calculate</button>
+                <button id="sd_reset" class="secondary">Reset</button>
+              </div>
+
+              <!-- Results -->
+              <div id="sd_result" class="result" hidden>
+                <div id="sd_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          The Battery Self-Discharge Calculator helps you estimate how much energy your eBike battery loses while stored and not in use.  
+          Lithium-ion batteries naturally lose charge over time, even when disconnected from the bike.  
+          This tool calculates the remaining battery percentage, watt-hours, and estimated loss based on storage duration and self-discharge rate.
+        </p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">What Is Battery Self-Discharge?</h2>
+
+          <p>
+            Self-discharge is the natural process where a battery slowly loses its stored energy without being connected to any device.  
+            Lithium-ion eBike batteries typically lose <strong>2%–4% per month</strong>, but this depends on:
+          </p>
+
+          <ul class="list">
+            <li>Battery chemistry (NCM, NCA, LFP)</li>
+            <li>Temperature during storage</li>
+            <li>Battery age and health</li>
+            <li>Storage charge percentage</li>
+            <li>Internal resistance and cell quality</li>
+          </ul>
+
+          <h3>Typical Monthly Self-Discharge</h3>
+          <ul class="list">
+            <li><strong>NCM/NCA Li-ion:</strong> 2–4% per month</li>
+            <li><strong>LFP (LiFePO₄):</strong> 1–2% per month</li>
+            <li><strong>Old batteries:</strong> 4–7% per month</li>
+            <li><strong>Stored in hot places:</strong> 5–10% per month</li>
+          </ul>
+
+          <div class="note">
+            <strong>Tip:</strong> Storing your battery at 40–60% charge in a cool room (15–25°C) reduces self-discharge dramatically.
+          </div>
+        </article>
+
+        <article aria-labelledby="impact">
+          <h2 id="impact">How Self-Discharge Affects Your eBike</h2>
+
+          <p>
+            Self-discharge doesn’t normally damage a lithium battery, but if it continues for too long, the voltage can drop to dangerous levels.  
+            When a battery reaches deep discharge (<strong>below 2.5–2.8V per cell</strong>), it may become permanently damaged.
+          </p>
+
+          <h3>Risks of Long-Term Storage Without Charging</h3>
+          <ul class="list">
+            <li><strong>BMS cutoff:</strong> Battery becomes non-chargeable</li>
+            <li><strong>Permanent capacity loss:</strong> Irreversible degradation</li>
+            <li><strong>Cells drifting out of balance:</strong> Reduced performance</li>
+            <li><strong>Shortened lifespan:</strong> Faster aging</li>
+          </ul>
+
+          <p>
+            For long-term storage, it is recommended to recharge the battery every 30–60 days to maintain safe voltage levels.
+          </p>
+        </article>
+
+        <article aria-labelledby="tips">
+          <h2 id="tips">Best Practices for Storing Your eBike Battery</h2>
+
+          <ul class="list">
+            <li>Store at <strong>40–60% charge</strong></li>
+            <li>Keep temperature between <strong>15–25°C</strong></li>
+            <li>Avoid leaving the battery fully charged for long periods</li>
+            <li>Recharge slightly every 1–2 months</li>
+            <li>Do not store in hot places like cars or near sunlight</li>
+            <li>Disconnect battery from charger and controller during long-term storage</li>
+          </ul>
+
+          <p>
+            Following these recommendations can reduce self-discharge and extend the lifespan of your lithium-ion battery by years.
+          </p>
+        </article>
+
+        <!-- FAQ SECTION -->
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: How much charge does a lithium eBike battery lose per month?</dt>
+            <dd>A: Usually 2–4% per month, depending on temperature, age, and chemistry.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Do eBike batteries self-discharge faster in hot weather?</dt>
+            <dd>A: Yes. Heat accelerates internal chemical reactions, increasing self-discharge to 5–10% per month.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Can self-discharge damage the battery?</dt>
+            <dd>A: If a battery remains unused for months and voltage drops too low, permanent damage can occur.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How often should I recharge a stored battery?</dt>
+            <dd>A: Ideally every 30–60 days to prevent deep discharge.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: What storage level is best for lithium batteries?</dt>
+            <dd>A: The ideal storage charge is 40%–60%.</dd>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html" class="active">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much charge does an eBike battery lose per month?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most eBike batteries lose 2–4% per month, depending on temperature, age, and chemistry."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does heat increase battery self-discharge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. High temperatures can increase self-discharge to 5–10% per month and accelerate degradation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can self-discharge permanently damage my battery?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If the battery self-discharges too far and voltage drops below safe levels, the battery can be permanently damaged."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often should I recharge a stored battery?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Recharge the battery every 30–60 days during storage to prevent deep discharge and maintain health."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best storage charge level?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The ideal long-term storage level is 40–60% for lithium-ion batteries."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Battery Replacement Cost Calculator — eBike Battery Cost Per Cycle</title>
+  <meta name="description" content="Calculate the true replacement cost of your eBike battery. Find cost per cycle, cost per km, and total expected lifespan based on battery capacity, cycles, Wh/km, and price." />
+  <meta name="keywords" content="battery replacement cost calculator, EV battery replacement cost, electric car battery price estimate, lithium-ion battery replacement cost, battery pack price calculator, cost per kWh battery, EV battery labor cost, Tesla battery replacement cost, Nissan Leaf battery replacement price" />
+  <link rel="canonical" href="https://batterywheel.com/battery-replacement-cost-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Battery Replacement Cost Calculator — eBike Battery Cost Per Cycle" />
+  <meta property="og:description" content="Accurately estimate your eBike battery replacement cost, cost per km, and cost per charge cycle using battery price, capacity, and life cycles." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/battery-replacement-cost-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/battery-replacement-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Battery Replacement Cost Calculator — eBike Battery Cost Per Cycle" />
+  <meta name="twitter:description" content="Estimate replacement cost, cost per km, and cost per life cycle for your eBike battery." />
+
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD: Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Battery Replacement Cost Calculator",
+    "url": "https://batterywheel.com/battery-replacement-cost-calculator.html",
+    "image": "https://batterywheel.com/images/battery-replacement-thumbnail.png",
+    "description": "Calculate eBike battery replacement cost, cost per cycle, cost per kilometer, and total usable life based on battery specifications and usage.",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <div>
+          <nav class="main-nav">
+            <button class="navbar-toggler" type="button"></button>
+            <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+              <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+              <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+              <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+              <li><a href="https://www.reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+              <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+              <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+      <div class="flex-between-center">
+        <div><h1>Battery Replacement Cost Estimator</h1></div>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery wheel animation">
+        </div>
+      </div>
+
+      <!-- Calculator Area (UNCHANGED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- BATTERY REPLACEMENT COST ESTIMATOR -->
+            <div id="battery_replacement_calculator">
+
+              <div class="calculator-area">
+                <div class="half-block4">
+                  <!-- Battery Capacity -->
+                  <label for="br_capacity">Battery Capacity</label>
+                  <input type="number" id="br_capacity" placeholder="Value only">
+                  <div class="small muted">Enter capacity.</div>
+                  <div class="error-message"></div>
+
+                  <div class="absu-unit">
+                    <!-- Battery Unit -->
+                    <label for="br_unit">Unit</label>
+                    <select id="br_unit">
+                      <option value="ah">Ah</option>
+                      <option value="wh">Wh</option>
+                    </select>
+                    <div class="small muted">&nbsp; Capacity Unit</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+
+                <div class="half-block4">
+                  <!-- Voltage (only for Ah) -->
+                  <div id="br_voltage_wrap">
+                    <label for="br_voltage">Voltage (Default 48V)</label>
+                    <input type="number" id="br_voltage" placeholder="48">
+                    <div class="small muted">Required only if capacity is in Ah.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+
+                <div class="half-block4">
+                  <!-- Battery Life Cycles -->
+                  <label for="br_cycles">Expected Full Charge Cycles</label>
+                  <input type="number" id="br_cycles" placeholder="Example: 800">
+                  <div class="small muted">Most lithium batteries last 600–1200 cycles.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <!-- Battery Price -->
+                  <label for="br_price">Replacement Battery Price</label>
+                  <input type="number" id="br_price" placeholder="Enter cost in your currency">
+                  <div class="small muted">Enter the price of buying a new battery pack.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <!-- Energy Consumption -->
+                  <label for="br_whkm">eBike Consumption (Wh per km)</label>
+                  <input type="number" id="br_whkm" placeholder="Typical 15 Wh/km">
+                  <div class="small muted">Most eBikes consume 12–20 Wh/km.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+
+              <div class="actions full">
+                <button id="br_calculate">Calculate</button>
+                <button id="br_reset" class="secondary">Reset</button>
+              </div>
+
+              <!-- Result -->
+              <div id="br_result" class="result" hidden>
+                <div id="br_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Intro & SEO TEXT -->
+      <div class="intro-content">
+        <p>
+          The Battery Replacement Cost Estimator helps you understand the true long-term cost of owning an eBike battery. 
+          Lithium batteries have a limited number of charge cycles, and this calculator shows your cost per cycle, cost per kilometer, and the total usable lifespan of your battery.
+        </p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How the Battery Replacement Cost Calculation Works</h2>
+
+          <p>This tool calculates several key values:</p>
+
+          <ul class="list">
+            <li><strong>Total energy per cycle:</strong> Capacity × Voltage (if Ah)</li>
+            <li><strong>Total lifetime energy:</strong> Energy per cycle × Total charge cycles</li>
+            <li><strong>Estimated total riding distance:</strong> Lifetime Wh ÷ Wh/km</li>
+            <li><strong>Cost per km:</strong> Battery price ÷ Total distance</li>
+            <li><strong>Cost per charge cycle:</strong> Battery price ÷ Total cycles</li>
+          </ul>
+
+          <p>
+            This gives you a realistic estimate of how much you are paying for every kilometer or every charging cycle your battery delivers.
+          </p>
+
+          <h3>Typical eBike Battery Lifespan</h3>
+          <ul class="list">
+            <li><strong>Standard lithium-ion:</strong> 600–800 cycles</li>
+            <li><strong>Premium lithium-ion:</strong> 900–1200 cycles</li>
+            <li><strong>LiFePO₄ batteries:</strong> 1500–3000 cycles</li>
+          </ul>
+
+          <h3>What Affects Battery Replacement Cost?</h3>
+          <ul class="list">
+            <li>Battery capacity (Ah or Wh)</li>
+            <li>Voltage rating</li>
+            <li>Number of charge cycles</li>
+            <li>Your riding efficiency (Wh/km)</li>
+            <li>Market price of replacement batteries</li>
+          </ul>
+
+          <div class="note">
+            <strong>Tip:</strong> Avoid deep discharging below 20% and don’t keep your battery fully charged for long periods — this helps extend cycle life.
+          </div>
+        </article>
+
+        <!-- FAQ -->
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: How long does an eBike battery typically last?</dt>
+            <dd>A: Most lithium-ion eBike batteries last 600–1200 charge cycles before capacity drops to around 70%.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How do I estimate cost per kilometer?</dt>
+            <dd>A: The calculator divides total usable lifetime distance by the battery price to determine cost per km.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does riding style affect battery life?</dt>
+            <dd>A: Yes. High speed, frequent full-throttle use, and low tire pressure increase Wh/km, reducing lifespan.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Is Ah or Wh more accurate for cost calculation?</dt>
+            <dd>A: Wh is the true measure of battery energy, so Wh-based calculations are most accurate.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Do premium cells last longer?</dt>
+            <dd>A: Yes. Panasonic, LG, Samsung, and LiFePO₄ cells generally offer higher cycle life.</dd>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- SIDEBAR (UNCHANGED) -->
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html" class="active">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long does an eBike battery typically last?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most lithium-ion eBike batteries last 600–1200 charge cycles before capacity drops significantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate cost per kilometer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cost per kilometer is calculated using total battery price divided by total lifetime usable distance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does riding style affect battery life?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, high-speed riding and low tire pressure increase Wh/km consumption and reduce battery life."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Watt-hour (Wh) better than Amp-hour (Ah) for estimation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wh is the correct and most accurate measurement because it represents real usable energy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do premium lithium cells last longer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, premium cells from Samsung, LG, Panasonic, and LiFePO4 chemistry usually provide better cycle life."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

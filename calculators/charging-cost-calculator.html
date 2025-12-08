@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Charging Cost Calculator — eBike & Battery Charging Expense Estimator</title>
+  <meta name="description" content="Free Charging Cost Calculator — estimate how much it costs to charge your eBike battery based on capacity, electricity rate, and charge percentage. Supports Ah, kWh and Wh. Simple and highly accurate tool." />
+  <meta name="keywords" content="charging cost calculator, EV charging price, electric car charging cost, home charging cost calculator, electricity tariff EV, cost per kWh calculation, EV running cost, public charging cost comparison, battery charging expense" />
+  <link rel="canonical" href="https://batterywheel.com/charging-cost-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Charging Cost Calculator — eBike & Battery Charging Expense Estimator" />
+  <meta property="og:description" content="Find out exactly how much it costs to charge your eBike battery. Enter Ah/Wh/kWh and electricity price to get accurate charging cost." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/charging-cost-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/charging-cost-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Charging Cost Calculator — eBike & Battery Charging Expense Estimator" />
+  <meta name="twitter:description" content="Enter battery capacity and electricity cost to calculate your eBike charging cost instantly. Supports Ah, Wh and kWh." />
+
+  <!-- Robots -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD: Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Charging Cost Calculator",
+    "url": "https://batterywheel.com/charging-cost-calculator.html",
+    "image": "https://batterywheel.com/images/charging-cost-thumbnail.png",
+    "description": "Instantly calculate the cost to charge your electric bike battery or any lithium battery using capacity, charge level, and electricity cost.",
+    "applicationCategory": "Utilities",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <div>
+          <nav class="main-nav">
+            <button class="navbar-toggler" type="button"></button>
+            <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+              <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+              <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+              <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+              <li><a href="https://www.reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+              <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+              <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container main-content">
+    <section class="content-area">
+      <div class="flex-between-center">
+        <div><h1>Charging Cost Calculator</h1></div>
+        <div><img src="../images/animated-bike.gif" style="position:absolute;top:-50px;right:0" alt="Battery wheel animation"></div>
+      </div>
+
+      <!-- Calculator UI -->
+      <div class="calculator-area">
+        <div class="modalp1">
+          <div>
+            <div class="modal-body">
+
+            <div id="evcalc1_">
+              <div class="calculator-area">
+
+                <div class="half-block4">
+                  <label>Battery Capacity:
+                    <input id="evcalc1_battery" placeholder="e.g. 50">
+                  </label>
+                  <div id="evcalc1_capacity_error" class="error-message">Enter valid battery capacity.</div>
+                  <div class="small muted">Capacity in Wh or Ah.</div>
+
+                  <div class="absu-unit">
+                    <label>Unit:
+                      <select id="evcalc1_unit">
+                        <option value="Ah">Ah</option>
+                        <option value="kWh">kWh</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="half-block4">
+                  <label>Electricity Cost (per kWh):
+                    <input id="evcalc1_cost" placeholder="e.g. 0.12">
+                  </label>
+                  <div id="evcalc1_cost_error" class="error-message">Enter valid cost.</div>
+                  <div class="small muted">Enter currency number only.</div>
+                </div>
+
+                <div class="half-block4">
+                  <label>Current Charge Level: <span id="evcalc1_display">0%</span></label>
+                  <input type="range" id="evcalc1_charge" min="0" max="99" value="0">
+
+                  <div class="current-charge-level">
+                    <label><span id="evcalc1_display2">0%</span></label>
+                    <div>100%</div>
+                  </div>
+                </div>
+
+                <div class="actions half-block">
+                  <button id="evcalc1_btn">Calculate</button>
+                </div>
+                <div class="actions half-block">
+                  <button id="evcalc1_reset" class="secondary" type="button">Reset</button>
+                </div>
+
+                <div class="result" id="evcalc1_result" hidden>
+                  <div id="evcalc1_result_output" class="f12"></div>
+                </div>
+
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Intro & SEO Text -->
+      <div class="intro-content">
+        <p>Use this free calculator to find out exactly how much it costs to charge your eBike or any lithium battery. Simply enter your battery capacity, electricity rate, and starting charge level to get a precise estimate.</p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How the Charging Cost Calculator Works</h2>
+          <p>This tool converts your battery capacity into kilowatt-hours (kWh) and calculates how much energy is needed to reach 100% charge. It then multiplies the required energy by your electricity price to give an accurate charging cost.</p>
+
+          <h3>What information you can enter</h3>
+          <ul class="list">
+            <li><strong>Battery Capacity:</strong> Enter in Ah or kWh (consistent with your battery specs).</li>
+            <li><strong>Electricity Cost per kWh:</strong> Enter your local tariff.</li>
+            <li><strong>Charge Level:</strong> Select your current state of charge (0–99%).</li>
+          </ul>
+
+          <h3>Example Calculation</h3>
+          <p>If you have a 48V 15Ah battery (≈720 Wh = 0.72 kWh) and electricity cost is $0.12/kWh:</p>
+          <p><strong>Total cost = 0.72 × 0.12 = $0.086</strong></p>
+
+          <h3>Why this calculation is useful</h3>
+          <p>This calculator helps riders understand their running cost per charge, plan daily or monthly expenses, and compare charging cost against fuel-powered vehicles.</p>
+
+          <div class="note">
+            <strong>Tip:</strong> The average cost to fully charge most eBike batteries is between $0.05 and $0.25 depending on electricity prices and battery size.
+          </div>
+
+        </article>
+
+        <!-- FAQ -->
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: Does battery age affect charging cost?</dt>
+            <dd>A: The energy required stays nearly the same, but older batteries may have lower usable capacity.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does it cost more to charge faster?</dt>
+            <dd>A: No — charging speed does not change cost. The total energy (kWh) determines cost.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Is partial charging cheaper?</dt>
+            <dd>A: Yes. The calculator estimates cost based on charge percentage, so charging from 40% to 100% costs less than 0% to 100%.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How do I find my electricity rate?</dt>
+            <dd>A: Check your electricity bill or your utility provider’s website, usually listed as $/kWh.</dd>
+          </div>
+
+        </article>
+
+        <!-- Legal -->
+        <article aria-labelledby="legal">
+          <h3 id="legal">Disclaimer</h3>
+          <p class="small">This calculator provides estimates only. Actual costs depend on battery condition, charger efficiency, and electricity billing methods. BatteryWheel is not responsible for any financial decisions based on this tool.</p>
+        </article>
+      </div>
+
+    </section>
+
+    <!-- Sidebar -->
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html" class="active">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does battery age affect charging cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Energy required stays nearly the same, but older batteries may have slightly lower usable capacity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does fast charging increase cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Charging speed does not affect cost — only total energy (kWh) matters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is partial charging cheaper?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. You only pay for the energy needed to reach your target charge level." }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Payload Impact Range Estimator — eBike Cargo Range Loss Calculator</title>
+  <meta name="description" content="Estimate how much extra cargo weight reduces your eBike riding range. Understand load-based energy consumption and optimize riding efficiency.">
+  <meta name="keywords" content="payload impact range estimator, drone payload range calculator, UAV flight time estimator, EV range payload impact, electric vehicle load calculator, payload capacity impact, drone battery life prediction, electric car efficiency" />
+  <link rel="canonical" href="https://batterywheel.com/payload-impact-range-estimator.html">
+
+  <meta property="og:title" content="Payload Impact Range Estimator">
+  <meta property="og:description" content="Check how additional cargo and passenger weight affect eBike range and energy consumption.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://batterywheel.com/payload-impact-range-estimator.html">
+  <meta property="og:image" content="https://batterywheel.com/images/payload-range-thumbnail.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Payload Impact Range Estimator">
+  <meta name="twitter:description" content="Calculate real-world eBike range reduction caused by extra payload weight.">
+
+  <script type="application/ld+json">
+  {
+   "@context":"https://schema.org",
+   "@type":"SoftwareApplication",
+   "name":"Payload Impact Range Estimator",
+   "url":"https://batterywheel.com/payload-impact-range-estimator.html",
+   "image":"https://batterywheel.com/images/payload-range-thumbnail.png",
+   "description":"Calculate eBike range reduction due to additional cargo or passenger weight.",
+   "applicationCategory":"Utilities",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+
+
+
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>Payload Impact Range Estimator</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA (UNCHANGED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- PAYLOAD IMPACT RANGE ESTIMATOR -->
+            <div id="payload_range_calc">
+              <div class="calculator-area">
+                <div class="half-block">
+                  <!-- Battery Capacity -->
+                  <label for="pr_capacity">Battery Capacity (Wh)</label>
+                  <input type="number" id="pr_capacity" placeholder="Example: 1000">
+                  <div class="small muted">Total usable energy.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block">
+                  <!-- Base Rider + Bike Weight -->
+                  <label for="pr_base_weight">Base Weight (kg)</label>
+                  <input type="number" id="pr_base_weight" placeholder="Example: 120">
+                  <div class="small muted">Rider + bike weight without extra load.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block">
+                  <!-- Payload -->
+                  <label for="pr_payload">Extra Payload Weight (kg)</label>
+                  <input type="number" id="pr_payload" placeholder="Example: 20">
+                  <div class="small muted">Additional cargo or passenger weight.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block">
+                  <!-- Base Consumption -->
+                  <label for="pr_consumption">Base Consumption (Wh/km)</label>
+                  <input type="number" id="pr_consumption" placeholder="Example: 15">
+                  <div class="small muted">Typical eBike: 12–20 Wh/km.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+              <div class="actions full">
+                <button id="pr_calc">Calculate</button>
+                <button id="pr_reset" class="secondary">Reset</button>
+              </div>
+
+              <!-- Results -->
+              <div id="pr_result" class="result" hidden>
+                <div id="pr_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+        <p>
+          The Payload Impact Range Estimator helps determine how much additional weight reduces your eBike’s real-world range. Extra payload increases rolling resistance and motor power demand, forcing your battery to consume more Wh per km. Even 10–20 kg of load can noticeably shorten distance depending on terrain and riding speed.
+        </p>
+
+        <article aria-labelledby="why">
+          <h2 id="why">Why Payload Changes Energy Consumption</h2>
+          <p>
+            eBikes use more energy when additional mass is moved uphill, accelerated or ridden against air resistance. Extra payload means the motor must deliver more torque, which increases current draw from the battery. Because Wh per km rises, your available distance per charge decreases.
+          </p>
+          <ul class="list">
+            <li>Higher rolling resistance</li>
+            <li>More acceleration power required</li>
+            <li>Increased current draw at speed</li>
+            <li>Reduced battery efficiency</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="terrain">
+          <h2 id="terrain">Biggest Impact Comes from Hills and Stop-and-Go</h2>
+          <p>
+            Hills multiply the effect of extra weight. Every kilogram requires more continuous climbing power, which dramatically raises Wh consumption. Urban riding with repeated acceleration also increases the impact, while flat cruising at moderate speed shows smaller range reduction.
+          </p>
+        </article>
+
+        <article aria-labelledby="tips">
+          <h2 id="tips">How to Minimize Range Loss with Cargo</h2>
+          <p>
+            You can reduce the energy penalty of heavy loads by choosing a lower assist level, smooth acceleration, slower hill speed and proper tire pressure. Upgrading tires or reducing wind drag also helps regain lost range.
+          </p>
+
+          <ul class="list">
+            <li>Use eco mode when loaded</li>
+            <li>Maintain correct tire pressure</li>
+            <li>Reduce hill throttle bursts</li>
+            <li>Avoid oversized cargo boxes</li>
+          </ul>
+        </article>
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: How much payload reduces eBike range?</dt>
+            <dd>A: Every 10–20 kg can reduce range by 5–12% depending on terrain and speed.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does passenger weight affect battery life?</dt>
+            <dd>A: Yes, more load increases current draw and can stress the battery on hills.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does cargo matter more on hills?</dt>
+            <dd>A: Hills heavily multiply the energy cost of extra weight.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Will tire choice change loaded range?</dt>
+            <dd>A: High-rolling-resistance tires amplify load penalties, while efficient tires help.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How can I improve range with a passenger?</dt>
+            <dd>A: Lower assist, maintain tire pressure and reduce acceleration bursts.</dd>
+          </div>
+
+        </article>
+      </div>
+
+
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html" class="active">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+<!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How much payload reduces eBike range?",
+   "acceptedAnswer": { "@type": "Answer", "text": "Every 10–20 kg can reduce range by 5–12% depending on terrain and speed." }
+  },
+  {
+   "@type": "Question",
+   "name": "Does passenger weight affect battery life?",
+   "acceptedAnswer": { "@type": "Answer", "text": "Extra payload increases current draw and can stress the battery during hill climbing." }
+  },
+  {
+   "@type": "Question",
+   "name": "Does cargo matter more on hills?",
+   "acceptedAnswer": { "@type": "Answer", "text": "Yes, hills heavily magnify the energy penalty of additional weight." }
+  },
+  {
+   "@type": "Question",
+   "name": "Do tires influence loaded range?",
+   "acceptedAnswer": { "@type": "Answer", "text": "High rolling resistance tires increase the effect of payload on range." }
+  },
+  {
+   "@type": "Question",
+   "name": "How do I improve range with a passenger?",
+   "acceptedAnswer": { "@type": "Answer", "text": "Lower assist level, maintain tire pressure and avoid rapid acceleration." }
+  }
+ ]
+}
+</script>
+
+
+
+
+
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

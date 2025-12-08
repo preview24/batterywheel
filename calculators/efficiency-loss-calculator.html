@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>eBike Efficiency Loss Calculator — Measure Real-World Energy Loss</title>
+  <meta name="description" content="Calculate eBike efficiency loss by comparing ideal vs actual Wh/km consumption. Find real-world energy usage, motor inefficiency, battery losses, and overall system performance." />
+  <meta name="keywords" content="efficiency loss calculator, battery charging efficiency, charging loss percentage, EV charging efficiency loss, power loss during charging, coulomb efficiency calculator, energy efficiency of battery, AC to DC conversion loss" />
+  <link rel="canonical" href="https://batterywheel.com/efficiency-loss-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="eBike Efficiency Loss Calculator — Real Energy Usage Analyzer" />
+  <meta property="og:description" content="Measure real eBike energy loss and efficiency percentage. Compare ideal and actual Wh/km consumption to identify wasted power and optimize performance." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/efficiency-loss-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/efficiency-loss-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="eBike Efficiency Loss Calculator — Motor & Battery Loss" />
+  <meta name="twitter:description" content="Calculate how much energy your eBike wastes during real-world riding. Find efficiency loss and performance drop instantly." />
+
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD: Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "eBike Efficiency Loss Calculator",
+    "url": "https://batterywheel.com/efficiency-loss-calculator.html",
+    "image": "https://batterywheel.com/images/efficiency-loss-thumbnail.png",
+    "description": "Calculate real-world eBike efficiency loss by comparing ideal vs actual energy consumption in Wh/km. Helps identify wasted power and performance reduction.",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <div>
+          <nav class="main-nav">
+            <button class="navbar-toggler" type="button"></button>
+            <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+              <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+              <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+              <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+              <li><a href="https://www.reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+              <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+              <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+      <div class="flex-between-center">
+        <div><h1>eBike Efficiency Loss Calculator</h1></div>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery wheel animation">
+        </div>
+      </div>
+
+      <!-- Calculator Area -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- Efficiency Loss Calculator -->
+            <div class="card" id="efficiency_calculator">
+
+              <div class="calculator-area">
+                
+                <div class="half-block">
+                  <label for="ec_ideal">Ideal Consumption (Wh per km)</label>
+                  <input type="number" id="ec_ideal" placeholder="Example: 15">
+                  <div class="small muted">Factory-rated or expected consumption. Typical: 12–18 Wh/km.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <label for="ec_actual">Actual Measured Consumption (Wh per km)</label>
+                  <input type="number" id="ec_actual" placeholder="Example: 22">
+                  <div class="small muted">Your real-world energy usage.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <label for="ec_capacity">Battery Capacity</label>
+                  <input type="number" id="ec_capacity" placeholder="Value only">
+                  <div class="small muted">Battery value in Ah or Wh.</div>
+                  <div class="error-message"></div>
+
+                  <div class="absu-unit">
+                    <label for="ec_unit">Unit</label>
+                    <select id="ec_unit">
+                      <option value="ah">Ah</option>
+                      <option value="wh">Wh</option>
+                    </select>
+                    <div class="small muted">Select battery unit.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+
+                <div class="half-block">
+                  <div id="ec_voltage_wrap">
+                    <label for="ec_voltage">Voltage (Default 48V)</label>
+                    <input type="number" id="ec_voltage" placeholder="48">
+                    <div class="small muted">Voltage needed only when battery is in Ah.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="actions full">
+                <button id="ec_calculate">Calculate</button>
+                <button id="ec_reset" class="secondary">Reset</button>
+              </div>
+
+              <div id="ec_result" class="result" hidden>
+                <div id="ec_breakdown"></div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+        <p>
+          The eBike Efficiency Loss Calculator helps you understand how much power is being wasted during real-world riding. 
+          While manufacturers list ideal Wh/km consumption, actual usage is usually higher due to terrain, acceleration, battery age, load, and riding speed. 
+          This tool reveals the true efficiency drop and helps optimize performance.
+        </p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How eBike Efficiency Loss Is Calculated</h2>
+
+          <p>This calculator compares your <strong>ideal Wh/km consumption</strong> vs your <strong>actual Wh/km usage</strong> to determine:</p>
+
+          <ul class="list">
+            <li><strong>Efficiency Loss (%):</strong> How much power is wasted.</li>
+            <li><strong>Real Battery Usage:</strong> How many Wh you actually consume per km.</li>
+            <li><strong>Performance Drop:</strong> Decrease in efficiency due to load, hills, speed, tire pressure, etc.</li>
+          </ul>
+
+          <h3>Common Causes of High Efficiency Loss</h3>
+          <ul class="list">
+            <li>Poor tire pressure</li>
+            <li>Old or degraded battery</li>
+            <li>Riding at high speed</li>
+            <li>Rough or hilly roads</li>
+            <li>Heavy rider or cargo weight</li>
+            <li>Low-quality or worn motor bearings</li>
+          </ul>
+
+          <div class="note">
+            <strong>Tip:</strong> Keep your tire pressure between 45–60 PSI for the best Wh/km efficiency.
+          </div>
+        </article>
+
+        <!-- FAQ -->
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: What is eBike efficiency loss?</dt>
+            <dd>A: It’s the difference between ideal (factory-rated) energy consumption and your real-world energy usage.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: What is a good Wh/km for eBikes?</dt>
+            <dd>A: Most efficient eBikes consume 12–18 Wh/km under normal riding conditions.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Why is my actual Wh/km higher than the ideal value?</dt>
+            <dd>A: Because of rider weight, hills, wind, acceleration, road quality, battery age, and speed.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Can I reduce efficiency loss?</dt>
+            <dd>A: Yes. Maintain correct tire pressure, reduce speed, use Eco mode, and keep your battery healthy.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does riding fast increase energy loss?</dt>
+            <dd>A: Yes. Wind resistance increases exponentially after 25 km/h, causing major efficiency loss.</dd>
+          </div>
+
+        </article>
+      </div>
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html" class="active">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is eBike efficiency loss?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Efficiency loss is the difference between factory-rated Wh/km and your actual energy consumption measured during real-world riding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good Wh/km for eBikes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most efficient eBikes consume between 12 and 18 Wh per km depending on rider weight, terrain, and motor system."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my actual Wh/km higher?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hilly terrain, high speed, rider weight, battery age, wind, and low tire pressure increase energy consumption."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I reduce efficiency loss?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Keep tires inflated, avoid high speeds, use Eco mode, and maintain a healthy battery."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does speed affect eBike efficiency?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Riding above 25 km/h increases aerodynamic drag, causing higher energy consumption and efficiency loss."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

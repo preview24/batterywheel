@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Battery Replacement Time Predictor — Estimate When Your eBike Battery Needs Replacement</title>
+  <meta name="description" content="Predict when your eBike battery will reach its end of life. Estimate remaining lifespan based on cycles, age, threshold percentage, and daily usage.">
+  <meta name="keywords" content="battery replacement time predictor, remaining useful life (RUL), battery end-of-life (EOL), battery aging prediction, lithium-ion battery lifespan, capacity degradation calculator, state of health (SOH) estimator, battery replacement timing, battery degradation model, battery run time calculator, battery life estimator" />
+  <link rel="canonical" href="https://batterywheel.com/battery-replacement-time-predictor.html">
+
+  <meta property="og:title" content="Battery Replacement Time Predictor">
+  <meta property="og:description" content="Calculate when your eBike battery will need replacement by using cycle life, age, and daily usage.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://batterywheel.com/images/battery-replacement-thumbnail.png">
+  <meta property="og:url" content="https://batterywheel.com/battery-replacement-time-predictor.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Predict eBike Battery Replacement Time">
+  <meta name="twitter:description" content="Estimate when your battery reaches end-of-life and needs replacement.">
+
+  <script type="application/ld+json">
+  {
+   "@context":"https://schema.org",
+   "@type":"SoftwareApplication",
+   "name":"Battery Replacement Time Predictor",
+   "url":"https://batterywheel.com/battery-replacement-time-predictor.html",
+   "image":"https://batterywheel.com/images/battery-replacement-thumbnail.png",
+   "applicationCategory":"Utilities",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+   "description":"Predict the estimated remaining life of an eBike battery based on cycle count, usage, and age."
+  }
+  </script>
+
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>Battery Replacement Time Predictor</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA (UNCHANGED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- BATTERY REPLACEMENT TIME PREDICTOR -->
+            <div id="battery_replacement_predictor">
+
+              <div class="calculator-area">
+                <div class="half-block4">
+                  <!-- Battery Capacity -->
+                  <label for="br_capacity">Battery Capacity (Wh)</label>
+                  <input type="number" id="br_capacity" placeholder="Example: 1000">
+                  <div class="small muted">Enter actual usable battery capacity.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block4">
+                  <!-- Rated Cycle Life -->
+                  <label for="br_cycles">Rated Full Charge Cycles</label>
+                  <input type="number" id="br_cycles" placeholder="Example: 800">
+                  <div class="small muted">Typical eBike batteries: 600–1200 cycles.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block4">
+                  <!-- Average Daily Usage -->
+                  <label for="br_daily">Average Daily Energy Usage (Wh)</label>
+                  <input type="number" id="br_daily" placeholder="Example: 200">
+                  <div class="small muted">Enter average Wh consumed daily.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block">
+                  <!-- Current Battery Age -->
+                  <label for="br_age">Current Battery Age (months)</label>
+                  <input type="number" id="br_age" placeholder="Example: 10">
+                  <div class="small muted">How old your battery already is.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block">
+                  <!-- Replacement Threshold -->
+                  <label for="br_threshold">Replacement Threshold (%)</label>
+                  <input type="number" id="br_threshold" placeholder="Example: 75">
+                  <div class="small muted">Battery is replaced when health falls below this value.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+
+              <div class="actions full">
+                <button id="br_calc">Calculate</button>
+                <button id="br_reset" class="secondary">Reset</button>
+              </div>
+
+              <div id="br_result" class="result" hidden>
+                <div id="br_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          This Battery Replacement Time Predictor estimates how long your eBike battery will last before falling below your preferred health threshold. All lithium-ion batteries slowly degrade with each discharge cycle and with age. This tool provides a simple way to estimate remaining months of usable life based on charge cycles, battery capacity, average daily usage, and replacement threshold percentage.
+        </p>
+
+        <article aria-labelledby="whyreplace">
+          <h2 id="whyreplace">Why Do eBike Batteries Eventually Need Replacement?</h2>
+          <p>
+            Lithium-ion eBike batteries naturally lose capacity over time due to chemical reactions inside the cells. Every full charge counts as a cycle, and after around 600-1200 cycles most batteries will drop below 70–80% capacity. At that point, real-world range becomes noticeably shorter and charging becomes more frequent.
+          </p>
+
+          <ul class="list">
+            <li>Cycle-related degradation</li>
+            <li>Calendar aging</li>
+            <li>Temperature exposure</li>
+            <li>Depth of discharge patterns</li>
+            <li>Daily usage habits</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="threshold">
+          <h2 id="threshold">What Replacement Threshold Should You Choose?</h2>
+          <p>
+            Most riders replace batteries when health falls below 70–80% of original capacity. This depends on required range. High-mileage commuters may notice performance reduction earlier while casual riders might continue using the battery for much longer.
+          </p>
+
+          <ul class="list">
+            <li><strong>80–90%:</strong> premium performance preference</li>
+            <li><strong>75–80%:</strong> commuting and daily use</li>
+            <li><strong>70%:</strong> most common eBike replacement point</li>
+            <li><strong>60% or lower:</strong> significant performance loss</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="lifeextend">
+          <h2 id="lifeextend">How to Extend eBike Battery Lifespan</h2>
+          <p>
+            The longest-lasting batteries avoid full charges, extreme temperatures, and deep discharges. You can extend life dramatically by charging only when necessary and keeping the battery cool.
+          </p>
+
+          <ul class="list">
+            <li>Charge between 20%–80%</li>
+            <li>Avoid storing at full charge</li>
+            <li>Keep temperature between 15–30°C</li>
+            <li>Use moderate assist levels</li>
+            <li>Limit fast charging when possible</li>
+          </ul>
+
+          <p>
+            Even small improvements in charging behavior can significantly delay battery replacement and reduce long-term costs.
+          </p>
+        </article>
+      <article aria-labelledby="faq">
+        <h2 id="faq">Frequently Asked Questions</h2>
+
+        <div class="faq-block">
+          <dt>Q: How long do eBike batteries last?</dt>
+          <dd>Most lithium-ion eBike batteries last 3–7 years depending on usage, cycles, and storage conditions.</dd>
+        </div>
+
+        <div class="faq-block">
+          <dt>Q: What is a full charge cycle?</dt>
+          <dd>Using 100% of battery capacity equals one full cycle, regardless of how many smaller charging sessions occur.</dd>
+        </div>
+
+        <div class="faq-block">
+          <dt>Q: When should an eBike battery be replaced?</dt>
+          <dd>Typically when capacity drops below 70–80%, depending on your required daily range.</dd>
+        </div>
+
+        <div class="faq-block">
+          <dt>Q: Can battery replacement be delayed?</dt>
+          <dd>Yes. Proper charging habits and temperature control can slow degradation significantly.</dd>
+        </div>
+
+        <div class="faq-block">
+          <dt>Q: Is cycle life the only factor?</dt>
+          <dd>No, calendar aging and temperature are equally important and reduce capacity even if the battery is rarely used.</dd>
+        </div>
+      </article>
+    </div>
+
+
+
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html" class="active">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+   {
+    "@type":"Question",
+    "name":"How long do eBike batteries last?",
+    "acceptedAnswer":{
+      "@type":"Answer",
+      "text":"Most eBike batteries last 3–7 years depending on charging habits, temperature exposure, and cycle count."
+    }
+   },
+   {
+    "@type":"Question",
+    "name":"When should I replace my eBike battery?",
+    "acceptedAnswer":{
+      "@type":"Answer",
+      "text":"Most riders replace batteries when capacity falls below 70–80 percent depending on required range."
+    }
+   },
+   {
+    "@type":"Question",
+    "name":"Can I delay battery replacement?",
+    "acceptedAnswer":{
+      "@type":"Answer",
+      "text":"Yes. Avoiding full charges, deep discharges, and high temperatures can slow battery degradation."
+    }
+   },
+   {
+    "@type":"Question",
+    "name":"Is cycle life the only factor?",
+    "acceptedAnswer":{
+      "@type":"Answer",
+      "text":"No. Calendar aging and temperature exposure reduce battery capacity even without frequent cycling."
+    }
+   },
+   {
+    "@type":"Question",
+    "name":"What counts as a full battery cycle?",
+    "acceptedAnswer":{
+      "@type":"Answer",
+      "text":"A full cycle means using 100% of stored energy, whether in one discharge or multiple partial discharges."
+    }
+   }
+ ]
+}
+</script>
+
+
+
+
+
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

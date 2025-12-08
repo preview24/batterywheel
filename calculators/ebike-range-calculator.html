@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>eBike Range Calculator — Accurate Electric Bike Mileage Estimator</title>
+  <meta name="description" content="Free eBike Range Calculator — estimate real-world range for any electric bike using battery Wh/Ah, voltage, motor power, rider weight, speed and terrain. Use examples, tips, and get realistic Wh/km predictions." />
+  <meta name="keywords" content="ebike range calculator, electric bicycle distance estimator, e-bike battery range prediction, battery capacity Wh calculator, ebike mileage calculator, factors affecting ebike range, electric bike battery life, Wh per mile ebike, cargo ebike range" />
+  <link rel="canonical" href="https://batterywheel.com/ebike-range-calculator.html" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="eBike Range Calculator — Electric Bike Mileage Estimator" />
+  <meta property="og:description" content="Estimate your electric bike’s real-world range using battery specs, voltage, consumption, and daily use. Free calculator and practical tips." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/ebike-range-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/ebike-range-thumbnail.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="eBike Range Calculator — Electric Bike Mileage Estimator" />
+  <meta name="twitter:description" content="Estimate your eBike range using battery Wh/Ah, voltage, motor power, rider weight, speed and terrain. Free, accurate calculator." />
+
+  <!-- Robots -->
+  <meta name="robots" content="index,follow" />
+    <!-- Structured Data JSON-LD (Calculator) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "eBike Range Calculator",
+    "url": "https://batterywheel.com/ebike-range-calculator.html",
+    "image": "https://batterywheel.com/images/ebike-range-thumbnail.png",
+    "description": "Estimate eBike range from battery specs (Ah/Wh), voltage, motor power, rider weight, speed and terrain. Free online tool.",
+    "applicationCategory": "Utilities",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <div class="">
+          <nav class="main-nav">
+            <button class="navbar-toggler" type="button"></button>
+            <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://batterywheel.com/" target="_blank" class="social-icon facebook" title="Share on Facebook"></a></li>
+              <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/&text=Check%20out%20BatteryWheel" target="_blank" class="social-icon twitter" title="Share on Twitter"></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/&title=Battery Wheel&summary=Best%20place%20to%20buy%20batteries%20online!" target="_blank" class="social-icon linkedin" title="Share on LinkedIn"></a></li>
+              <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" target="_blank" class="social-icon whatsapp" title="Share on WhatsApp"></a></li>
+              <li><a href="https://www.instagram.com/batterywheel/" target="_blank" class="social-icon instagram" title="Follow on Instagram"></a></li>
+              <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/&media=https://batterywheel.com/images/logo.png&description=Check%20out%20BatteryWheel%20for%20quality%20batteries" target="_blank" class="social-icon pinterest" title="Share on Pinterest"></a></li>
+              <li><a href="https://www.reddit.com/submit?url=https://batterywheel.com/&title=Battery Wheel - Best Batteries Online" target="_blank" class="social-icon reddit" title="Share on Reddit"></a></li>
+              <li><a href="https://t.me/share/url?url=https://batterywheel.com/&text=Check%20out%20BatteryWheel%20for%20all%20your%20battery%20needs" target="_blank" class="social-icon telegram" title="Share on Telegram"></a></li>
+              <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/&name=Battery Wheel&description=Best place for batteries" target="_blank" class="social-icon tumblr" title="Share on Tumblr"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container main-content">
+    <!-- Left Content (Calculators) -->
+    <section class="content-area">
+      <div class="flex-between-center">
+        <div>
+          <h1>Range Calculator</h1>
+        </div>
+        <div><img src="../images/animated-bike.gif" style="position: absolute;top: -50px;right: 0;" alt="Battery wheel animation"> </div>
+      </div>
+
+      <div class="calculator-area">
+        <!-- Modal 1 -->
+        <div class="modalp1">
+          <div>
+            <div class="modal-body">
+              <!-- ROOT: scoped to this calculator -->
+              <div id="ebike-calculator">
+                <p class="lead">Enter your battery details and (optionally) motor power, rider weight, terrain and pedal-assist level. Voltage is used when battery is given in Ah.</p>
+
+                <div class="calculator-area">
+                  <div class="half-block">
+                    <label for="battery-capacity">Battery Capacity</label>
+                    <input id="battery-capacity" type="number" step="any" placeholder="e.g. 14 (Ah) or 672 (Wh)" />
+                    <div class="small muted">Value must be a positive number.</div>
+                    <div class="error-message" id="error-battery"></div>
+
+                    <div class="absu-unit">
+                      <label for="battery-unit">Battery Unit</label>
+                      <select id="battery-unit">
+                        <option value="ah">Ah (Amp-hour)</option>
+                        <option value="wh">Wh (Watt-hour)</option>
+                      </select>
+                      <div class="error-message" id="error-battery-unit"></div>
+                    </div>
+                  </div>
+
+                  
+                  <div class="half-block">
+                    <div id="voltage-wrap">
+                      <label for="voltage">Voltage (V)</label>
+                      <input id="voltage" type="number" step="any" placeholder="48 (common) — required if you entered Ah" />
+                      <div class="small muted">Used only when battery unit is Ah. If left empty a default of 48 V will be used.</div>
+                      <div class="error-message" id="error-voltage"></div>
+                    </div>
+                  </div>
+
+                  <div class="half-block2">
+                    <label for="range-unit">Display Range</label>
+                    <select id="range-unit">
+                      <option value="km">Kilometers (km)</option>
+                      <option value="mile">Miles</option>
+                    </select>
+                    <div class="error-message" id="error-range-unit"></div>
+                  </div>
+
+                  <!-- <hr class="full" style="border:none;margin:8px 0;padding:0;border-top:1px solid #f0f2f4" /> -->
+
+                  <div class="half-block2">
+                    <label for="motor-power">Motor Power (W) — optional</label>
+                    <input id="motor-power" type="number" step="any" placeholder="e.g. 250" />
+                    <div class="small muted">Enter Motor Power</div>
+                    <div class="error-message" id="error-motor"></div>
+                  </div>
+
+                  <div class="half-block2">
+                    <label for="rider-weight">Rider Weight (kg) — optional</label>
+                    <input id="rider-weight" type="number" step="any" placeholder="e.g. 75" />
+                    <div class="error-message" id="error-weight"></div>
+                  </div>
+
+                  <div class="half-block2">
+                    <label for="terrain">Terrain — optional</label>
+                    <select id="terrain">
+                      <option value="">— not specified —</option>
+                      <option value="flat">Flat</option>
+                      <option value="rolling">Rolling / Mixed</option>
+                      <option value="hilly">Hilly</option>
+                      <option value="mountain">Mountainous</option>
+                    </select>
+                    <div class="error-message" id="error-terrain"></div>
+                  </div>
+
+                  <div class="half-block2">
+                    <label for="pedal-assist">Pedal Assist — optional</label>
+                    <select id="pedal-assist">
+                      <option value="">— not specified —</option>
+                      <option value="none">None (you pedal a lot)</option>
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                    </select>
+                    <div class="error-message" id="error-pedal"></div>
+                  </div>
+
+                  <!-- <div class="half-block2">
+                    <label for="notes">Notes / Average Speed (optional)</label>
+                    <input id="notes" type="text" placeholder="Optional note or average speed like 20 km/h — used for your own reference" />
+                    <div class="error-message" id="error-notes"></div>
+                  </div> -->
+
+                  <div class="actions half-block3">
+                    <button id="calculate">Calculate Range</button>
+                  </div>
+
+                  <div class="actions half-block3">
+                    <button id="reset" class="secondary">Reset</button>
+                  </div>
+
+                </div>
+
+                <div class="result" id="result" hidden>
+                  <div class="flex fade-left"><h2>Estimated Range:</h2>&nbsp;<div id="range-output" style="font-size:30px;font-weight:600;margin-left:8px"></div></div>
+                  <div class="note" id="breakdown"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-content">
+        <p>Estimate your electric bike’s realistic mileage using battery Wh/Ah, voltage, consumption (Wh/km), rider weight, speed and terrain. Free, accurate, and trusted by DIY eBike builders.</p>
+        <article aria-labelledby="how">
+          <h2 id="how">How the eBike Range Calculator Works</h2>
+          <p>This calculator converts battery capacity into Watt-hours (Wh), applies an estimated consumption (Wh per km or mile), and factors in real-world parameters like rider weight, speed, and terrain. It returns an estimated range, plus useful diagnostics and energy breakdown.</p>
+
+          <h3>What you can enter</h3>
+          <ul class="list">
+            <li><strong>Battery Capacity:</strong> Enter in <em>Ah</em> (Amp-hours) or <em>Wh</em> (Watt-hours). If you enter Ah, provide pack voltage (default 48V) to convert to Wh.</li>
+            <li><strong>Average Consumption:</strong> The calculator uses Wh/km (or Wh/mile). Typical eBikes are 10–20 Wh/km depending on conditions.</li>
+            <li><strong>Rider & Cargo Weight:</strong> Extra weight increases energy use. You can test different values to see the sensitivity.</li>
+            <li><strong>Speed & Terrain:</strong> Higher speeds and steep climbs increase consumption significantly.</li>
+          </ul>
+
+          <h3>Example — realistic estimate</h3>
+          <p>If you have a 48V 10Ah battery (≈480 Wh) and an average consumption of 15 Wh/km, expected range is 480 / 15 = 32 km. Add heavy load or steep climbs and real-world range drops further — this tool lets you test those scenarios quickly.</p>
+
+          <h3>Why this approach is reliable</h3>
+          <p>Rather than relying on optimistic manufacturer numbers, this calculator uses energy-based math (Wh / Wh-per-km) and includes common factors such as climbing, payload, and realistic consumption numbers — the method used by EV engineers and experienced ebike riders.</p>
+
+          <div class="note" role="note">
+            <strong>Tip:</strong> If you don’t know Wh/km, start with 12–18 Wh/km for city/flat rides and 18–30 Wh/km for hilly or fast riding.
+          </div>
+
+          <h3 id="examples">Practical Examples & Use Cases</h3>
+          <p>Use this calculator to:</p>
+          <ul class="list">
+            <li>Decide whether to buy a larger battery for a commuting route.</li>
+            <li>Choose the right charger or battery swap strategy for delivery riders.</li>
+            <li>Estimate remaining range in cold weather or with extra cargo.</li>
+          </ul>
+
+          <h3>How to Improve Your eBike Range</h3>
+          <p>Small changes have a big effect:</p>
+          <ul class="list">
+            <li>Reduce payload — every 10 kg roughly increases consumption by ~1–2 Wh/km.</li>
+            <li>Lower cruising speed — aerodynamic drag rises quadratically with speed.</li>
+            <li>Inflate tires to recommended pressure — lower rolling resistance.</li>
+            <li>Use eco mode on the controller — reduces peak current draw and saves energy.</li>
+          </ul>
+        </article>
+
+        <!-- FAQs (for rich snippets) -->
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+          <div class="faq-block">
+            <dt>Q: Should I enter Ah or Wh?</dt>
+            <dd>A: If you know Wh (Watt-hours), enter Wh — it’s the most direct. If you only know Ah, enter Ah and provide the pack voltage (e.g., 48V) so the tool can convert to Wh.</dd>
+          </div>
+          <div class="faq-block">
+            <dt>Q: What Wh/km should I use?</dt>
+            <dd>A: Typical ranges: 10–12 Wh/km for efficient riding on flats, 12–18 Wh/km for normal commuting, 18–30+ Wh/km for hilly/fast riding or heavy loads.</dd>
+          </div>
+          <div class="faq-block">
+            <dt>Q: Does cold weather affect range?</dt>
+            <dd>A: Yes — cold batteries lose effective capacity and internal resistance increases, reducing range. Use a slightly higher Wh/km value (e.g., +10–30%) for winter estimates.</dd>
+          </div>
+          <div class="faq-block">
+            <dt>Q: How accurate is the calculator?</dt>
+            <dd>A: It’s a realistic estimator based on energy math (Wh / Wh-per-km). Accuracy depends on the quality of the inputs (you). Use manufacturer specifications plus measured Wh/km for best results.</dd>
+          </div>
+        </article>
+
+        <!-- Legal/Disclaimers -->
+        <article aria-labelledby="legal">
+          <h3 id="legal">Disclaimer & Data Privacy</h3>
+          <p class="small">This calculator provides estimates for planning and comparison only. Battery performance varies by chemistry, age, temperature, and condition. BatteryWheel is not responsible for outcomes resulting from calculator use. For full privacy details see our <a href="/privacy.html">Privacy Policy</a>.</p>
+        </article>
+      </div>
+
+
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html" class="active">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+
+
+  </main>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I enter Ah or Wh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you know Wh (Watt-hours), enter Wh. If you know Ah, enter Ah and provide the pack voltage (e.g., 48V) so the tool can convert to Wh."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What Wh/km should I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Typical values: 10–12 Wh/km for efficient city riding, 12–18 Wh/km for normal commuting, 18–30+ Wh/km for hilly or heavy-load riding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does cold weather affect range?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Cold batteries have higher internal resistance and lower effective capacity. Add 10–30% to Wh/km for cold-weather estimates."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+
+
+
+
+
+
+</body>
+</html>

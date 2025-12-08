@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Motor Power & Speed Calculator — Estimate eBike Top Speed</title>
+  <meta name="description" content="Free Motor Power & Speed Calculator — estimate your eBike's real-world top speed using motor wattage, rider weight, aerodynamics, wheel size, efficiency, and road grade. Accurate physics-based model." />
+  <meta name="keywords" content="motor power speed calculator, motor torque speed calculator, electric motor RPM calculation, motor horsepower calculator, motor sizing tool, motor efficiency calculation, DC motor speed torque curve, BLDC motor performance calculator, motor power formula" />
+  <link rel="canonical" href="https://batterywheel.com/motor-power-speed-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Motor Power & Speed Calculator — Estimate eBike Top Speed" />
+  <meta property="og:description" content="Calculate your eBike’s real physics-based top speed using motor power, riding posture, weight, efficiency, and road incline." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/motor-power-speed-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/motor-power-speed-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Motor Power & Speed Calculator — Estimate eBike Top Speed" />
+  <meta name="twitter:description" content="Realistic eBike speed calculator based on power, efficiency, CdA, rider weight, and slope." />
+
+  <!-- Robots -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD: Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Motor Power & Speed Calculator",
+    "url": "https://batterywheel.com/motor-power-speed-calculator.html",
+    "image": "https://batterywheel.com/images/motor-power-speed-thumbnail.png",
+    "description": "Physics-based eBike top speed calculator using motor wattage, aerodynamic drag, rolling resistance, rider weight, and slope.",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <div>
+          <nav class="main-nav">
+            <button class="navbar-toggler" type="button"></button>
+            <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+              <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+              <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+              <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+              <li><a href="https://www.reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+              <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+              <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container main-content">
+    <section class="content-area">
+      <div class="flex-between-center">
+        <div><h1>Motor Power & Speed Calculator</h1></div>
+        <div class="battery-wheel-animation"><img src="../images/animated-bike.gif" alt="Battery wheel animation"></div>
+      </div>
+
+      <!-- Calculator Area (UNCHANGED AS REQUESTED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- =======================================
+           ⚙️ MOTOR POWER & SPEED CALCULATOR
+           ======================================= -->
+            <div id="motor-power-calculator">
+              <p class="lead">Estimate your eBike's top speed from motor power, total weight, wheel size and riding posture (real physics-based model).</p>
+
+              <div class="calculator-area">
+
+                <div class="half-block4">
+                  <label for="mp_motor-power">Motor Power (W)</label>
+                  <input id="mp_motor-power" type="number" step="any" placeholder="e.g. 500" />
+                  <div class="small muted">Continuous power rating gives the most accurate result.</div>
+                  <div class="error-message" id="mp_error-power"></div>
+                </div>
+
+                <div class="half-block4">
+                  <label for="mp_wheel-size">Wheel Diameter (inch)</label>
+                  <input id="mp_wheel-size" type="number" step="any" placeholder="e.g. 26" />
+                  <div class="small muted">Most eBikes use 20”–29” wheel sizes.</div>
+                  <div class="error-message" id="mp_error-wheel"></div>
+                </div>
+
+                <div class="half-block4">
+                  <label for="mp_total-weight">Total Weight (Rider + Bike) (kg)</label>
+                  <input id="mp_total-weight" type="number" step="any" placeholder="e.g. 100" />
+                  <div class="small muted">Include rider + bike + backpack/cargo.</div>
+                  <div class="error-message" id="mp_error-weight"></div>
+                </div>
+
+                <div class="half-block4">
+                  <label for="mp_efficiency">System Efficiency (%)</label>
+                  <input id="mp_efficiency" type="number" step="any" placeholder="e.g. 85" />
+                  <div class="small muted">Motor + drivetrain efficiency (typical: 80–90%).</div>
+                  <div class="error-message" id="mp_error-efficiency"></div>
+                </div>
+
+                <div class="half-block4">
+                  <label for="mp_position">Riding Position</label>
+                  <select id="mp_position">
+                    <option value="upright">Upright — CdA ≈ 0.60</option>
+                    <option value="tucked">Tucked — CdA ≈ 0.40</option>
+                    <option value="relaxed">Relaxed — CdA ≈ 0.70</option>
+                  </select>
+                  <div class="small muted">Affects aerodynamic drag at higher speeds.</div>
+                  <div class="error-message" id="mp_error-position"></div>
+                </div>
+
+                <div class="half-block4">
+                  <label for="mp_grade">Road Grade</label>
+                  <select id="mp_grade">
+                    <option value="0">Flat (0%)</option>
+                    <option value="0.02">2% Uphill</option>
+                    <option value="0.05">5% Uphill</option>
+                    <option value="0.08">8% Uphill</option>
+                  </select>
+                  <div class="small muted">Higher slope reduces achievable top speed.</div>
+                  <div class="error-message" id="mp_error-grade"></div>
+                </div>
+
+              </div>
+
+              <div class="actions full">
+                <button id="mp_calculate">Estimate Speed</button>
+                <button id="mp_reset" class="secondary">Reset</button>
+              </div>
+
+              <div id="mp_result" class="result" hidden>
+                <div id="mp_breakdown"></div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Intro & SEO Text -->
+      <div class="intro-content">
+        <p>This Motor Power & Speed Calculator estimates the realistic maximum speed your eBike can achieve using motor wattage, rider weight, aerodynamics, wheel diameter, and road gradient. Instead of simple linear formulas, it uses a physics-based power balance model that considers aerodynamic drag, rolling resistance, gravitational force, and drivetrain efficiency.</p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How the Motor Power & Speed Calculator Works</h2>
+          <p>Your eBike’s top speed is determined when the motor's available power equals the forces opposing motion:</p>
+
+          <ul class="list">
+            <li><strong>Aerodynamic drag force</strong> (dominant after 25 km/h)</li>
+            <li><strong>Rolling resistance</strong></li>
+            <li><strong>Gravity</strong> (if riding uphill)</li>
+            <li><strong>Mechanical + motor losses</strong> (efficiency)</li>
+          </ul>
+
+          <p>When the required power to maintain a given speed equals the motor’s effective power output, that speed becomes the theoretical maximum.</p>
+
+          <h3>Typical Real-World Speed Examples</h3>
+          <ul class="list">
+            <li><strong>250 W motor:</strong> 22–28 km/h (14–17 mph)</li>
+            <li><strong>500 W motor:</strong> 32–38 km/h (20–24 mph)</li>
+            <li><strong>750 W motor:</strong> 40–45 km/h (25–28 mph)</li>
+            <li><strong>1000 W motor:</strong> 48–55 km/h (30–34 mph)</li>
+          </ul>
+
+          <h3>Factors That Affect Speed</h3>
+          <ul class="list">
+            <li>Riding posture (CdA changes speed by ±20%)</li>
+            <li>Rider + bike weight</li>
+            <li>Wheel size + tire width</li>
+            <li>Motor efficiency</li>
+            <li>Wind direction</li>
+            <li>Road incline</li>
+          </ul>
+
+          <div class="note">
+            <strong>Tip:</strong> A tucked riding position reduces drag dramatically and can increase top speed by 4–7 km/h.
+          </div>
+        </article>
+
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: Why does my eBike not reach the motor's theoretical speed?</dt>
+            <dd>A: Real-world speed is limited by drag, weight, controller limits, wind, temperature, and battery voltage sag.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Is a higher power motor always faster?</dt>
+            <dd>A: Mostly yes, but speed also depends heavily on aerodynamics. At high speeds, most power fights air resistance.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Do wheel size and tire width affect speed?</dt>
+            <dd>A: Yes. Larger wheels increase effective speed per motor RPM, while wide tires create more drag.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Why is uphill speed much slower?</dt>
+            <dd>A: Uphill climbs add gravitational resistance, requiring significantly more power to maintain speed.</dd>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html" class="active">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does my eBike not reach the expected speed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because real-world riding introduces drag, weight, rolling resistance, battery sag, wind, and controller limits that reduce achievable speed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does motor wattage directly determine top speed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Higher wattage allows higher speed, but aerodynamics become the main limiting factor above 25–30 km/h."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do wheel size and tire width matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Larger wheels increase speed per motor RPM, while wider tires increase drag and rolling resistance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does uphill riding reduce speed dramatically?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the motor has to overcome gravitational force in addition to drag and rolling resistance."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

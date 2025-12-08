@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Charging Time Calculator — Estimate eBike & Battery Charging Duration</title>
+  <meta name="description" content="Free Charging Time Calculator — instantly estimate how long it takes to charge your eBike battery. Supports Ah, Wh, voltage, charger amps, and efficiency. Accurate results with detailed breakdown." />
+  <meta name="keywords" content="battery charging time calculator, EV charging time calculator, time to full charge, charging duration estimator, battery capacity Ah, charging current calculation, efficiency loss charging, State of Charge (SoC), C-rate charge time, lithium-ion charging speed" />
+  <link rel="canonical" href="https://batterywheel.com/charging-time-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Charging Time Calculator — Estimate eBike Charging Duration" />
+  <meta property="og:description" content="Find out exactly how long your eBike battery will take to charge. Enter Ah/Wh, charger amps, and voltage for an accurate calculation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/charging-time-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/charging-time-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Charging Time Calculator — Estimate eBike Charging Duration" />
+  <meta name="twitter:description" content="eBike Charging Time Calculator — calculate full charging duration using Ah, Wh, charger amps, voltage and efficiency." />
+
+  <!-- Robots -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD: Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Charging Time Calculator",
+    "url": "https://batterywheel.com/charging-time-calculator.html",
+    "image": "https://batterywheel.com/images/charging-time-thumbnail.png",
+    "description": "Calculate how long your eBike battery takes to fully charge using capacity, voltage, charger amps, and efficiency.",
+    "applicationCategory": "Utilities",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <div>
+          <nav class="main-nav">
+            <button class="navbar-toggler" type="button"></button>
+            <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+              <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+              <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+              <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+              <li><a href="https://www.reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+              <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+              <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container main-content">
+    <section class="content-area">
+      <div class="flex-between-center">
+        <div><h1>Battery Charging Time Calculator</h1></div>
+        <div><img src="../images/animated-bike.gif" style="position:absolute;top:-50px;right:0" alt="Battery wheel animation"></div>
+      </div>
+
+      <!-- Calculator Area -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- ==================================
+           🔌 CHARGING TIME CALCULATOR
+           ================================== -->
+            <div id="charging-time-calculator">
+              <p class="lead">Calculate how long your battery takes to charge based on capacity, voltage, charger amps, and efficiency. Works for eBikes, scooters, and all lithium batteries.</p>
+
+              <div class="calculator-area">
+
+                <!-- Battery Capacity -->
+                <div class="half-block">
+                  <label for="ct_battery-capacity">Battery Capacity</label>
+                  <input id="ct_battery-capacity" type="number" step="any" placeholder="e.g. 14 (Ah) or 672 (Wh)" />
+                  <div class="small muted">Enter battery capacity in Ah or Wh.</div>
+                  <div class="error-message" id="ct_error-capacity"></div>
+
+                  <div class="absu-unit">
+                    <label for="ct_capacity-unit">Capacity Unit</label>
+                    <select id="ct_capacity-unit">
+                      <option value="ah">Ah (Amp-hour)</option>
+                      <option value="wh">Wh (Watt-hour)</option>
+                    </select>
+                    <div class="error-message" id="ct_error-unit"></div>
+                  </div>
+                </div>
+
+                <!-- Voltage -->
+                <div id="ct_voltage-wrap" class="half-block">
+                  <label for="ct_voltage">Battery Voltage (V)</label>
+                  <input id="ct_voltage" type="number" step="any" placeholder="48 (default)" />
+                  <div class="small muted">Required only for Ah input. Default 48 V.</div>
+                  <div class="error-message" id="ct_error-voltage"></div>
+                </div>
+
+                <!-- Charger Output Current -->
+                <div class="half-block">
+                  <label for="ct_charger-current">Charger Output Current (A)</label>
+                  <input id="ct_charger-current" type="number" step="any" placeholder="e.g. 2" />
+                  <div class="small muted">Typical chargers: 2A–10A.</div>
+                  <div class="error-message" id="ct_error-current"></div>
+                </div>
+
+                <!-- Charger Efficiency -->
+                <div class="half-block">
+                  <label for="ct_efficiency">Charger Efficiency (%)</label>
+                  <input id="ct_efficiency" type="number" step="any" placeholder="e.g. 90" />
+                  <div class="small muted">Optional. Default is 90%.</div>
+                  <div class="error-message" id="ct_error-efficiency"></div>
+                </div>
+
+              </div>
+
+              <div class="actions full">
+                <button id="ct_calculate">Estimate Charging Time</button>
+                <button id="ct_reset" class="secondary">Reset</button>
+              </div>
+
+              <div id="ct_result" class="result" hidden>
+                <div id="ct_breakdown"></div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Intro & SEO Text -->
+      <div class="intro-content">
+        <p>This Charging Time Calculator helps you determine exactly how long your eBike or lithium battery will take to reach a full charge. By entering capacity, voltage, charger amps, and efficiency, you get an accurate estimate of the total charging duration.</p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How the Charging Time Calculator Works</h2>
+          <p>The formula used is:</p>
+
+          <div class="note"><strong>Charging Time = Battery Capacity ÷ Charger Output × Efficiency Factor</strong></div>
+
+          <p>If your battery is entered in Ah, the tool automatically converts it to Wh using voltage for a precise result.</p>
+
+          <h3>Typical Charging Times</h3>
+          <ul class="list">
+            <li>48V 10Ah battery with 2A charger → ~5–6 hours</li>
+            <li>48V 15Ah battery with 3A charger → ~5 hours</li>
+            <li>52V 20Ah battery with 5A charger → ~4–4.5 hours</li>
+          </ul>
+
+          <h3>Factors That Affect Charging Time</h3>
+          <ul class="list">
+            <li>Charger amperage (higher amps = faster charging)</li>
+            <li>Battery capacity (larger packs take longer)</li>
+            <li>Charger efficiency (low efficiency = slower charging)</li>
+            <li>Temperature (charging slows in cold weather)</li>
+          </ul>
+
+          <h3>Charging Safety Tips</h3>
+          <ul class="list">
+            <li>Avoid charging immediately after riding.</li>
+            <li>Never charge near flammable objects.</li>
+            <li>Use only the recommended charger for your battery.</li>
+            <li>Stop charging at 80–90% for maximum battery longevity.</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: Does a higher amp charger reduce charging time?</dt>
+            <dd>A: Yes. Higher current (A) means faster charging, but using too high amperage can shorten battery lifespan.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does charging efficiency matter?</dt>
+            <dd>A: Yes. All chargers lose some energy as heat. Typical efficiency is 85–95%.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Can I charge my battery overnight?</dt>
+            <dd>A: While possible, it's safer to avoid overnight charging unless your charger has built-in protection.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Why does charging slow down at the end?</dt>
+            <dd>A: Lithium batteries use CC/CV charging; the final 10–20% is slower to protect cell health.</dd>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html" class="active">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does a higher amp charger reduce charging time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Higher amperage results in faster charging, but extremely high amperage may reduce battery lifespan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does charging slow down near 100%?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lithium batteries switch to constant-voltage mode near full charge, which slows the final stage to protect the cells."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to charge overnight?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is not recommended unless your charger has auto-cutoff and protection features."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

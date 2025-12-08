@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Battery Runtime Calculator — Estimate Device or eBike Operating Time</title>
+  <meta name="description" content="Calculate how long your battery will last based on its capacity and the device's power consumption. Estimate runtime in hours and minutes for eBikes, gadgets, or appliances." />
+  <meta name="keywords" content="battery runtime calculator, battery duration calculator, battery life estimate, device runtime estimation, eBike battery runtime, battery discharge calculator, runtime hours calculator, battery usage calculator, how long will my battery last" />
+  <link rel="canonical" href="https://batterywheel.com/battery-runtime-calculator.html">
+
+  <meta property="og:title" content="Battery Runtime Calculator">
+  <meta property="og:description" content="Estimate battery runtime for your eBike or devices based on capacity and load power.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://batterywheel.com/images/battery-runtime-thumbnail.png">
+  <meta property="og:url" content="https://batterywheel.com/battery-runtime-calculator.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Battery Runtime Calculator">
+  <meta name="twitter:description" content="Calculate how long your battery will last under specific load conditions.">
+
+  <script type="application/ld+json">
+  {
+   "@context":"https://schema.org",
+   "@type":"SoftwareApplication",
+   "name":"Battery Runtime Calculator",
+   "applicationCategory":"Utility",
+   "operatingSystem":"Any",
+   "url":"https://batterywheel.com/battery-runtime-calculator.html",
+   "image":"https://batterywheel.com/images/battery-runtime-thumbnail.png",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+   "description":"Estimate your battery runtime in hours or minutes based on battery capacity and device load power."
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>Battery Runtime Calculator</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-battery.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- UNIVERSAL BATTERY RUNTIME CALCULATOR -->
+            <div id="battery_runtime_calc">
+              <div class="calculator-area">
+                <div class="half-block">
+                  <!-- Battery Capacity -->
+                  <label for="br_capacity">Battery Capacity</label>
+                  <input type="number" id="br_capacity" placeholder="Enter value">
+                  <div class="small muted">Enter battery capacity.</div>
+                  <div class="error-message"></div>
+                  <div class="absu-unit">
+                    <!-- Wh / Ah select -->
+                    <label for="br_unit">Capacity Unit</label>
+                    <select id="br_unit">
+                      <option value="wh">Wh (Watt-hours)</option>
+                      <option value="ah">Ah (Amp-hours)</option>
+                    </select>
+                    <div class="small muted">Select unit.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+                <div class="half-block">
+                  <!-- Voltage (only for Ah) -->
+                  <div id="br_voltage_wrap">
+                    <label for="br_voltage">Battery Voltage (V)</label>
+                    <input type="number" id="br_voltage" placeholder="e.g. 48">
+                    <div class="small muted">Required when using Ah.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+                <div class="half-block">
+                  <!-- Load power -->
+                  <label for="br_load">Device Load Power (W)</label>
+                  <input type="number" id="br_load" placeholder="e.g. 120">
+                  <div class="small muted">How many watts the device consumes.</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block">
+                  <!-- Efficiency -->
+                  <label for="br_eff">System Efficiency (%)</label>
+                  <input type="number" id="br_eff" placeholder="Optional e.g. 90">
+                  <div class="small muted">Optional. Default = 100%. Real devices typically 85–95%.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+              <div class="actions full">
+                <button id="br_calc">Calculate</button>
+                <button id="br_reset" class="secondary">Reset</button>
+              </div>
+              <!-- Results -->
+              <div id="br_result" class="result" hidden>
+                <div id="br_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          The Battery Runtime Calculator helps you estimate how long your battery will last based on its capacity and the device's power consumption. Whether you're using an eBike, gadget, or appliance, this calculator gives a practical runtime estimate in hours and minutes, accounting for efficiency losses.
+        </p>
+
+        <article aria-labelledby="howworks">
+          <h2 id="howworks">How Does Battery Runtime Work?</h2>
+          <p>
+            Battery runtime depends on the total energy stored in the battery (Wh) and the power drawn by the device (W). By dividing battery capacity by device load and adjusting for efficiency, you get an estimate of how long the battery will power your device before depletion.
+          </p>
+
+          <ul class="list">
+            <li>Battery energy is measured in Watt-hours (Wh)</li>
+            <li>Device or motor power determines consumption rate</li>
+            <li>Efficiency accounts for energy lost during discharge</li>
+            <li>Runtime = (Battery Capacity × Efficiency) ÷ Device Power</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="benefits">
+          <h2 id="benefits">Why Estimate Battery Runtime?</h2>
+          <p>
+            Understanding battery runtime is essential for planning trips, device usage, and avoiding unexpected power loss.
+          </p>
+
+          <ul class="list">
+            <li>Plan eBike trips without running out of battery</li>
+            <li>Know how long gadgets will last on a single charge</li>
+            <li>Estimate backup power duration for appliances</li>
+            <li>Compare battery performance and efficiency</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="tips">
+          <h2 id="tips">Tips for Accurate Runtime Estimates</h2>
+          <ul class="list">
+            <li>Include all loads and accessories consuming power</li>
+            <li>Use realistic efficiency values (80–95%)</li>
+            <li>Remember battery degradation reduces capacity over time</li>
+            <li>Consider variable loads during operation</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: How is battery runtime calculated?</dt>
+            <dd>Divide the battery capacity (Wh) by the device's power consumption (W), then adjust for efficiency.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does efficiency affect runtime?</dt>
+            <dd>Yes. Higher efficiency means longer runtime. Typical battery systems operate at 80–95% efficiency.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Can I use this calculator for any device?</dt>
+            <dd>Yes, it works for eBikes, gadgets, appliances, or any device with a known power draw.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Will battery age impact runtime?</dt>
+            <dd>Yes, older batteries have lower effective capacity, reducing actual runtime.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Is runtime the same as full charge duration?</dt>
+            <dd>No. Runtime calculates how long a charged battery lasts under load, not the charging time.</dd>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html" class="active">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+      </ul>
+
+      <h2>Useful Battery Tips</h2>
+      <ul class="tips-list">
+        <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+        <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+        <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+        <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+        <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+        <li><hr></li>
+        <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+        <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+        <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+        <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+    "@type": "Question",
+    "name": "How is battery runtime calculated?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Divide the battery capacity (Wh) by the device's power consumption (W), then adjust for efficiency."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Does efficiency affect runtime?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Higher efficiency means longer runtime. Typical battery systems operate at 80–95% efficiency."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can I use this calculator for any device?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, it works for eBikes, gadgets, appliances, or any device with a known power draw."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Will battery age impact runtime?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, older batteries have lower effective capacity, reducing actual runtime."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Is runtime the same as full charge duration?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Runtime calculates how long a charged battery lasts under load, not the charging time."
+    }
+  }
+ ]
+}
+</script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

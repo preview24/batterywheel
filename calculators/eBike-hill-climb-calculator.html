@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>eBike Hill Climb Calculator — Maximum Slope & Climbing Power Estimator</title>
+  <meta name="description" content="Calculate your eBike’s maximum climbable slope and hill-climbing capability based on motor power, total weight, wheel size, efficiency, and gradient." />
+  <meta name="keywords" content="eBike hill climb calculator, electric bike climbing ability, e-bike gradient calculator, ebike motor power for hills, ebike torque calculator, hill climbing speed estimator, electric bike battery drain uphill, steep hill ebike performance, ebike gradeability calculator" />
+  <link rel="canonical" href="https://batterywheel.com/eBike-hill-climb-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="eBike Hill Climb Calculator — Max Slope & Hill Power" />
+  <meta property="og:description" content="Estimate how steep a hill your eBike can climb using motor wattage, efficiency, weight, wheel size, and gradient." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/eBike-hill-climb-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/hill-climb-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="eBike Hill Climb Calculator — Climbing Ability Tool" />
+  <meta name="twitter:description" content="Find your eBike’s maximum climbable slope and hill-climbing performance in seconds." />
+
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD: Software Application -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "eBike Hill Climb Calculator",
+    "url": "https://batterywheel.com/eBike-hill-climb-calculator.html",
+    "image": "https://batterywheel.com/images/hill-climb-thumbnail.png",
+    "description": "Estimate your eBike’s hill-climbing ability, including maximum climbable slope, required power, and gradient performance.",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <div>
+          <nav class="main-nav">
+            <button class="navbar-toggler" type="button"></button>
+            <ul>
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+              <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+              <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+              <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+              <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+              <li><a href="https://www.reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+              <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+              <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+      <div class="flex-between-center">
+        <div><h1>eBike Hill Climb Calculator</h1></div>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery wheel animation">
+        </div>
+      </div>
+
+      <!-- Calculator Area: UNCHANGED -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- eBIKE HILL CLIMB CALCULATOR -->
+            <div class="card" id="hill_calculator">
+
+              <div class="calculator-area">
+                <div class="half-block4">
+                  <label for="hc_power">Motor Power (W)</label>
+                  <input type="number" id="hc_power" placeholder="Example: 750">
+                  <div class="small muted">Continuous motor power. 250W–1500W.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block4">
+                  <label for="hc_weight">Total Weight (kg)</label>
+                  <input type="number" id="hc_weight" placeholder="Rider + bike + cargo">
+                  <div class="small muted">Your weight + bike weight + any load.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block4">
+                  <label for="hc_wheel">Wheel Diameter (inches)</label>
+                  <input type="number" id="hc_wheel" placeholder="Example: 26">
+                  <div class="small muted">Common sizes: 14, 20, 26, 27.5, 29.</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <label for="hc_efficiency">Drivetrain Efficiency (%)</label>
+                  <input type="number" id="hc_efficiency" placeholder="85">
+                  <div class="small muted">Hub motors: 85% | Mid-drives: 88–92%</div>
+                  <div class="error-message"></div>
+                </div>
+
+                <div class="half-block">
+                  <label for="hc_slope">Hill Gradient (%) (Optional)</label>
+                  <input type="number" id="hc_slope" placeholder="Example: 12">
+                  <div class="small muted">Leave blank to calculate the maximum climbable gradient.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+
+              <div class="actions full">
+                <button id="hc_calculate">Calculate</button>
+                <button id="hc_reset" class="secondary">Reset</button>
+              </div>
+
+              <div id="hc_result" class="result" hidden>
+                <div id="hc_breakdown"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+        <p>
+          The eBike Hill Climb Calculator helps you determine how steep of a slope your eBike can climb based on real physics. 
+          Hill-climbing performance depends on motor power, total load, wheel diameter, and drivetrain efficiency. 
+          This tool estimates your maximum climbable slope and required wattage for different gradients.
+        </p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How the Hill Climb Calculation Works</h2>
+
+          <p>This calculator uses real-world physical forces to estimate climbing capability:</p>
+
+          <ul class="list">
+            <li><strong>Motor power (W):</strong> Determines how much upward force the motor can generate.</li>
+            <li><strong>Total system weight:</strong> Heavier riders require more force to climb the same hill.</li>
+            <li><strong>Wheel diameter:</strong> Smaller wheels deliver better torque for climbing.</li>
+            <li><strong>Efficiency losses:</strong> Hub and mid-drive motors lose 8–15% of power in real use.</li>
+            <li><strong>Hill gradient:</strong> Steeper slopes require exponentially more power.</li>
+          </ul>
+
+          <h3>Typical Real-World eBike Hill Performance</h3>
+          <ul class="list">
+            <li><strong>250W eBike:</strong> Handles 6–10% slopes</li>
+            <li><strong>500W eBike:</strong> Handles 10–14% slopes</li>
+            <li><strong>750W eBike:</strong> Handles 14–18% slopes</li>
+            <li><strong>1000W eBike:</strong> Handles 18–25% slopes</li>
+            <li><strong>Mid-drives with gears:</strong> Best hill-climbing performance</li>
+          </ul>
+
+          <div class="note">
+            <strong>Tip:</strong> If your eBike overheats on hills, reduce speed and switch to a lower gear (for mid-drives).
+          </div>
+        </article>
+
+        <!-- FAQ -->
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: How steep of a hill can an eBike climb?</dt>
+            <dd>A: Most eBikes can climb 6–20% gradients depending on motor wattage and rider weight.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does motor wattage affect hill climbing?</dt>
+            <dd>A: Yes. Higher wattage directly increases climbing ability by providing more torque and power.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Are mid-drive motors better for hills?</dt>
+            <dd>A: Yes. Mid-drives use gears to multiply torque, making them far better for steep climbs.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Do smaller wheels climb better?</dt>
+            <dd>A: Smaller wheels provide more torque at the ground, improving climbing performance.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does rider weight affect hill climbing?</dt>
+            <dd>A: Absolutely. Higher total weight requires more wattage to climb the same slope.</dd>
+          </div>
+
+        </article>
+      </div>
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html" class="active">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How steep of a hill can an eBike climb?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most eBikes can climb slopes between 6% and 20%, depending on their motor wattage, wheel size, and total system weight."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does motor wattage affect hill climbing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Higher wattage provides more torque and climbing power, allowing steeper hill climbs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are mid-drive motors better for hills?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mid-drive motors use the bike’s gears to multiply torque, giving superior climbing performance compared to hub motors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do smaller wheels climb better?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Smaller wheels improve torque at the ground, which makes climbing hills easier and more efficient."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does rider weight affect hill climbing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Heavier riders require more power to climb the same hill, reducing maximum climbable slope."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

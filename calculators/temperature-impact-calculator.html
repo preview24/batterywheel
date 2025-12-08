@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>Temperature Impact Calculator — eBike Battery Degradation & Lifespan Estimator</title>
+  <meta name="description" content="Calculate how temperature affects eBike battery health, lifespan, cycle life, and degradation rate. Estimate remaining cycles and efficiency loss based on operating temperature." />
+  <meta name="keywords" content="temperature impact on battery, battery performance calculator, battery temperature effects, battery life calculator, temperature and battery efficiency, battery health temperature, battery lifespan temperature, battery discharge rate, cold weather battery performance, hot weather battery performance, lithium battery temperature, thermal impact on batteries, battery performance under different temperatures">
+
+  <link rel="canonical" href="https://batterywheel.com/temperature-impact-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Temperature Impact Calculator — Battery Degradation & Health Tool" />
+  <meta property="og:description" content="Find out how hot or cold temperatures affect your eBike battery lifespan, cycle life, and degradation rate." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batterywheel.com/temperature-impact-calculator.html" />
+  <meta property="og:image" content="https://batterywheel.com/images/temperature-impact-thumbnail.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="eBike Battery Temperature Impact Calculator" />
+  <meta name="twitter:description" content="Calculate battery degradation caused by high or low temperatures and estimate the resulting cycle life." />
+
+  <meta name="robots" content="index,follow" />
+
+  <!-- JSON-LD SOFTWARE SCHEMA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Temperature Impact Calculator",
+    "url": "https://batterywheel.com/temperature-impact-calculator.html",
+    "image": "https://batterywheel.com/images/temperature-impact-thumbnail.png",
+    "description": "Estimate eBike battery lifespan reduction and degradation caused by exposure to high or low temperatures.",
+    "applicationCategory": "Utilities",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+      <div class="flex-between-center">
+        <h1>Temperature Impact Calculator</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- Calculator Area -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- BATTERY TEMPERATURE IMPACT CALCULATOR -->
+            <div class="card" id="temp_calculator">
+
+              <div class="calculator-area">
+                <div class="half-block">
+                <!-- Rated Cycles -->
+                <label for="temp_cycles">Rated Full Charge Cycles (Manufacturer)</label>
+                <input type="number" id="temp_cycles" placeholder="Example: 800">
+                <div class="small muted">Typical Li-ion: 600–1200 cycles at 25°C.</div>
+                <div class="error-message"></div>
+              </div>
+
+              <div class="half-block">
+                <!-- Battery Capacity -->
+                <label for="temp_capacity">Battery Capacity</label>
+                <input type="number" id="temp_capacity" placeholder="Value only">
+                <div class="small muted">Enter capacity in Ah or Wh.</div>
+                <div class="error-message"></div>
+
+                <div class="absu-unit">
+                  <!-- Unit -->
+                  <label for="temp_unit">Unit</label>
+                  <select id="temp_unit">
+                    <option value="ah">Ah</option>
+                    <option value="wh">Wh</option>
+                  </select>
+                  <div class="small muted">Select capacity unit.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+
+              <div class="half-block">
+                <!-- Voltage -->
+                <div id="temp_voltage_wrap">
+                  <label for="temp_voltage">Voltage (Default 48V)</label>
+                  <input type="number" id="temp_voltage" placeholder="48">
+                  <div class="small muted">Required if capacity is in Ah.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+
+              <div class="half-block">
+                <!-- Temperature -->
+                <label for="temp_celsius">Average Battery Temperature (°C)</label>
+                <input type="number" id="temp_celsius" placeholder="Example: 35">
+                <div class="small muted">Higher temps increase degradation speed.</div>
+                <div class="error-message"></div>
+              </div>
+            </div>
+              <div class="actions full">
+                <button id="temp_calculate">Calculate</button>
+                <button id="temp_reset" class="secondary">Reset</button>
+              </div>
+
+              <!-- Result -->
+              <div id="temp_result" class="result" hidden>
+                <div id="temp_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          The Temperature Impact Calculator helps you understand how heat or cold affects your eBike battery’s lifespan, cycle life, internal resistance, and long-term degradation.  
+          Lithium-ion batteries are extremely sensitive to temperature — both high heat and extreme cold can dramatically reduce performance and lifespan.
+        </p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How Temperature Affects eBike Battery Lifespan</h2>
+
+          <p>
+            Temperature is one of the most important factors that influence lithium battery health.  
+            High temperatures accelerate chemical reactions inside the cells, causing permanent degradation.  
+            Low temperatures reduce available power and increase internal resistance.
+          </p>
+
+          <h3>Typical Battery Life vs Temperature</h3>
+          <ul class="list">
+            <li><strong>0°C to 10°C:</strong> Reduced power output, 10–20% temporary capacity loss.</li>
+            <li><strong>25°C (ideal):</strong> 100% expected cycle life.</li>
+            <li><strong>30°C:</strong> Degradation rate increases by ~20%.</li>
+            <li><strong>35°C:</strong> Batteries age 40–50% faster.</li>
+            <li><strong>40°C:</strong> Severe degradation — lifespan reduced by 60%+</li>
+            <li><strong>50°C:</strong> Permanent damage begins to accelerate rapidly.</li>
+          </ul>
+
+          <div class="note">
+            <strong>Tip:</strong> Never leave your eBike or battery in a hot car or under direct sunlight. This causes extreme degradation.
+          </div>
+        </article>
+
+        <!-- FAQ -->
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: What temperature is best for lithium battery life?</dt>
+            <dd>A: 20–25°C is ideal. Cycle life decreases sharply above 30°C.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does heat permanently damage eBike batteries?</dt>
+            <dd>A: Yes. High heat accelerates chemical breakdown and reduces long-term capacity.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Can cold weather damage the battery?</dt>
+            <dd>A: Cold temperatures do not permanently damage the battery, but they temporarily reduce performance.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Is it safe to charge batteries in hot environments?</dt>
+            <dd>A: No. Charging above 35°C increases risk of swelling and rapid degradation.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: How can I protect my battery from heat?</dt>
+            <dd>A: Store indoors, avoid sunlight, keep airflow around the battery, and avoid charging immediately after riding.</dd>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html" class="active">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JSON-LD FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What temperature is best for lithium battery life?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The ideal temperature range for lithium-ion battery health is 20–25°C. Heat above 30°C rapidly increases degradation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does heat permanently degrade eBike batteries?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Exposure to temperatures above 35°C accelerates chemical aging and permanently reduces capacity and lifespan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does cold weather damage lithium-ion batteries?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cold does not permanently damage lithium batteries, but it temporarily reduces efficiency, power output, and available capacity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to charge a hot battery?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Charging above 35°C increases internal pressure and degradation, potentially damaging the battery permanently."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I protect my eBike battery from heat?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Avoid direct sunlight, store indoors, allow cooling before charging, and keep airflow around the battery during use."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>

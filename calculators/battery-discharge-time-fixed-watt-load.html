@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+<title>Battery Discharge Time @ Fixed Watt Load — Universal Runtime Estimator</title>
+<meta name="description" content="Calculate battery discharge time at constant watt load. Enter battery capacity in Wh or Ah and fixed watt consumption to estimate runtime in hours or minutes. Works for eBike, solar, UPS, power bank and RV batteries." />
+<meta name="keywords" content="battery discharge time, discharge time calculator, runtime calculator, battery load calculator, fixed watt load calculator, battery runtime Wh Ah, UPS runtime calculator, solar battery runtime, ebike battery runtime" />
+<link rel="canonical" href="https://batterywheel.com/battery-discharge-time-fixed-watt-load.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Battery Discharge Time @ Fixed Watt Load — Runtime Estimator" />
+<meta property="og:description" content="Estimate runtime for any battery at a constant watt load. Enter Wh or Ah and watt consumption to calculate discharge time." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://batterywheel.com/battery-discharge-time-fixed-watt-load.html" />
+<meta property="og:image" content="https://batterywheel.com/images/battery-discharge-time-fixed-thumbnail.png" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Battery Discharge Time Calculator" />
+<meta name="twitter:description" content="Calculate discharge time for any battery at fixed watt load." />
+
+<!-- JSON-LD SOFTWARE SCHEMA -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"SoftwareApplication",
+ "name":"Battery Discharge Time @ Fixed Watt Load Calculator",
+ "url":"https://batterywheel.com/battery-discharge-time-fixed-watt-load.html",
+ "image":"https://batterywheel.com/images/battery-discharge-time-fixed-thumbnail.png",
+ "description":"Calculate battery discharge time based on battery capacity (Wh/Ah) and constant watt load. Works for UPS, solar, eBike and emergency battery systems.",
+ "applicationCategory":"Utilities",
+ "operatingSystem":"Any",
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+}
+</script>
+
+
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>Battery Discharge Time @ Fixed Watt Load</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA (UNCHANGED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+
+            <!-- BATTERY DISCHARGE TIME @ FIXED WATT LOAD -->
+            <div id="battery_discharge_time_calc">
+              <div class="calculator-area">
+                <div class="half-block4">
+                  <!-- Battery Capacity -->
+                  <label for="bd_capacity">Battery Capacity</label>
+                  <input type="number" id="bd_capacity" placeholder="Enter value">
+                  <div class="small muted">Enter battery capacity.</div>
+                  <div class="error-message"></div>
+                  <div class="absu-unit">
+                    <!-- Wh / Ah selector -->
+                    <label for="bd_unit">Capacity Unit</label>
+                    <select id="bd_unit">
+                      <option value="wh">Wh</option>
+                      <option value="ah">Ah</option>
+                    </select>
+                    <div class="small muted">Select Wh or Ah.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+                <div class="half-block4">
+                  <!-- Voltage only for Ah -->
+                  <div id="bd_voltage_wrap">
+                    <label for="bd_voltage">Voltage (V)</label>
+                    <input type="number" id="bd_voltage" placeholder="Example: 48">
+                    <div class="small muted">Required only for Ah mode.</div>
+                    <div class="error-message"></div>
+                  </div>
+                </div>
+                <div class="half-block4">
+                  <!-- Watt load -->
+                  <label for="bd_load">Constant Load (W)</label>
+                  <input type="number" id="bd_load" placeholder="Example: 120">
+                  <div class="small muted">Enter constant watt load.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+              <div class="actions full">
+                <button id="bd_calc">Calculate</button>
+                <button id="bd_reset" class="secondary">Reset</button>
+              </div>
+
+              <div id="bd_result" class="result" hidden>
+                <div id="bd_breakdown"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          The Battery Discharge Time @ Fixed Watt Load Calculator estimates how long a battery can run when powering a device that consumes a constant watt load. You can enter capacity in Wh or Ah and the calculator automatically converts to Wh when needed.
+        </p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How Battery Discharge Time Works</h2>
+
+          <p>
+            Battery capacity represents stored energy. The device or appliance consumes power (watts) continuously. When you divide total energy by power consumption, you get the expected runtime.
+          </p>
+
+          <p><strong>Formula:</strong></p>
+          <p><strong>Runtime (hours) = Battery Wh ÷ Load W</strong></p>
+
+          <ul class="list">
+            <li>Enter Wh directly</li>
+            <li>Or enter Ah + Voltage</li>
+            <li>Calculator auto-converts Ah × V = Wh</li>
+            <li>Works for any fixed load device</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="examples">
+          <h2 id="examples">Examples</h2>
+          <ul class="list">
+            <li>48V 10Ah @ 100W ≈ 4.8 hours</li>
+            <li>12V 100Ah @ 300W ≈ 4 hours</li>
+            <li>Power bank 80Wh @ 20W ≈ 4 hours</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="usage">
+          <h2 id="usage">Where To Use This Calculator</h2>
+          <ul class="list">
+            <li>eBike motors</li>
+            <li>Solar backup systems</li>
+            <li>Camping batteries</li>
+            <li>Inverters and UPS</li>
+            <li>Portable power stations</li>
+            <li>Emergency lights and tools</li>
+          </ul>
+        </article>
+          <!-- Visible FAQ inside intro-content -->
+
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: How do I calculate battery discharge time?</dt>
+            <dd>Convert capacity to Watt-hours and divide by the watt load. For Ah values, multiply by voltage first (Ah × V = Wh).</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Do I need voltage?</dt>
+            <dd>Only if capacity is entered in Ah. When Wh is entered, voltage is not required.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does this calculator work for LiFePO₄?</dt>
+            <dd>Yes. It works for LiFePO₄, Lithium-ion, Lead-acid, AGM, and most battery chemistries.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Will discharge efficiency reduce runtime?</dt>
+            <dd>Yes. Real runtime is usually 5–15% lower due to inverter and conversion losses.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Is discharge time the same as charging time?</dt>
+            <dd>No. Discharge time tells how long the battery can run a load, not how long it takes to recharge.</dd>
+          </div>
+        </article>
+
+
+      </div>
+
+
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html" class="active">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+<!-- JSON-LD FAQ -->
+<!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How do I calculate battery discharge time?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Divide battery energy in Wh by the device's watt load. If capacity is in Ah, multiply by voltage to convert to Wh."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does battery voltage matter?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes. Voltage is required only when the capacity is entered in Ah because Ah × V = Wh."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is this calculator for eBikes only?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "No. This calculator works for solar batteries, UPS, RV, portable power, and all types of lithium or lead-acid batteries."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does this include efficiency losses?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "This calculator assumes ideal discharge. Actual runtime may be 5–15% lower depending on efficiency losses."
+   }
+  }
+ ]
+}
+</script>
+
+
+
+
+
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>
