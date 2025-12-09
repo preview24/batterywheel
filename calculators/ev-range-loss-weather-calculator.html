@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="icon" href="../images/favicon.png" type="image/png" sizes="50x50">
+
+  <!-- SEO -->
+  <title>EV Range Loss Calculator (Cold & Hot Weather)</title>
+  <meta name="description" content="EV range loss calculator for cold winter or hot weather. Estimate electric vehicle real-world driving range based on ambient temperature." />
+  <meta name="keywords" content="ev range loss calculator, winter ev range, cold weather ev range, hot weather ev range, ev temperature range drop" />
+  <link rel="canonical" href="https://batterywheel.com/ev-range-loss-weather-calculator.html">
+
+  <meta property="og:title" content="EV Range Loss Calculator" />
+  <meta property="og:description" content="Calculate electric vehicle range loss in cold winter and hot weather conditions." />
+  <meta property="og:url" content="https://batterywheel.com/ev-range-loss-weather-calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://batterywheel.com/images/ev-range-weather-thumbnail.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EV Range Loss Calculator" />
+  <meta name="twitter:description" content="Estimate EV range in winter and summer temperature conditions." />
+
+  <script type="application/ld+json">
+  {
+   "@context":"https://schema.org",
+   "@type":"SoftwareApplication",
+   "name":"EV Range Loss Weather Calculator",
+   "url":"https://batterywheel.com/ev-range-loss-weather-calculator.html",
+   "image":"https://batterywheel.com/images/ev-range-weather-thumbnail.png",
+   "description":"Estimate EV range reduction in extreme cold or hot weather using rated range and outside temperature.",
+   "applicationCategory":"Utilities",
+   "operatingSystem":"Any",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-27DB4BD68S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-27DB4BD68S');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="flex-between-center">
+        <div class="logo"><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></div>
+        <nav class="main-nav">
+          <button class="navbar-toggler" type="button"></button>
+          <ul>
+            <li><a href="https://facebook.com/sharer/sharer.php?u=https://batterywheel.com/" class="social-icon facebook" target="_blank"></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url=https://batterywheel.com/" class="social-icon twitter" target="_blank"></a></li>
+            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://batterywheel.com/" class="social-icon linkedin" target="_blank"></a></li>
+            <li><a href="https://wa.me/?text=Check%20out%20BatteryWheel%20at%20https://batterywheel.com/" class="social-icon whatsapp" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/batterywheel/" class="social-icon instagram" target="_blank"></a></li>
+            <li><a href="https://pinterest.com/pin/create/button/?url=https://batterywheel.com/" class="social-icon pinterest" target="_blank"></a></li>
+            <li><a href="https://reddit.com/submit?url=https://batterywheel.com/" class="social-icon reddit" target="_blank"></a></li>
+            <li><a href="https://t.me/share/url?url=https://batterywheel.com/" class="social-icon telegram" target="_blank"></a></li>
+            <li><a href="https://www.tumblr.com/share/link?url=https://batterywheel.com/" class="social-icon tumblr" target="_blank"></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container main-content">
+    <section class="content-area">
+
+      <div class="flex-between-center">
+        <h1>EV Range Loss in Winter / Hot Weather</h1>
+        <div class="battery-wheel-animation">
+          <img src="../images/animated-bike.gif" alt="Battery animation">
+        </div>
+      </div>
+
+      <!-- CALCULATOR AREA (UNCHANGED) -->
+      <div class="modalp1">
+        <div>
+          <div class="modal-body">
+            <!-- EV RANGE LOSS IN TEMPERATURE CALCULATOR -->
+            <div id="ev_temp_range_calc">
+              <div class="calculator-area">
+                <div class="half-block">
+                  <label for="evtr_base_range">Rated Range (km)</label>
+                  <input type="number" id="evtr_base_range" placeholder="e.g. 400">
+                  <div class="small muted">Enter the EV's official rated range (WLTP/EPA).</div>
+                  <div class="error-message"></div>
+                </div>
+                <div class="half-block">
+                  <label for="evtr_temp">Outside Temperature (°C)</label>
+                  <input type="number" id="evtr_temp" placeholder="e.g. -5">
+                  <div class="small muted">Enter current or expected ambient temperature.</div>
+                  <div class="error-message"></div>
+                </div>
+              </div>
+              <div class="actions full">
+                <button id="evtr_calc">Calculate Range</button>
+                <button id="evtr_reset" class="secondary">Reset</button>
+              </div>
+              <div id="evtr_result" class="result" hidden>
+                <div id="evtr_breakdown"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- INTRO & SEO CONTENT -->
+      <div class="intro-content">
+
+        <p>
+          Electric vehicles lose significant range in extreme cold and also during very hot summer conditions. HVAC
+          heating and cooling systems consume a notable amount of energy which directly reduces real-world driving
+          range compared to official WLTP or EPA ratings.
+        </p>
+
+        <article aria-labelledby="how">
+          <h2 id="how">How weather affects EV range</h2>
+          <p>
+            Batteries operate best between about 15–30°C. Very low temperature reduces chemical performance and
+            increases internal resistance, while extreme heat requires powerful air conditioning load lowering range.
+          </p>
+        </article>
+
+        <article aria-labelledby="effects">
+          <h2 id="effects">Typical range reductions</h2>
+          <ul class="list">
+            <li>-20°C → up to 30–40% range loss</li>
+            <li>-5°C → about 15–25% loss</li>
+            <li>35°C+ → 10–20% loss due to A/C</li>
+          </ul>
+          <p>
+            Results vary by vehicle model, battery chemistry, HVAC settings, and driving behavior.
+          </p>
+        </article>
+
+        <article aria-labelledby="improve">
+          <h2 id="improve">How to reduce seasonal range loss</h2>
+          <ul class="list">
+            <li>Preheat battery while plugged-in</li>
+            <li>Use seat heaters instead of full cabin warming</li>
+            <li>Drive smoother, avoid strong acceleration</li>
+            <li>Avoid very high cabin A/C temperature settings</li>
+          </ul>
+        </article>
+
+        <article aria-labelledby="faq">
+          <h2 id="faq">Frequently Asked Questions</h2>
+
+          <div class="faq-block">
+            <dt>Q: Which weather is worst for EVs?</dt>
+            <dd>Very cold winter causes the most range loss due to battery chemistry limitations.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Can hot summer reduce range?</dt>
+            <dd>Yes. Air conditioning and thermal management systems reduce real-world range.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Is WLTP/EPA range realistic?</dt>
+            <dd>WLTP/EPA values are laboratory estimates. Real-world seasonal range may be much lower.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does preconditioning help?</dt>
+            <dd>Yes. Warming the battery while plugged-in significantly improves winter driving range.</dd>
+          </div>
+
+          <div class="faq-block">
+            <dt>Q: Does battery chemistry matter?</dt>
+            <dd>Yes. LFP batteries experience more cold performance reduction than NMC/NCA cells.</dd>
+          </div>
+
+        </article>
+
+      </div>
+
+
+
+
+    </section>
+    <aside class="sidebar">
+      <h2>Calculator Pages</h2>
+      <ul class="calculatorp1">
+        <li><a href="ebike-range-calculator.html">Range Calculator</a></li>
+        <li><a href="charging-cost-calculator.html">Charging Cost Calculator</a></li>
+        <li><a href="battery-life-cycle-estimator.html">Battery Life Cycle Estimator</a></li>
+        <li><a href="charging-time-calculator.html">Charging Time Calculator</a></li>
+        <li><a href="motor-power-speed-calculator.html">Motor Power & Speed Calculator</a></li>
+        <li><a href="electricity-cost-per-100km-calculator.html">Electricity Cost per 100 km Calculator</a></li>
+        <li><a href="co2-savings-calculator.html">CO₂ Savings Calculator</a></li>
+        <li><a href="battery-replacement-cost-calculator.html">Battery Replacement Cost Calculator</a></li>
+        <li><a href="eBike-torque-calculator.html">eBike Torque Calculator</a></li>
+        <li><a href="max-load-carrying-capacity-calculator.html">Max Load & Carrying Capacity Calculator</a></li>
+        <li><a href="eBike-hill-climb-calculator.html">eBike Hill Climb Calculator</a></li>
+        <li><a href="efficiency-loss-calculator.html">Efficiency Loss Calculator</a></li>
+        <li><a href="depth-of-discharge-impact-calculator.html">Depth-of-Discharge (DoD) Impact Calculator</a></li>
+        <li><a href="temperature-impact-calculator.html">Temperature Impact Calculator</a></li>
+        <li><a href="battery-charging-cost-per-month-calculator.html">Battery Charging Cost per Month Calculator</a></li>
+        <li><a href="battery-self-discharge-calculator.html">Battery Self-Discharge Calculator</a></li>
+        <li><a href="battery-aging-calendar-life-estimator.html">Battery Aging & Calendar Life Estimator</a></li>
+        <li><a href="solar-charging-power-calculator.html">Solar Charging Power Calculator</a></li>
+        <li><a href="ebike-insurance-cost-estimator.html">eBike Insurance Cost Estimator</a></li>
+        <li><a href="battery-upgrade-checker.html">Battery Upgrade Checker</a></li>
+        <li><a href="regenerative-braking-savings-calculator.html">Regenerative Braking Savings Calculator</a></li>
+        <li><a href="battery-replacement-time-predictor.html">Battery Replacement Time Predictor</a></li>
+        <li><a href="battery-health-score-calculator.html">Battery Health Score Calculator (EV-Style)</a></li>
+        <li><a href="ebike-motor-heat-calculator.html">eBike Motor Heat Calculator</a></li>
+        <li><a href="voltage-sag-calculator.html">Voltage Sag Calculator</a></li>
+        <li><a href="payload-impact-range-estimator.html">Payload Impact Range Estimator</a></li>
+        <li><a href="terrain-resistance-calculator.html">Terrain Resistance Calculator (Rolling + Gradient)</a></li>
+        <li><a href="wheel-size-gear-ratio-speed-calculator.html">Wheel Size Gear Ratio Speed Calculator</a></li>
+        <li><a href="battery-c-rate-safety-calculator.html">Battery C-Rate Safety Calculator</a></li>
+        <li><a href="battery-internal-resistance-ir-calculator.html">Battery Internal Resistance (IR) Calculator</a></li>
+        <li><a href="battery-charge-efficiency-calculator.html">Battery Charge Efficiency Calculator</a></li>
+        <li><a href="wh-ah-converter.html">Wh ⇄ Ah Converter</a></li>
+        <li><a href="battery-series-parallel-pack-builder.html">Battery Series / Parallel (S × P) Pack Builder</a></li>
+        <li><a href="lifepo4-cell-chemistry-pack-builder.html">LiFePO₄ & Advanced Cell Chemistry Pack Builder</a></li>
+        <li><a href="battery-runtime-calculator.html">Battery Runtime Calculator (Universal)</a></li>
+        <li><a href="battery-discharge-time-fixed-watt-load.html">Battery Discharge Time @ Fixed Watt Load</a></li>
+        <li><a href="battery-storage-loss-calculator.html">Battery Storage Loss Calculator</a></li>
+        <li><a href="inverter-runtime-calculator.html">Inverter Runtime Calculator</a></li>
+        <li><a href="battery-charger-selector.html">Battery Charger Selector</a></li>
+        <li><a href="wire-gauge-selector.html">Wire Gauge (AWG/mm²) Selector</a></li>
+        <li><a href="voltage-drop-calculator-dc-circuits.html">Voltage Drop Calculator (DC circuits)</a></li>
+        <li><a href="fuse-rating-calculator.html">Fuse Rating Calculator</a></li>
+        <li><a href="motor-kv-kt-converter.html">Motor Kv ↔ Kt Converter (RPM/V ↔ Nm/A)</a></li>
+        <li><a href="dc-motor-rpm-calculator.html">DC Motor RPM Calculator</a></li>
+        <li><a href="motor-kv-rpm-per-volt-calculator.html">Motor Kv (RPM per Volt) Calculator</a></li>
+        <li><a href="ev-charging-time-calculator.html">EV Charging Time Calculator</a></li>
+        <li><a href="ev-range-loss-weather-calculator.html" class="active">EV Range Loss in Winter / Hot Weather</a></li>
+        <li><a href="ev-tire-size-difference-calculator.html">EV Tire Size Difference Calculator</a></li>
+      </ul>
+      <h2>Useful Battery Tips</h2>
+        <ul class="tips-list">
+          <li><a href="../extend-battery-life.html">Top 3 ways to extend battery life</a></li>
+          <li><a href="../store-battery-safely.html">How to store your battery safely</a></li>
+          <li><a href="../charging-practices-eBik-batteries.html">Best charging practices for eBike batteries</a></li>
+          <li><a href="../battery-signs-for-replacement.html">Signs your battery needs replacement</a></li>
+          <li><a href="../eco-friendly-battery-disposal.html">Eco-friendly battery disposal methods</a></li>
+          <li><hr></li>
+          <li><a href="../lifepo4-voltage-chart/index.html">Lifepo4 Voltage Chart</a></li>
+          <li><a href="../lifepo4-vs-lithium-ion/index.html">Lifepo4 vs Lithium Ion</a></li>
+          <li><a href="../batteries-in-series-vs-parallel/index.html">Batteries in Series vs Parallel</a></li>
+          <li><a href="../how-many-volts-is-a-car-battery/index.html">How Many Volts is a Car Battery</a></li>
+          <li><a href="../the-iconic-vespa-scooter/index.html">How Many Volts is a Car Battery</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 BatteryWheel.com | All Rights Reserved</p>
+      <nav class="footer-nav">
+        <ul>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../disclaimer.html">Disclaimer</a></li>
+          <li><a href="../terms-of-service.html">Terms of Service</a></li>
+          <li><a href="../sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+<!-- JSON-LD FAQ -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+   {
+     "@type": "Question",
+     "name": "Which weather is worst for EVs?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Extreme cold winters cause the highest range reduction due to battery chemistry behavior."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Can hot summer reduce range?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Yes, air conditioning and thermal management systems reduce EV range in hot weather."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Is WLTP/EPA range realistic?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "WLTP and EPA values are standardized lab estimates and real-world range varies seasonally."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Does preconditioning help?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Warming the battery while plugged-in helps restore performance and reduce winter loss."
+     }
+   },
+   {
+     "@type": "Question",
+     "name": "Does battery chemistry matter?",
+     "acceptedAnswer": {
+       "@type": "Answer",
+       "text": "Yes, LFP batteries usually lose more winter range compared to NMC or NCA chemistry."
+     }
+   }
+ ]
+}
+</script>
+
+
+  <script src="../js/main.js"></script>
+
+</body>
+</html>
