@@ -1,3 +1,20 @@
 User-agent: *
 Allow: /
+
+# Block server folders (safety)
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+
+# Allow important resources
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.mp4$
+
+# Sitemap
 Sitemap: https://batterywheel.com/sitemap.xml
