@@ -1,57 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://batterywheel.com/</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://batterywheel.com/privacy-policy.html</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://batterywheel.com/disclaimer.html</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://batterywheel.com/terms-of-service.html</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://batterywheel.com/tools/ebike-range-calculator.html</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://batterywheel.com/tools/charging-cost-calculator.html</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://batterywheel.com/tools/battery-life-cycle.html</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://batterywheel.com/tools/charging-time-calculator.html</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://batterywheel.com/tools/battery-comparison.html</loc>
-    <lastmod>2025-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url><loc>https://batterywheel.com/index.html</loc></url>
+
+<url><loc>https://batterywheel.com/calculators/ebike-range-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/charging-cost-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-life-cycle-estimator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/charging-time-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/motor-power-speed-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/electricity-cost-per-100km-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/co2-savings-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-replacement-cost-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/eBike-torque-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/max-load-carrying-capacity-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/eBike-hill-climb-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/efficiency-loss-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/depth-of-discharge-impact-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/temperature-impact-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-charging-cost-per-month-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-self-discharge-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-aging-calendar-life-estimator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/solar-charging-power-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/ebike-insurance-cost-estimator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-upgrade-checker.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/regenerative-braking-savings-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-replacement-time-predictor.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-health-score-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/ebike-motor-heat-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/voltage-sag-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/payload-impact-range-estimator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/terrain-resistance-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/wheel-size-gear-ratio-speed-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-c-rate-safety-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-internal-resistance-ir-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-charge-efficiency-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/wh-ah-converter.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-series-parallel-pack-builder.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/lifepo4-cell-chemistry-pack-builder.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-runtime-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-discharge-time-fixed-watt-load.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-storage-loss-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/inverter-runtime-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/battery-charger-selector.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/wire-gauge-selector.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/voltage-drop-calculator-dc-circuits.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/fuse-rating-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/motor-kv-kt-converter.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/dc-motor-rpm-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/motor-kv-rpm-per-volt-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/ev-charging-time-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/ev-range-loss-weather-calculator.html</loc></url>
+<url><loc>https://batterywheel.com/calculators/ev-tire-size-difference-calculator.html</loc></url>
+
+<url><loc>https://batterywheel.com/lifepo4-voltage-chart/index.html</loc></url>
+<url><loc>https://batterywheel.com/lifepo4-vs-lithium-ion/index.html</loc></url>
+<url><loc>https://batterywheel.com/batteries-in-series-vs-parallel/index.html</loc></url>
+<url><loc>https://batterywheel.com/how-many-volts-is-a-car-battery/index.html</loc></url>
+<url><loc>https://batterywheel.com/the-iconic-vespa-scooter/index.html</loc></url>
+
+<url><loc>https://batterywheel.com/extend-battery-life.html</loc></url>
+<url><loc>https://batterywheel.com/store-battery-safely.html</loc></url>
+<url><loc>https://batterywheel.com/charging-practices-eBik-batteries.html</loc></url>
+<url><loc>https://batterywheel.com/battery-signs-for-replacement.html</loc></url>
+<url><loc>https://batterywheel.com/eco-friendly-battery-disposal.html</loc></url>
+
+<url><loc>https://batterywheel.com/privacy-policy.html</loc></url>
+<url><loc>https://batterywheel.com/disclaimer.html</loc></url>
+<url><loc>https://batterywheel.com/terms-of-service.html</loc></url>
+
 </urlset>
