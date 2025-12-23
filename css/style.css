@@ -1121,7 +1121,9 @@ ol.list li{
 .half-block, .half-block2, .half-block3, .half-block4, .half-block5 {
   width: 100%;
 }
-
+.cb-heading::after{
+  display: none;
+}
 
 
 
