@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Preloader with Images</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <style>
+
+.pl {
+    box-shadow: 2em 0 2em rgba(0, 0, 0, 0.2) inset, -2em 0 2em rgba(255, 255, 255, 0.1) inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transform: rotateX(30deg) rotateZ(45deg);
+    width: 15em;
+    height: 15em;
+}
+.pl, .predot {
+    border-radius: 50%;
+}
+.predot {
+    animation-name: shadow;
+    box-shadow: 0.1em 0.1em 0 0.1em black, 0.3em 0 0.3em rgba(0, 0, 0, 0.5);
+    top: calc(50% - 0.75em);
+    left: calc(50% - 0.75em);
+    width: 1.5em;
+    height: 1.5em;
+}
+.predot, .predot:before, .predot:after {
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    position: absolute;
+}
+.predot:before, .predot:after {
+    content: "";
+    display: block;
+    left: 0;
+    width: inherit;
+    transition: background-color 0.3s;
+}
+.predot:before {
+    animation-name: pushInOut1;
+    background-color: #454954;
+    border-radius: inherit;
+    box-shadow: 0.05em 0 0.1em rgba(255, 255, 255, 0.2) inset;
+    height: inherit;
+    z-index: 1;
+}
+.predot:after {
+    animation-name: pushInOut2;
+    background-color: #255ff4;
+    border-radius: 0.75em;
+    box-shadow: 0.1em 0.3em 0.2em rgba(255, 255, 255, 0.4) inset, 0 -0.4em 0.2em #2e3138 inset, 0 -1em 0.25em rgba(0, 0, 0, 0.3) inset;
+    bottom: 0;
+    clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
+    height: 3em;
+    transform: rotate(-45deg);
+    transform-origin: 50% 2.25em;
+}
+.predot:nth-child(1) { transform: rotate(0deg) translateX(5em) rotate(0deg); z-index: 5; }
+.predot:nth-child(1):before, .predot:nth-child(1):after { animation-delay: 0s; }
+.predot:nth-child(2) { transform: rotate(-30deg) translateX(5em) rotate(30deg); z-index: 4; }
+.predot:nth-child(2):before, .predot:nth-child(2):after { animation-delay: -0.1666666667s; }
+.predot:nth-child(3) { transform: rotate(-60deg) translateX(5em) rotate(60deg); z-index: 3; }
+.predot:nth-child(3):before, .predot:nth-child(3):after { animation-delay: -0.3333333333s; }
+.predot:nth-child(4) { transform: rotate(-90deg) translateX(5em) rotate(90deg); z-index: 2; }
+.predot:nth-child(4):before, .predot:nth-child(4):after { animation-delay: -0.5s; }
+.predot:nth-child(5) { transform: rotate(-120deg) translateX(5em) rotate(120deg); z-index: 1; }
+.predot:nth-child(5):before, .predot:nth-child(5):after { animation-delay: -0.6666666667s; }
+.predot:nth-child(6) { transform: rotate(-150deg) translateX(5em) rotate(150deg); z-index: 1; }
+.predot:nth-child(6):before, .predot:nth-child(6):after { animation-delay: -0.8333333333s; }
+.predot:nth-child(7) { transform: rotate(-180deg) translateX(5em) rotate(180deg); z-index: 2; }
+.predot:nth-child(7):before, .predot:nth-child(7):after { animation-delay: -1s; }
+.predot:nth-child(8) { transform: rotate(-210deg) translateX(5em) rotate(210deg); z-index: 3; }
+.predot:nth-child(8):before, .predot:nth-child(8):after { animation-delay: -1.1666666667s; }
+.predot:nth-child(9) { transform: rotate(-240deg) translateX(5em) rotate(240deg); z-index: 4; }
+.predot:nth-child(9):before, .predot:nth-child(9):after { animation-delay: -1.3333333333s; }
+.predot:nth-child(10) { transform: rotate(-270deg) translateX(5em) rotate(270deg); z-index: 5; }
+.predot:nth-child(10):before, .predot:nth-child(10):after { animation-delay: -1.5s; }
+.predot:nth-child(11) { transform: rotate(-300deg) translateX(5em) rotate(300deg); z-index: 6; }
+.predot:nth-child(11):before, .predot:nth-child(11):after { animation-delay: -1.6666666667s; }
+.predot:nth-child(12) { transform: rotate(-330deg) translateX(5em) rotate(330deg); z-index: 6; }
+.predot:nth-child(12):before, .predot:nth-child(12):after { animation-delay: -1.8333333333s; }
+
+.pretext {
+    color: white;
+    font-size: 0.75em;
+    max-width: 5rem;
+    position: relative;
+    text-shadow: 0 0 0.1em rgba(227, 228, 232, 0.5);
+    transform: rotateZ(-45deg);
+}
+#preloader {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    background-color: #454954;
+    background-image: linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+#content {
+    display: none; /* Hide content initially */
+    text-align: center;
+    padding: 20px;
+}
+/* Animations */
+@keyframes shadow {
+    from {
+        animation-timing-function: ease-in;
+        box-shadow: 0.1em 0.1em 0 0.1em black, 0.3em 0 0.3em rgba(0, 0, 0, 0.3);
+    }
+    25% {
+        animation-timing-function: ease-out;
+        box-shadow: 0.1em 0.1em 0 0.1em black, 0.8em 0 0.8em rgba(0, 0, 0, 0.5);
+    }
+    50%, to {
+        box-shadow: 0.1em 0.1em 0 0.1em black, 0.3em 0 0.3em rgba(0, 0, 0, 0.3);
+    }
+}
+@keyframes pushInOut1 {
+    from {
+        animation-timing-function: ease-in;
+        background-color: #454954;
+        transform: translate(0, 0);
+    }
+    25% {
+        animation-timing-function: ease-out;
+        background-color: #5583f6;
+        transform: translate(-71%, -71%);
+    }
+    50%, to {
+        background-color: #454954;
+        transform: translate(0, 0);
+    }
+}
+@keyframes pushInOut2 {
+    from {
+        animation-timing-function: ease-in;
+        background-color: #454954;
+        clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
+    }
+    25% {
+        animation-timing-function: ease-out;
+        background-color: #255ff4;
+        clip-path: polygon(0 25%, 100% 25%, 100% 100%, 0 100%);
+    }
+    50%, to {
+        background-color: #454954;
+        clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
+    }
+}
+
+
+    </style>
+</head>
+<body>
+<div  id="preloader">
+    <div class="pl">
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="predot"></div>
+        <div class="pretext">Loading…</div>
+    </div>
+</div>
+    <div id="content">
+        <h1>Welcome to My Webpage!</h1>
+        <p>This is some content that appears after the preloader.</p>
+        
+        <h2>Image Gallery</h2>
+        <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 1">
+        <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 2">
+        <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 3">
+        <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 4">
+        <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 5">
+        
+        <h2>Scroll Animation Section</h2>
+        <p>More content that would have scroll animations.</p>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            const content = document.getElementById('content');
+
+            // Hide preloader and show content
+            preloader.style.display = 'none';
+            content.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+আমার জলবিদ্যুৎ বানানোর গল্প: যখন ছোট ছিলাম (ক্লাস ৫- ক্লাস ৬ এ যখন পড়তাম) তখন জমিতে সেচ দেওয়ার ড্রেনে খেলতাম। আমি দেখতাম স্রোত আমার জুতা এবং অন্যান্য জিনিসপত্র ভেসে নিয়ে যেত। আমি জুতা দিয়ে স্রোত আটকাতে চাইলে স্রোত ঠেলে নিয়ে যেত। তখন আমার মাথায় একটা বুদ্ধি আসল যে আমি যদি একটার পর একটা জুতা বা এরকম প্লেট একটা সাফ্টে আটকিয়ে স্রোতে রাখি তাহলে ত এটি ঘুরতে থাকবে কারণ স্রোত প্লেট গুলিকে ঠেলিয়ে নিয়ে যাবে। এরপরে বিভিন্ন রকমের এরকম সিস্টেম তৈরি করি যেগুলি স্রোতে ঘুরতে থাকে। 
+
+তখন সাইকেলে বোতল টাইপের এক ডায়নামো ব্যবহার হত। আমি ঘরের চালের টিন কাটিয়ে প্লেট করে সেগুলি কাঠের সাফ্টে আটকিয়ে এক ধরণের চাকা বানাই বর্তমানে যেগুলিকে Turbine বলে। এই টার্বাইন ঘুরিয়ে সেই ছোট ড্রেনের স্রোত থেকে সাইকেলে বোতল-ডায়নামো ঘুরিয়ে জীবনে প্রথম জল বিদ্যুৎ বানাই। 
+
+বায়ুবিদ্যুৎ বানানোর গল্প: সেই একই বয়সে তালপাতার পাখা বানিয়ে বাতাসে ঘুরতাম। পাটকাঠিতে আটকিয়ে মাটিতে পুতিয়ে রাখতাম। মাঝেমধ্যে পরিত্যক্ত এক্সরে ফিল্ম দিয়ে এই পাখা বানাতাম। 
+
+সেসময়ে আমার চাচার কেসেট প্লেয়ার এর ম্যাকানিক্যাল অংশে যে DC Motor থাকে সেই মোটরটি আমার সংগ্রহে ছিল এবং আমি জানতাম যে এই মোটরটি ঘুরালে সামান্য বিদ্যুৎ তৈরি হয়। কারণ মোটরটি Permanent Magnet DC Motor ছিল। 
+
+ত ঘূর্ণয়মান পাখাটি  এই DC Motor এর সাফ্টে আটকায় ফলে পাখাটি যখন বাতাসে ঘোরে তখন DC Motor টিও ঘোরে ফলে এখান থেকে বিদ্যুৎ তৈরি হয়। 
+
+আমার খেলাধুলা ছিল এইরকম টাইপের। ফুটবল, ক্রিকেট এসব খেলাধুলা কম করতাম। বিদ্যুৎ তৈরির  এসব কাজে মজা পেতাম। আমাদের গ্রামে সেই সময়ে বিদ্যুৎ ছিলোনা ফলে সেই ছোটবেলায় বিদ্যুৎ তৈরি করার আগ্রহও  ছিল প্রচন্ড রকম। 
+
+ক্লাস টেন পর্যন্ত এই জলবিদ্যুৎ আর বায়ুবিদ্যুৎ এর বিভিন্ন রকম সিস্টেম বানাই। 
+পরবর্তীতে যখন ক্লাস টেন পাশ করে ইন্টারে পড়তাম তখন বাংলাদেশে প্রথম প্রথম ব্যাটারিচালিত ইজিবাইক/ভ্যান/রিকশা আসে। এই রিকশার মোটরটিও Permanent Magnet DC Motor ছিল ফলে এটি  ঘুরালে বিদ্যুৎ তৈরি হয়।  বড় মোটর দিয়ে একটা কদম গাছ কেটে এই গাছকে পোল হিসেবে ব্যবহার করে প্রায় ১০ ফিট বড় একটা বায়ু বিদ্যুৎ বানিয়েছিলাম। 
+
+বর্তমানে আমাদের পাশের গ্রামের নদী দেখে আমার খুব আফসোস হয় যে নদীটি আমার বাড়ির পাশে হলে আমি এখান থেকে বিদ্যুৎ তৈরি করতে পারতাম এবং অন্তত নিজের পরিবারের বিদ্যুৎ এর চাহিদা মেটাতে পারতাম। 
+
+আমি এখনো বাস্তবে জলবিদ্যুৎ বা বায়ু বিদ্যুৎ সরাসরি দেখিনি। বর্তমানে ইন্টারনেটের যুগ হওয়াতে ইন্টারনেটে এসব দেখেছি। 
+
+ছোটবেলায় আমার আরও কিছু বানানোর ইচ্ছা ছিল যেমন Hand Crank Flashlight, একধরণের জুতা যে জুতা পরে হাঁটলে এর মেক্যানিক্যাল সিস্টেম থেকে অটোমেটিক বিদ্যুৎ তৈরি হবে। অবশ্যই ব্যাটারিহীন কারণ এখানে ছোট ডায়নামো থাকবে যেখান থেকে বিদ্যুৎ তৈরি হবে। 
+
+বর্তমানে Hand Crank Flashlight অনেক দেখি অনলাইনে কিন্ত আমি যেরকম বানাতে চেয়েছিলাম সেরকম নেই। বর্তমানে যেগুলি আছে এগুলি ঘুরাতে দুই হাত লাগবে কিন্ত আমি মোটরসাইকেলের যে ব্রেক আছে সেই ব্রেক দুপাশে দুটি দিয়ে এক হাতের মাঝখানে থাকবে এবং খুব সহজে ব্রেকে চাপ দেওয়ার মাধ্যমে মেক্যানিক্যাল সিস্টেম থেকে বিদ্যুৎ তৈরি হবে। 
+সবকিছুই আমার মাথায় সেটাপ আছে যে কিভাবে কি হবে কিন্ত উপযুক্ত সরঞ্জাম এর অভাবে করতে পারিনি। 
+
+ইলেকট্রিক মোটরসাইকেল বানানোর গল্প: গ্রাজুয়েশন করার সময় মোটরসাইকেল বানানোর ইচ্ছা হয়। এরপরে ঝালাই মেশিন (Welding Machine), Grinder Machine, স্টিল পাইপ, চাকা, মোটর, ব্যাটারি  ইত্যাদি কিনে জীবনের প্রথম ইলেকট্রিক বাইক বানাই। 
+এরপরে বিভিন্নবার বিভিন্ন রকমের বিভিন্ন মডেলের ইলেকট্রিক বাইক বানাই। কখনো Hub Motor কখনো Chain Drive Motor ব্যবহার করে নানানভাবে বানাই।  এখনো আমার ইলেকট্রিক বাইক বানিয়ে ব্যবসা করার ইচ্ছা আছে কিন্ত উপযুক্ত অর্থ না থাকায় কিছু করতে পারছিনা। সস্তায় বাংলাদেশের মানুষের জন্য ss pipe দিয়ে কুল ডিজানের ইলেকট্রিক মোটরসাইকেল বানানোর স্বপ্ন দেখি। 
+
+বর্তমান যেসব  চিন্তাভাবনা হয়: নদীনালার বাংলাদেশে বিভিন্ন ছোটখাটো নদী রয়েছে। এসব নদীতে আছে শক্তি (স্রোত)। এমনকি বিভিন্ন নদীতে সরকার ডেম তৈরি করে রেখেছে খরার সময় যাতে পানি আটকে থাকে। এসব ডেম থেকে বিদ্যুৎ তৈরি করা একেবারে ডালভাত। আমি বুঝিনা সরকার কেন ক্ষুদ্র জলবিদ্যুৎ কেন্দ্র করেনা এসব জায়গায়। সবকিছু ত করাই আছে জাস্ট হাইড্রো টার্বাইন বসলেই হয়ে যায়। 
+অবশ্য পানি থেকে বিদ্যুৎ তৈরি করার জন্য বিভিন্ন রকমের টার্বাইন এবং সিস্টেম  বানানো যায়। 
+বছরে চারমাস স্রোত থাকলেও এসব ডেমে জলবিদ্যুৎ করা সোলার প্যানেল থেকে  লাভজনক। কারণ সোলার প্যানেল ২৪ ঘন্টায় ৮ ঘন্টা বিদ্যুৎ দিলে উভয় ক্ষেত্রে সেম ইফিসিয়েন্সি হয়। কিন্ত সোলার প্যানেল শীতকালে এবং মেঘলা আকাশের সময় ভালো বিদ্যুৎ দিতে পারবেনা ফলে এর ইফিসিয়েন্সি আরও কমে যাবে। তাছাড়া নদীর ডেম গুলি তৈরি  করাই আছে। জাস্ট হাইড্রো জেনারেটর বসলেই হয়ে যায়। 
+
+বাংলাদেশে যেসব সোলার বিদ্যুৎ  সিস্টেম বানানো হয় তাতে ঘূর্ণন সিস্টেম থাকেনা। ঘূর্ণন সিস্টেম হলো প্যানেল যে রেকের উপর বসানো থাকে সেই রেকের যেকোন প্রান্তে একটা মোটর রাখা যা সূর্যের ঘূর্ণনের সাথে প্যানেল ও ঘুরাবে ফলে প্যানেল সবসময় সূর্যের দিক বরাবর থাকবে। অথবা মানুষ রেখে মেনুয়ালি ঘুরানো যায়। প্যানেল সূর্যের দিক বরাবর থাকলে ইফিসিয়েন্সি প্রচুর বেড়ে যায়। 
+এই সিস্টেমের আরও একটি  বড় উপকারী  দিক হলো, শীলা বৃষ্টির সময় প্যানেল ভূমির সাথে উলম্ব রাখলে প্যানেল ক্ষতিগ্রস্থ হবেনা। একবার খবর দেখেছিলাম শীলা বৃষ্টিতে আমেরিকার বিশাল সোলার সিস্টেমের প্যানেল ক্ষতিগ্রস্থ হয়েছে। 
+
+
+অন্যান্য: আমার আরও কিছু ক্রিয়েটিভ দিক আছে।  আমি একটি মাত্র মৌমাছি ধরে আনি বিল থেকে বা যেখানে পাই সেখান থেকে এবং এই একটি মৌমাছি দিয়ে পুরা মৌচাক চলে আসে স্বেচ্ছায় এবং আমার রাখা বক্সে চাক বাধে। মৌমাছিটি ধরে এনে তাকে ইমপ্রেস করি আমার বক্সে চাক বাধানোর জন্য এবং সে চলে আসে পুরা দলবল সহকারে। 
+একটি মৌ চাকে একটিমাত্র রানী একাধিক রাজা থাকে এবং বাংলাদেশে শীতকালে সরিষার ফুলের সময় প্রচুর মধু হয় এবং এসময় চাকে একাধিক নতুন রানী তৈরি হয় এবং ১০-১২ দিনের মধ্যেই এসব নতুন রানী নতুন দলবল বেঁধে আলাদা চাক তৈরি করে দল বেঁধে অন্যত্র চলে যায়। পুরাতুন চাক কিন্ত থেকেই যায়। 
+আমি বর্তমানে ফ্রীলান্সিং (web developing) করে পেট চালাই। আমার সার্টিফিকেট টেক্সটাইল ইঞ্জি:, পেশা ফ্রীলান্সিং এবং প্যাশন ক্রিয়েটিভ কিছু তৈরি করা বিশেষ করে ইলেকট্রিক্যাল/মেক্যানিক্যাল সেক্টরে। 
+
+
+
