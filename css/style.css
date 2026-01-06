@@ -778,7 +778,7 @@ input[type="range"]{
 }
 .affiliate-block ul li img {
   transition: 0.3s;
-  max-width: 80%;
+  max-width: 60%;
   margin: 20px auto;
   display: block;
 }
@@ -794,9 +794,31 @@ input[type="range"]{
   display: inline-block;
   text-align: center;
 }
-
-
-
+.affl-block{
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.affl-block::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.affl-block h3, .affl-block p, .affl-block a{
+  color: #fff;
+  position: relative;
+  z-index: 3;
+}
+ .affl-block a {
+  background-color: transparent;
+ }
 
 
 /*Scroll Animation CSS*/
@@ -1187,15 +1209,22 @@ ol.list li{
 .cb-heading::after{
   display: none;
 }
-
-
-
+.affiliate-block ul {
+  flex-direction: column;
+}
+.affiliate-block ul li {
+  width: 100%;
+}
+.actions button, .affiliate-btn {
+  width: 100%;
+}
 
 
 }
 
 
 @media (max-width: 550px){
+
 
 }
 
