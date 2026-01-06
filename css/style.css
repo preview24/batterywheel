@@ -394,10 +394,11 @@ body {
   margin-bottom: 0.5rem;
   color: #000;
 }
-.calculator-block p{
+.calculator-block p {
   font-size: 14px;
-  line-height: 16px;
+  line-height: 15px;
   margin-bottom: 10px;
+  font-weight: 500;
 }
 .tool-placeholder {
   background: #f1f1f1;
@@ -573,7 +574,7 @@ input, select{
     margin-top: 14px;
     align-items: center;
 }
-.actions button {
+.actions button, .affiliate-btn {
     flex: 1;
     padding: 10px;
     border-radius: 5px;
@@ -736,6 +737,64 @@ input[type="range"]{
   justify-content: space-between;
   align-items: flex-start;
 }
+
+
+
+
+
+
+
+
+.affiliate-block {
+  margin: 0px 0 30px;
+  padding: 20px;
+  border: 1px dashed #f60;
+  border-radius: 8px;
+  background: #fff;
+}
+.affiliate-block h3{
+  margin-bottom: 15px;
+  font-size: 25px;
+}
+.affiliate-block ul{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.affiliate-block ul li {
+  width: calc(50% - 10px);
+  padding: 15px 10px;
+  background: #fff;
+  transition: 0.3s;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.affiliate-block ul li:hover {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.18);
+}
+.affiliate-block ul li img {
+  transition: 0.3s;
+  max-width: 80%;
+  margin: 20px auto;
+  display: block;
+}
+.affiliate-block ul li:hover img{
+  transform: scale(1.05);
+}
+.affiliate-block ul li p{
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+.affiliate-block ul li .affiliate-btn {
+  display: inline-block;
+  text-align: center;
+}
+
 
 
 
@@ -998,12 +1057,16 @@ ol.list li{
   margin-top: 20px;
 }
 .calculatorp1{}
-.calculatorp1 li{}
+.calculatorp1 li {
+  margin: 0;
+  line-height: 18px;
+}
 .calculatorp1 li a {
   color: #f60;
   font-weight: 600;
-  padding: 3px 5px;
-  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 14px;
+  display: block;
 }
 .calculatorp1 li a:hover{
   background-color: rgba(0, 0, 0, 0.1);
